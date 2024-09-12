@@ -9,7 +9,7 @@ public class Fish : MonoBehaviour
     public float Weight;
     public float MaxStamina; 
     public float CurrentStamina { get; set; }
-
+    public float Rarity; 
     public float RechargeRate; 
     public float Agression;
     private readonly static System.Random rand = new();
