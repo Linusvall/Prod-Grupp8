@@ -55,7 +55,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Side ");
                 Debug.Log(controller.transform.rotation.y);
                 
-                direction = new Vector3(inputY *(controller.transform.rotation.y > 1 || controller.transform.rotation.y < 0 ? -1 : 1) , 0f, inputX * (controller.transform.rotation.y  > 1 || controller.transform.rotation.y <0 ? 1 : -1));
+                direction = new Vector3(inputY *(controller.transform.rotation.y > 1 || 
+                    controller.transform.rotation.y < 0 ? -1 : 1) , 0f, 
+                    inputX * (controller.transform.rotation.y  > 1 || controller.transform.rotation.y <0 ? 1 : -1));
             }
             else
             {
