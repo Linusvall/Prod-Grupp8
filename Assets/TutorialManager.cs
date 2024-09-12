@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     private AudioSource tutorialSource;
     private int currentTut;
     private List<int> passedTuts = new List<int>();
+
     // Start is called before the first frame update
     void Start()
     {
