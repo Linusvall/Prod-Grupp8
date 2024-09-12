@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float inputY;
 
     [SerializeField] bool isFishing = false;
-    public Rigidbody body;
+   
 
     private Directions currentDirection;
 
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 return; 
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
-            body.gameObject.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
+          
             PlaySound("Facing West");
         }
         else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
