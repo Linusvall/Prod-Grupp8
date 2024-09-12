@@ -487,6 +487,7 @@ MonoBehaviour:
   controller: {fileID: 474084086}
   speed: 10
   isFishing: 0
+  body: {fileID: 474084092}
 --- !u!1 &856539396
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +731,10 @@ PrefabInstance:
     - target: {fileID: 1709852396864900838, guid: 8c08e67790b3f29458a687f952cfc179, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338877036698331667, guid: 8c08e67790b3f29458a687f952cfc179, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.688
       objectReference: {fileID: 0}
     - target: {fileID: 5507316411478907526, guid: 8c08e67790b3f29458a687f952cfc179, type: 3}
       propertyPath: m_LocalPosition.x
