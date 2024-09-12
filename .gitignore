@@ -73,3 +73,4 @@ crashlytics-build.properties
 /Prod/Library/Artifacts
 /Prod/obj/Debug
 /Prod/Temp
+/Prod
