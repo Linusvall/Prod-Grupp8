@@ -47,16 +47,19 @@ public class PlayerController : MonoBehaviour
         if (!isFishing)
         {
             Vector3 direction;
-          
+
+            Debug.Log(controller.transform.rotation.y);
             if (controller.transform.rotation.y != 0 &&  controller.transform.rotation.y != 1)
             {
+               
                 Debug.Log("Side ");
                 Debug.Log(controller.transform.rotation.y);
-                direction = new Vector3(inputY *-1, 0f, inputX);
+                
+                direction = new Vector3(inputY *(controller.transform.rotation.y > 1 || controller.transform.rotation.y < 0 ? -1 : 1) , 0f, inputX * (controller.transform.rotation.y  > 1 || controller.transform.rotation.y <0 ? 1 : -1));
             }
             else
             {
-                direction = new Vector3(inputX, 0f, inputY);
+                direction = new Vector3(inputX *  (controller.transform.rotation.y == 1? -1: 1), 0f, inputY * (controller.transform.rotation.y == 1 ? -1 : 1));
             }
             
             controller.Move(direction * Time.deltaTime * speed);
