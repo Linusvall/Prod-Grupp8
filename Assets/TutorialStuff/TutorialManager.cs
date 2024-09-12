@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialSource = GetComponent<AudioSource>();
         updateTut(0);
+      
     }
 
     private void Update()
@@ -27,7 +28,9 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+      //  if(Input.getaxis)
+
+        if ((Input.GetKeyDown(KeyCode.Y)))
         {
             PlayClip();
         }
