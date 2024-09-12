@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +13,14 @@ public class PlayerController : MonoBehaviour
 
     private float inputX;
     private float inputY;
+
+    enum Rotaastions
+    {
+        Left =-90,
+        Right = 180,
+        Up = 0, 
+        Down = 90
+    }
 
     public float GetInputX() { return inputX; }
     public float GetInputY() { return inputY; }
@@ -23,5 +33,83 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = new Vector3(inputX, 0f, inputY);
         controller.Move(direction * Time.deltaTime * speed);
+
+        //Gamepad.current.dpad.left.isPressed || 
+        if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())
+        {
+            
+            if(controller.transform.rotation.y == (float)Rotaastions.Left)
+            {
+                return; 
+            }
+            controller.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
+        {
+          
+            if (controller.transform.rotation.y == (float)Rotaastions.Up)
+            {
+                return;
+            }
+            controller.transform.eulerAngles = new (0, (float)Rotaastions.Up, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.L) || CheckDpadRight())
+        {
+            
+            if (controller.transform.rotation.y == (float)Rotaastions.Right)
+            {
+                return;
+            }
+            controller.transform.eulerAngles = new(0, (float)Rotaastions.Right, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.K) || CheckDpadDown())
+        {
+           
+            if (controller.transform.rotation.y == (float)Rotaastions.Down)
+            {
+                return;
+            }
+            controller.transform.eulerAngles = new(0, (float)Rotaastions.Down, 0);
+        }
+
+    }
+    private bool CheckDpadLeft()
+    {
+
+        if(Gamepad.current == null)
+        {
+            return false; 
+        }
+        return Gamepad.current.dpad.left.isPressed; 
+    }
+    private bool CheckDpadRight()
+    {
+
+        if (Gamepad.current == null)
+        {
+            return false;
+        }
+        return Gamepad.current.dpad.right.isPressed;
+    }
+    private bool CheckDpadUp()
+    {
+
+        if (Gamepad.current == null)
+        {
+            return false;
+        }
+        return Gamepad.current.dpad.up.isPressed;
+    }
+    private bool CheckDpadDown()
+    {
+
+        if (Gamepad.current == null)
+        {
+            return false;
+        }
+        return Gamepad.current.dpad.down.isPressed;
     }
 }
+
+
+

@@ -18,13 +18,13 @@ public class FishingPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+            
     }
 
 
     public (Fish, GameObject) GetRandomFish()
     {
-        GameObject fish = Instantiate<GameObject>(fishInThePool[rand.Next(fishInThePool.Length - 1)]);
+        GameObject fish = Instantiate<GameObject>(fishInThePool[rand.Next(fishInThePool.Length)]);
         return (fish.GetComponent<Fish>(), fish);
     }
 }

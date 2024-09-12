@@ -2,7 +2,7 @@ public class GameEnums
 {
     public enum Direction
     {
-        Netrual = 0,
+        Natural  = 0,
         Right   = 1,
         Left = 2,
         Down = 3,
