@@ -59,7 +59,7 @@ public class Fish : MonoBehaviour
     }
     public void LowerStamina(float amount)
     {
-        CurrentStamina -= amount; 
+        CurrentStamina -= amount;
     }
 
 }
