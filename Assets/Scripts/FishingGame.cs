@@ -48,7 +48,7 @@ public class FishingGame : MonoBehaviour
             if (currentFish.CurrentStamina > 0)
             {
 
-                print(currentFish.CurrentDirection);
+               print(currentFish.CurrentDirection);
 
                 if (fishCurrentDirection == Directions.Left)
                 {
