@@ -7,15 +7,19 @@ public class Fish : MonoBehaviour
 {
 
     public float Weight;
-    public float MaxStamina; 
-    public float CurrentStamina { get; set; }
+    public float MaxStamina;
+    public float CurrentStamina;
 
     public float RechargeRate; 
     public float Agression;
     private readonly static System.Random rand = new();
     public float StaminaEnumerator;
     public float AgressionEnumerator; 
-    public Direction CurrentDirection { get; private set; }
+    public Directions CurrentDirection { get; private set; }
+    
+  
+
+    
     
 
     // Start is called before the first frame update
@@ -43,7 +47,7 @@ public class Fish : MonoBehaviour
         if(AgressionEnumerator >= Agression)
         {
             AgressionEnumerator = 0;
-            CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length - 1)];
+            CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length )];
             return; 
         }
 
@@ -52,6 +56,12 @@ public class Fish : MonoBehaviour
     public bool IsStaminaDelpeted()
     {
         return CurrentStamina <= 0; 
+    }
+
+    public void LowerStamina(float value)
+    {
+        CurrentStamina -= value;
+       
     }
 
 }
