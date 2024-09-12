@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         tutorialSource = GetComponent<AudioSource>();
+        updateTut(0);
     }
 
     private void Update()
@@ -20,13 +21,13 @@ public class TutorialManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(currentTut == 3)
+            if(currentTut == 2)
             {
-                updateTut(4);
+                updateTut(3);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             PlayClip();
         }
@@ -36,9 +37,12 @@ public class TutorialManager : MonoBehaviour
 
     public void updateTut(int tut)
     {
-        passedTuts.Add(currentTut);
-        currentTut = tut;
-        PlayClip();
+        if (!passedTuts.Contains(tut))
+        {
+            passedTuts.Add(tut);
+            currentTut = tut;
+            PlayClip();
+        }
         
     }
 

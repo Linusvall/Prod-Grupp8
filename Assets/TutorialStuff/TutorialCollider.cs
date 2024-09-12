@@ -17,11 +17,14 @@ public class TutorialCollider : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (other.gameObject.name == "Player")
         {
+            Debug.Log("JOEL");
             tutorialManager.GetComponent<TutorialManager>().updateTut(tutNumber);
         }
     }
+ 
 }
