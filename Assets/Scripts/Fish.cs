@@ -14,14 +14,18 @@ public class Fish : MonoBehaviour
     public float Agression;
     private readonly static System.Random rand = new();
     public float StaminaEnumerator;
-    public float AgressionEnumerator; 
+    public float AgressionEnumerator;
+
+    public string SoundBite; 
+   
     public Direction CurrentDirection { get; private set; }
     
 
     // Start is called before the first frame update
     void Start()
     {
-        CurrentStamina = MaxStamina; 
+        CurrentStamina = MaxStamina;
+        CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length)];
     }
 
     // Update is called once per frame
@@ -43,7 +47,7 @@ public class Fish : MonoBehaviour
         if(AgressionEnumerator >= Agression)
         {
             AgressionEnumerator = 0;
-            CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length - 1)];
+            CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length)];
             return; 
         }
 

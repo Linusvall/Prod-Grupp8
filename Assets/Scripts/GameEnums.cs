@@ -1,13 +1,13 @@
 public class GameEnums 
 {
-    public enum Direction
+    public enum Directions
     {
-        Netrual = 0,
+        Natural  = 0,
         Right   = 1,
         Left = 2,
         Down = 3,
         Up = 4
     }
 
-    public static readonly Direction[] ListOfDirections = { Direction.Right, Direction.Down, Direction.Left};
+    public static readonly Directions[] ListOfDirections = { Directions.Right, Directions.Down, Directions.Left };
 }
