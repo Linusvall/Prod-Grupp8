@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static GameEnums;
+using static Unity.VisualScripting.Member;
 
 public class FishingGame : MonoBehaviour
 {
+
+    private AudioSource fishAudioSource;
+    [SerializeField] private AudioClip reelIn;
+    [SerializeField] private AudioClip victory;
 
     [SerializeField] Fish currentFish;
 
@@ -31,7 +37,7 @@ public class FishingGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        fishAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +58,12 @@ public class FishingGame : MonoBehaviour
 
                 if (fishCurrentDirection == Directions.Left)
                 {
+                    fishAudioSource.panStereo = -1;
+                    if (!fishAudioSource.isPlaying)
+                    {
+                        fishAudioSource.Play();
+                    }
+
                     if (playerCurrentDirection == Directions.Right)
                     {
                         currentFish.LowerStamina(1 * Time.deltaTime);
@@ -60,6 +72,12 @@ public class FishingGame : MonoBehaviour
 
                 if (fishCurrentDirection == Directions.Right)
                 {
+                    fishAudioSource.panStereo = 1;
+                    if (!fishAudioSource.isPlaying)
+                    {
+                        
+                        fishAudioSource.Play();
+                    }
                     if (playerCurrentDirection == Directions.Left)
                     {
                         currentFish.LowerStamina(1 * Time.deltaTime);
@@ -68,6 +86,11 @@ public class FishingGame : MonoBehaviour
 
                 if (fishCurrentDirection == Directions.Down)
                 {
+                    fishAudioSource.panStereo = 0;
+                    if (!fishAudioSource.isPlaying)
+                    {
+                        fishAudioSource.Play();
+                    }
                     if (playerCurrentDirection == Directions.Down)
                     {
                         currentFish.LowerStamina(1 * Time.deltaTime);
@@ -77,13 +100,16 @@ public class FishingGame : MonoBehaviour
             else
             {
                 print("du vann jao");
+                fishAudioSource.Stop();
                 fishingPhase = 2;
+                playerController.StopSound();
             }
         }
 
         if (fishingPhase == 2)
         {
             SpinJoyStick();
+            fishAudioSource.panStereo = 0;
         }
 
     }
@@ -116,7 +142,10 @@ public class FishingGame : MonoBehaviour
         {
             // Full spin detected, increase the value
             currentSpins += increaseAmount;
-
+            if (!fishAudioSource.isPlaying)
+            {
+                fishAudioSource.PlayOneShot(reelIn);
+            }
             // Reset the accumulated angle
             accumulatedAngle = 0f;
 
@@ -128,6 +157,7 @@ public class FishingGame : MonoBehaviour
 
         if(goal == currentSpins)
         {
+            fishAudioSource.PlayOneShot(victory);
             fishingPhase = 3;
             print("yippieeee");
         }
