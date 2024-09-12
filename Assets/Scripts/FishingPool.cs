@@ -25,6 +25,6 @@ public class FishingPool : MonoBehaviour
     public (Fish, GameObject) GetRandomFish()
     {
         GameObject fish = Instantiate<GameObject>(fishInThePool[rand.Next(fishInThePool.Length - 1)]);
-        return (fish.GetComponent<Fish>(), fish); 
+        return (fish.GetComponent<Fish>(), fish);
     }
 }
