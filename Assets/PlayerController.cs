@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
         Up = 0, 
         Down = 90
     }
+    public 
+    Dictionary<Rotaastions, string> AudioMap;
+
 
     public float GetInputX() { return inputX; }
     public float GetInputY() { return inputY; }

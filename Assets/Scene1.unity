@@ -654,6 +654,30 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Facing North
+    clip: {fileID: 8300000, guid: 43e19ae686c4aea43a3d41fe2c4d2d14, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing South
+    clip: {fileID: 8300000, guid: b34419cc14be05847a12464becb8a6c0, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing East
+    clip: {fileID: 8300000, guid: 7b39f91020ba600479d6e468c485e348, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing West
+    clip: {fileID: 8300000, guid: c8ebb58d7c6ab384dae985bdc2c5c9a3, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1346740751
 Transform:
   m_ObjectHideFlags: 0
