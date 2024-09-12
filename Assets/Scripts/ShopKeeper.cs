@@ -69,7 +69,7 @@ public class ShopKeeper : MonoBehaviour
 
         if (HasExitedTheCollider)
         {
-            AudioManager.instance.Play(SoundEffectToPlayOnEnter);
+            AudioManager.instance.Play(SoundEffectToPlayOnEnter, gameObject);
         }
         HasExitedTheCollider = false;
 
@@ -92,7 +92,7 @@ public class ShopKeeper : MonoBehaviour
         }
         if(!HasExitedTheCollider)
         {
-            AudioManager.instance.Play(SoundEffectToPlayOnExit);
+            AudioManager.instance.Play(SoundEffectToPlayOnExit, gameObject);
         }
         HasExitedTheCollider = true; 
     }

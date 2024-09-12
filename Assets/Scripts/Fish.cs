@@ -18,7 +18,7 @@ public class Fish : MonoBehaviour
 
     public string SoundBite; 
    
-    public Direction CurrentDirection { get; private set; }
+    public Directions CurrentDirection { get; private set; }
     
 
     // Start is called before the first frame update
@@ -56,6 +56,10 @@ public class Fish : MonoBehaviour
     public bool IsStaminaDelpeted()
     {
         return CurrentStamina <= 0; 
+    }
+    public void LowerStamina(float amount)
+    {
+        CurrentStamina -= amount; 
     }
 
 }
