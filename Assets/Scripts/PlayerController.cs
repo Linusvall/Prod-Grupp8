@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float inputY;
 
     [SerializeField] bool isFishing = false;
+   
 
     private Directions currentDirection;
 
@@ -28,9 +29,11 @@ public class PlayerController : MonoBehaviour
         Up = 0, 
         Down = 90
     }
- 
-   
 
+
+
+
+    
 
     public float GetInputX() { return inputX; }
     public float GetInputY() { return inputY; }
@@ -43,7 +46,19 @@ public class PlayerController : MonoBehaviour
 
         if (!isFishing)
         {
-            Vector3 direction = new Vector3(inputX, 0f, inputY);
+            Vector3 direction;
+          
+            if (controller.transform.rotation.y != 0 &&  controller.transform.rotation.y != 1)
+            {
+                Debug.Log("Side ");
+                Debug.Log(controller.transform.rotation.y);
+                direction = new Vector3(inputY *-1, 0f, inputX);
+            }
+            else
+            {
+                direction = new Vector3(inputX, 0f, inputY);
+            }
+            
             controller.Move(direction * Time.deltaTime * speed);
         }
 
@@ -60,6 +75,7 @@ public class PlayerController : MonoBehaviour
                 return; 
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
+          
             PlaySound("Facing West");
         }
         else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
