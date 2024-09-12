@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameEnums;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
     private float inputX;
     private float inputY;
 
+    [SerializeField] bool isFishing = false;
+
+    private Directions currentDirection;
+
+    public Directions GetCurrentDirection () { return currentDirection; }  
+
     enum Rotaastions
     {
         Left =-90,
@@ -21,6 +28,9 @@ public class PlayerController : MonoBehaviour
         Up = 0, 
         Down = 90
     }
+ 
+   
+
 
     public float GetInputX() { return inputX; }
     public float GetInputY() { return inputY; }
@@ -31,8 +41,13 @@ public class PlayerController : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputY = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(inputX, 0f, inputY);
-        controller.Move(direction * Time.deltaTime * speed);
+        if (!isFishing)
+        {
+            Vector3 direction = new Vector3(inputX, 0f, inputY);
+            controller.Move(direction * Time.deltaTime * speed);
+        }
+
+        UpdateCharacterDirection();
 
         //Gamepad.current.dpad.left.isPressed || 
         if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())
@@ -43,6 +58,7 @@ public class PlayerController : MonoBehaviour
                 return; 
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
+            PlaySound("Facing West");
         }
         else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
         {
@@ -52,6 +68,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             controller.transform.eulerAngles = new (0, (float)Rotaastions.Up, 0);
+            PlaySound("Facing North");
         }
         else if (Input.GetKeyDown(KeyCode.L) || CheckDpadRight())
         {
@@ -61,6 +78,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Right, 0);
+            PlaySound("Facing East");
         }
         else if (Input.GetKeyDown(KeyCode.K) || CheckDpadDown())
         {
@@ -70,6 +88,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Down, 0);
+            PlaySound("Facing South");
         }
 
     }
@@ -109,6 +128,26 @@ public class PlayerController : MonoBehaviour
         }
         return Gamepad.current.dpad.down.isPressed;
     }
+
+    private void UpdateCharacterDirection()
+    {
+
+        currentDirection = (inputX > 0.5f && inputY < 0.5f) ? Directions.Right :
+            (inputX < -0.5f && inputY < 0.5f) ? Directions.Left :
+            (inputY > 0.5f && inputX < 0.5f) ? Directions.Up :
+            (inputY < -0.5f && inputX < 0.5f) ? Directions.Down : Directions.Natural;
+    }
+
+    private void PlaySound(string soundToPlay)
+    {
+        if(AudioManager.instance == null || soundToPlay == null)
+        {
+            return; 
+        }
+
+        AudioManager.instance.Play(soundToPlay, gameObject);
+    }
+
 }
 
 
