@@ -48,13 +48,10 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 direction;
 
-            Debug.Log(controller.transform.rotation.y);
+          
             if (controller.transform.rotation.y != 0 &&  controller.transform.rotation.y != 1)
             {
                
-                Debug.Log("Side ");
-                Debug.Log(controller.transform.rotation.y);
-                
                 direction = new Vector3(inputY *(controller.transform.rotation.y > 1 || 
                     controller.transform.rotation.y < 0 ? -1 : 1) , 0f, 
                     inputX * (controller.transform.rotation.y  > 1 || controller.transform.rotation.y <0 ? 1 : -1));
@@ -171,6 +168,15 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.Play(soundToPlay, gameObject);
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("FFFF");
+        if (hit.gameObject.CompareTag("Wall"))
+        {
+            AudioManager.instance.Play("Thud", hit.gameObject);
+        }
+    }
+ 
 }
 
 

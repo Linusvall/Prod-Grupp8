@@ -43,9 +43,9 @@ public class ShopKeeper : MonoBehaviour
         if (SoundEffectEnumerator > FrequencyToPlayEffect)
         {
             // should we add randomness to it?
-            if(AudioManager.instance != null)
+            if(AudioManager.instance != null && HasExitedTheCollider)
             {
-                //AudioManager.instance.Play(SoundEffectToPlayRandomly);
+                AudioManager.instance.Play(SoundEffectToPlayRandomly, gameObject);
             }
 
             SoundEffectEnumerator = 0;
