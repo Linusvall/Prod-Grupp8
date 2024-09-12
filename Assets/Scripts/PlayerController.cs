@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
             controller.Move(direction * Time.deltaTime * speed);
         }
 
+        
+
         UpdateCharacterDirection();
 
         //Gamepad.current.dpad.left.isPressed || 
