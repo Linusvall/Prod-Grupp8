@@ -587,18 +587,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
       propertyPath: tutorialClips.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
       propertyPath: tutorialClips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 4a6b1f8213c29014289882750b0f211b, type: 3}
+      objectReference: {fileID: 8300000, guid: a7f63bc25ef9cbf43a998e4aa70a6a72, type: 3}
     - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
       propertyPath: tutorialClips.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 40754b5c8e803a14fbb778f187c6d5b8, type: 3}
+      objectReference: {fileID: 8300000, guid: d1af3f6729e373e49bcfd838a08976fc, type: 3}
     - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
       propertyPath: tutorialClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40754b5c8e803a14fbb778f187c6d5b8, type: 3}
+    - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
+      propertyPath: tutorialClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: e69e47215f77d2540b2ad4ca8c2a0168, type: 3}
+    - target: {fileID: 590181050842037635, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}
+      propertyPath: tutorialClips.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: 454d46bdce064b143a462122558f0c11, type: 3}
     - target: {fileID: 2979582060942670301, guid: f0bc6de88da36fc468c82ef3065b21b1, type: 3}

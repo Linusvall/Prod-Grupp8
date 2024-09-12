@@ -15,6 +15,24 @@ public class TutorialManager : MonoBehaviour
         tutorialSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(currentTut == 3)
+            {
+                updateTut(4);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PlayClip();
+        }
+
+    }
+
 
     public void updateTut(int tut)
     {
