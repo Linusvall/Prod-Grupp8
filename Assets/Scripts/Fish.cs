@@ -16,6 +16,9 @@ public class Fish : MonoBehaviour
     public float StaminaEnumerator;
     public float AgressionEnumerator;
 
+    //Grim
+    public string dialogID;
+
     public string SoundBite; 
    
     public Directions CurrentDirection { get; private set; }
