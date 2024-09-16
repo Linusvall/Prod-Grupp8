@@ -7,7 +7,7 @@ public class FishingPool : MonoBehaviour
 {
 
 
-    public GameObject[] fishInThePool;
+    public Fish[] fishInThePool;
     readonly private static System.Random rand = new(); 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,9 @@ public class FishingPool : MonoBehaviour
     }
 
 
-    public (Fish, GameObject) GetRandomFish()
+    public Fish GetRandomFish()
     {
-        GameObject fish = Instantiate<GameObject>(fishInThePool[rand.Next(fishInThePool.Length)]);
-        return (fish.GetComponent<Fish>(), fish);
+        Fish fish = Instantiate<Fish>(fishInThePool[rand.Next(fishInThePool.Length)]);
+        return (fish);
     }
 }

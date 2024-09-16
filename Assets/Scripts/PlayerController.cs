@@ -12,8 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 10f;
 
-    private float inputX;
-    private float inputY;
+    [SerializeField] float rotationSpeed = 10f;
+
+    private float leftJoystickInputX;
+    private float leftJoystickInputY;
+
+    private float rightJoystickInputX;
+
+    private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
    
@@ -21,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private Directions currentDirection;
 
     public Directions GetCurrentDirection () { return currentDirection; }  
+
+    public void SetCurrentFishGame(FishingGame game) { fishGame = game; }
 
     enum Rotaastions
     {
@@ -35,38 +43,53 @@ public class PlayerController : MonoBehaviour
 
     
 
-    public float GetInputX() { return inputX; }
-    public float GetInputY() { return inputY; }
+    public float GetInputX() { return leftJoystickInputX; }
+    public float GetInputY() { return leftJoystickInputY; }
 
+    // Update is called once per frame
     // Update is called once per frame
     void Update()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputY = Input.GetAxis("Vertical");
+     
+        leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
+        leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
+        rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
+
+       
+
 
         if (!isFishing)
         {
-            Vector3 direction;
+            float rotationAmount = rightJoystickInputX * rotationSpeed * Time.deltaTime;
+            controller.transform.Rotate(0, rotationAmount, 0);
+            Vector3 forward = controller.transform.forward;  
+            Vector3 right = controller.transform.right;      
 
-          
-            if (controller.transform.rotation.y != 0 &&  controller.transform.rotation.y != 1)
+            Vector3 direction = (forward * leftJoystickInputY) + (right * leftJoystickInputX);
+
+            if (direction.magnitude > 1)
             {
-               
-                direction = new Vector3(inputY *(controller.transform.rotation.y > 1 || 
-                    controller.transform.rotation.y < 0 ? -1 : 1) , 0f, 
-                    inputX * (controller.transform.rotation.y  > 1 || controller.transform.rotation.y <0 ? 1 : -1));
+                direction.Normalize();
             }
-            else
-            {
-                direction = new Vector3(inputX *  (controller.transform.rotation.y == 1? -1: 1), 0f, inputY * (controller.transform.rotation.y == 1 ? -1 : 1));
-            }
-            
+
             controller.Move(direction * Time.deltaTime * speed);
         }
 
-        
 
-        UpdateCharacterDirection();
+
+        if (Input.GetButtonDown("StartFishing")){
+           if(fishGame != null)
+            {
+                fishGame.StartGame();
+                isFishing = true;
+            }
+        }
+    
+
+
+
+
+    UpdateCharacterDirection();
 
         //Gamepad.current.dpad.left.isPressed || 
         if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())
@@ -152,10 +175,11 @@ public class PlayerController : MonoBehaviour
     private void UpdateCharacterDirection()
     {
 
-        currentDirection = (inputX > 0.5f && inputY < 0.5f) ? Directions.Right :
-            (inputX < -0.5f && inputY < 0.5f) ? Directions.Left :
-            (inputY > 0.5f && inputX < 0.5f) ? Directions.Up :
-            (inputY < -0.5f && inputX < 0.5f) ? Directions.Down : Directions.Natural;
+        currentDirection = (leftJoystickInputX > 0.5f && leftJoystickInputY < 0.5f) ? Directions.Right :
+            (leftJoystickInputX < -0.5f && leftJoystickInputY < 0.5f) ? Directions.Left :
+            (leftJoystickInputY > 0.5f && leftJoystickInputX < 0.5f) ? Directions.Up :
+            (leftJoystickInputY < -0.5f && leftJoystickInputX < 0.5f) ? Directions.Down : Directions.Natural;
+
     }
 
     private void PlaySound(string soundToPlay)
@@ -175,6 +199,11 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.instance.Play("Thud", hit.gameObject);
         }
+    }
+
+    public void StopSound()
+    {
+        print("Stoppar ljud");
     }
  
 }
