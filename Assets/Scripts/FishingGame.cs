@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static GameEnums;
+using static Unity.VisualScripting.Member;
 
 public class FishingGame : MonoBehaviour
 {
 
+    private AudioSource fishAudioSource;
+    [SerializeField] private AudioClip reelIn;
+    [SerializeField] private AudioClip victory;
+
     [SerializeField] Fish currentFish;
+    [SerializeField] private FishingPool pool;
 
     [SerializeField] PlayerController playerController;
 
@@ -27,74 +34,108 @@ public class FishingGame : MonoBehaviour
     private float previousAngle = 0f;   // Angle of the joystick in the last frame
     private float accumulatedAngle = 0f;
 
+    private bool fishingEnabled = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentFish = pool.GetRandomFish();
+        fishAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        fishCurrentDirection = currentFish.CurrentDirection;
-        playerCurrentDirection = playerController.GetCurrentDirection();
+      
+       playerCurrentDirection = playerController.GetCurrentDirection();
 
-
-        if (fishingPhase == 1)
-        {
-
-            if (currentFish.CurrentStamina > 0)
-            {
-
-               print(currentFish.CurrentDirection);
-
-                if (fishCurrentDirection == Directions.Left)
-                {
-                    if (playerCurrentDirection == Directions.Right)
-                    {
-                        currentFish.LowerStamina(1 * Time.deltaTime);
-                    }
-                }
-
-                if (fishCurrentDirection == Directions.Right)
-                {
-                    if (playerCurrentDirection == Directions.Left)
-                    {
-                        currentFish.LowerStamina(1 * Time.deltaTime);
-                    }
-                }
-
-                if (fishCurrentDirection == Directions.Down)
-                {
-                    if (playerCurrentDirection == Directions.Down)
-                    {
-                        currentFish.LowerStamina(1 * Time.deltaTime);
-                    }
-                }
-            }
-            else
-            {
-                print("du vann jao");
-                fishingPhase = 2;
-            }
-        }
-
-        if (fishingPhase == 2)
-        {
-            SpinJoyStick();
-        }
+        Fishing();
+        
 
     }
 
+    private void Fishing()
+    {
+        if (fishingEnabled)
+        {
+            if (fishingPhase == 1)
+            {
+                Phase1();
+            }
 
+            if (fishingPhase == 2)
+            {
+                Phase2();
+                fishAudioSource.panStereo = 0;
+            }
+        }
+    }
 
-    private void SpinJoyStick()
+    private void Phase1()
+    {
+        fishCurrentDirection = currentFish.CurrentDirection;
+        if (currentFish.CurrentStamina > 0)
+        {
+
+            print(currentFish.CurrentDirection);
+
+            if (fishCurrentDirection == Directions.Left)
+            {
+                fishAudioSource.panStereo = -1;
+                if (!fishAudioSource.isPlaying)
+                {
+                    fishAudioSource.Play();
+                }
+
+                if (playerCurrentDirection == Directions.Right)
+                {
+                    currentFish.LowerStamina(1 * Time.deltaTime);
+                }
+            }
+
+            if (fishCurrentDirection == Directions.Right)
+            {
+                fishAudioSource.panStereo = 1;
+                if (!fishAudioSource.isPlaying)
+                {
+
+                    fishAudioSource.Play();
+                }
+                if (playerCurrentDirection == Directions.Left)
+                {
+                    currentFish.LowerStamina(1 * Time.deltaTime);
+                }
+            }
+
+            if (fishCurrentDirection == Directions.Up)
+            {
+                fishAudioSource.panStereo = 0;
+                if (!fishAudioSource.isPlaying)
+                {
+                    fishAudioSource.Play();
+                }
+                if (playerCurrentDirection == Directions.Down)
+                {
+                    currentFish.LowerStamina(1 * Time.deltaTime);
+                }
+            }
+        }
+        if(currentFish.CurrentStamina <= 0)
+        {
+            print("du vann jao");
+            fishAudioSource.Stop();
+            fishingPhase = 2;
+            playerController.StopSound();
+        }
+    }
+
+    private void Phase2()
     {
         // Get the joystick position
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("RightJoystickHorizontal");
+        float vertical = Input.GetAxis("RightJoystickVertical");
 
         // Calculate the current angle of the joystick (in degrees)
         float currentAngle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
@@ -116,7 +157,10 @@ public class FishingGame : MonoBehaviour
         {
             // Full spin detected, increase the value
             currentSpins += increaseAmount;
-
+            if (!fishAudioSource.isPlaying)
+            {
+                fishAudioSource.PlayOneShot(reelIn);
+            }
             // Reset the accumulated angle
             accumulatedAngle = 0f;
 
@@ -128,8 +172,25 @@ public class FishingGame : MonoBehaviour
 
         if(goal == currentSpins)
         {
+            fishAudioSource.PlayOneShot(victory);
             fishingPhase = 3;
+            fishingEnabled = false;
             print("yippieeee");
+
+            FindObjectOfType<AudioManager>().Play(currentFish.dialogID, playerController.gameObject);
+        }
+    }
+
+    public void StartGame()
+    {
+        fishingEnabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().SetCurrentFishGame(this);
         }
     }
 }
