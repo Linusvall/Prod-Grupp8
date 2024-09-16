@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    UpdateCharacterDirection();
+        UpdateCharacterDirection();
 
         //Gamepad.current.dpad.left.isPressed || 
         if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())

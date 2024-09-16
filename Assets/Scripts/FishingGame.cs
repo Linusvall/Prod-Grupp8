@@ -176,6 +176,8 @@ public class FishingGame : MonoBehaviour
             fishingPhase = 3;
             fishingEnabled = false;
             print("yippieeee");
+
+            FindObjectOfType<AudioManager>().Play(currentFish.dialogID, playerController.gameObject);
         }
     }
 
