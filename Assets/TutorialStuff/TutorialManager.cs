@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         tutorialSource = GetComponent<AudioSource>();
-        updateTut(0);
+       // updateTut(0);
       
     }
 
@@ -35,6 +35,8 @@ public class TutorialManager : MonoBehaviour
             PlayClip();
         }
 
+        
+
     }
 
 
@@ -46,6 +48,10 @@ public class TutorialManager : MonoBehaviour
             currentTut = tut;
             PlayClip();
         }
+        if(tut == 0)
+        {
+            
+        }
         
     }
 
@@ -56,6 +62,12 @@ public class TutorialManager : MonoBehaviour
 
     }
    
-    
+    private void OnClipFinished(int tut)
+    {
+        if(tut == 0)
+        {
+            updateTut(1);
+        }
+    }
 
 }
