@@ -2078,6 +2078,7 @@ GameObject:
   - component: {fileID: 1205702281}
   - component: {fileID: 1205702282}
   - component: {fileID: 1205702283}
+  - component: {fileID: 1205702284}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -2128,7 +2129,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205702279}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4a6b1f8213c29014289882750b0f211b, type: 3}
@@ -2224,12 +2225,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205702279}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b023046ed2b07d42b3d3681e760c927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tutNumber: 1
+--- !u!114 &1205702284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205702279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42e56bcb6a5c4141897549648e413ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  firstClip: {fileID: 8300000, guid: d1af3f6729e373e49bcfd838a08976fc, type: 3}
+  secondClip: {fileID: 8300000, guid: a7f63bc25ef9cbf43a998e4aa70a6a72, type: 3}
 --- !u!1 &1209487246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1296065972703221921, guid: 391d3eacca640264ea3d356b3e63b7c2, type: 3}
