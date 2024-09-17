@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Compass"))
         {
             if(currentTut == 2)
             {
