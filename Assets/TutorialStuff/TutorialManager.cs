@@ -9,6 +9,8 @@ public class TutorialManager : MonoBehaviour
     private int currentTut;
     private List<int> passedTuts = new List<int>();
 
+    private float input;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +30,26 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-      //  if(Input.getaxis)
+        //  if(Input.getaxis)
+        input = Input.GetAxis("Compass");
+        if (Input.GetButtonDown("Compass"))
+        {
+            Debug.Log("JEOL WOHOOO");
+        }
 
-        if ((Input.GetKeyDown(KeyCode.Y)))
+
+        if ((Input.GetButtonDown("Repeat")))
         {
             PlayClip();
         }
 
+
+        /*
+        if ((Input.GetKeyDown(KeyCode.Y)))
+        {
+            PlayClip();
+        }
+        */
         
 
     }

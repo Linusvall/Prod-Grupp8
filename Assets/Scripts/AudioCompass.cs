@@ -20,6 +20,19 @@ public class AudioCompass: MonoBehaviour
         playerpos = player.transform;
         this.transform.position = new Vector3(playerpos.position.x, playerpos.position.y,playerpos.position.z + offset);
 
+        if (Input.GetButton("Compass"))
+        {
+            Debug.Log("AudioCompass tried to play");
+            if (!audioSrc.isPlaying)
+            {
+                AudioManager.instance.Play(audioClipName, this.gameObject);
+            }
+      
+
+        }
+
+        /*
+
         if (Input.GetKey(KeyCode.Joystick1Button10))
         {
             Debug.Log("AudioCompass tried to play");
@@ -30,6 +43,7 @@ public class AudioCompass: MonoBehaviour
        
 
         }
+        */
     }
 
     
