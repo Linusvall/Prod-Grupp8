@@ -111,3 +111,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: AudioCompass
+    clip: {fileID: 8300000, guid: 18841b4f62f2752499b2010d37b9e6dd, type: 3}
+    volume: 2.27
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

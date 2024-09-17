@@ -34,7 +34,7 @@ public class TutorialManager : MonoBehaviour
         input = Input.GetAxis("Compass");
         if (Input.GetButtonDown("Compass"))
         {
-            Debug.Log("JEOL WOHOOO");
+            //Debug.Log("JEOL WOHOOO");
         }
 
 
