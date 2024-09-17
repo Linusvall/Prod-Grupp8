@@ -20,6 +20,8 @@ public class FishingGame : MonoBehaviour
 
     [SerializeField] int fishingPhase = 1;
 
+    [SerializeField] List<string> caughtFish = new List<string>();
+
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
 
@@ -175,9 +177,16 @@ public class FishingGame : MonoBehaviour
             fishAudioSource.PlayOneShot(victory);
             fishingPhase = 3;
             fishingEnabled = false;
+            playerController.SetFishing(false);
             print("yippieeee");
 
-            FindObjectOfType<AudioManager>().Play(currentFish.dialogID, playerController.gameObject);
+            AudioManager.instance.Play(currentFish.dialogID + "_Intro", playerController.gameObject);
+            if (!checkFish())
+            {
+                AudioManager.instance.Play(currentFish.dialogID + "_Desc", playerController.gameObject);
+            }
+
+            resetGame();
         }
     }
 
@@ -192,5 +201,28 @@ public class FishingGame : MonoBehaviour
         {
             other.GetComponent<PlayerController>().SetCurrentFishGame(this);
         }
+    }
+
+    //Check if fish type has been caught before, if not catalog it
+    bool checkFish()
+    {
+        foreach (var ID in caughtFish)
+        {
+            if (ID == currentFish.dialogID)
+            {
+                return true;
+            }
+        }
+
+        caughtFish.Add(currentFish.dialogID);
+        return false;
+    }
+
+    void resetGame()
+    {
+        fishingPhase = 1;
+        currentSpins = 0;
+        Destroy(currentFish.gameObject);
+        currentFish = pool.GetRandomFish();
     }
 }

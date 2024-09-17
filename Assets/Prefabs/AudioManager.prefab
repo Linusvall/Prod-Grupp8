@@ -47,13 +47,13 @@ MonoBehaviour:
   sounds:
   - name: Give me Fish
     clip: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
-    volume: 0.583
+    volume: 10
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: More Fish
     clip: {fileID: 8300000, guid: d69f81b48975a7d438589fcdc87699fe, type: 3}
-    volume: 0.583
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -78,6 +78,36 @@ MonoBehaviour:
   - name: Facing West
     clip: {fileID: 8300000, guid: c8ebb58d7c6ab384dae985bdc2c5c9a3, type: 3}
     volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Thud
+    clip: {fileID: 8300000, guid: 82091f9df80cbef41a844a1a7fa856e4, type: 3}
+    volume: 2.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Desc
+    clip: {fileID: 8300000, guid: 05c4a91d12f441143899ade05c30a176, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Intro
+    clip: {fileID: 8300000, guid: 2c43563c7cbc90e47a906bc7aab567a4, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Desc
+    clip: {fileID: 8300000, guid: ba7eca4c02eb2304eaad3e538e190df2, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Intro
+    clip: {fileID: 8300000, guid: 7a4e195c7996e1143bc988de8cd07bfd, type: 3}
+    volume: 1.38
     pitch: 1
     loop: 0
     source: {fileID: 0}

@@ -206,6 +206,11 @@ public class PlayerController : MonoBehaviour
         print("Stoppar ljud");
     }
  
+
+    public void SetFishing(bool set)
+    {
+        isFishing = set;
+    }
 }
 
 
