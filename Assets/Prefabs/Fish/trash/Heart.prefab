@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7546621212451899416}
   - component: {fileID: 349264734196694208}
   m_Layer: 0
-  m_Name: ScreachRay
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819c5b3a61631ec42a0cb6a5395c67b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 10
-  MaxStamina: 15
-  RechargeRate: 30
-  Agression: 6
+  Weight: 1
+  MaxStamina: 4
+  RechargeRate: 1
+  Agression: 3
   StaminaEnumerator: 1
   AgressionEnumerator: 1
-  isFish: 1
-  dialogID: ScreatchRay
+  isFish: 0
+  dialogID: Heart
   SoundBite: 

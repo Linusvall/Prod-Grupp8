@@ -24,7 +24,7 @@ public class FishingGame : MonoBehaviour
     float fishingTimer = 1.5f, vibratetimer;
     float bitingTimer = 0.8f;
     bool isBiting = false;
-    public GameObject fishSound;
+    public GameObject fishSound, narrator;
 
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
@@ -48,6 +48,7 @@ public class FishingGame : MonoBehaviour
     {
         AudioManager.instance.Play("Splash", pool.gameObject);
         currentFish = pool.GetRandomFish();
+        goal = currentFish.Weight;
         fishAudioSource = GetComponent<AudioSource>();
     }
 
@@ -166,7 +167,7 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Left)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(2,0,2);
+                fishSound.transform.position = playerController.transform.position + (playerController.transform.right * -2) + (playerController.transform.forward * 2);
 
                 fishAudioSource.panStereo = -1;
                 if (!fishAudioSource.isPlaying)
@@ -187,7 +188,7 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Right)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(-2, 0, 2);
+                fishSound.transform.position = playerController.transform.position + (playerController.transform.forward * 2) + (playerController.transform.right * 2);
 
                 fishAudioSource.panStereo = 1;
                 if (!fishAudioSource.isPlaying)
@@ -208,7 +209,7 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Up)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(0, 0, 4);
+                fishSound.transform.position = playerController.transform.position + playerController.transform.forward * 4;
 
                 fishAudioSource.panStereo = 0;
                 if (!fishAudioSource.isPlaying)
@@ -285,11 +286,19 @@ public class FishingGame : MonoBehaviour
             playerController.SetFishing(false);
             print("yippieeee");
 
-            AudioManager.instance.Play(currentFish.dialogID + "_Intro", playerController.gameObject);
-            if (!checkFish())
+            if (currentFish.isFish) 
             {
-                AudioManager.instance.Play(currentFish.dialogID + "_Desc", playerController.gameObject);
+                AudioManager.instance.Play(currentFish.dialogID + "_Intro", narrator);
+                if (!checkFish())
+                {
+                    AudioManager.instance.Play(currentFish.dialogID + "_Desc", narrator);
+                }
             }
+            else
+            {
+                AudioManager.instance.Play(currentFish.dialogID, narrator);
+            }
+            
 
             Vibrate(10f, 10f);
             resetGame();
