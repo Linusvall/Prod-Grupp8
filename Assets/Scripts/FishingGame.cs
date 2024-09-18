@@ -10,12 +10,15 @@ public class FishingGame : MonoBehaviour
 
     private AudioSource fishAudioSource;
     [SerializeField] private AudioClip reelIn;
+    [SerializeField] private AudioClip rodStruggle;
     [SerializeField] private AudioClip victory;
+    [SerializeField] private AudioClip fishStruggle;
 
     [SerializeField] Fish currentFish;
     [SerializeField] private FishingPool pool;
 
     [SerializeField] PlayerController playerController;
+    [SerializeField] TutorialManager tutorialManager;
 
     [SerializeField] int fishingPhase = 0;
 
@@ -48,7 +51,7 @@ public class FishingGame : MonoBehaviour
     {
         AudioManager.instance.Play("Splash", pool.gameObject);
         currentFish = pool.GetRandomFish();
-        fishAudioSource = GetComponent<AudioSource>();
+        fishAudioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -155,60 +158,74 @@ public class FishingGame : MonoBehaviour
     private void Phase1()
     {
         fishCurrentDirection = currentFish.CurrentDirection;
+        if(!fishAudioSource.isPlaying) {
+            fishAudioSource.clip = fishStruggle;
+            fishAudioSource.loop = true;
+            fishAudioSource.Play();
+        }
+        
         if (currentFish.CurrentStamina > 0)
         {
-            if (fishSound.GetComponent<AudioSource>() == null || !fishSound.GetComponent<AudioSource>().isPlaying)
-            {
-                AudioManager.instance.Play("Swimming", fishSound);
-            }
+            //if (fishSound.GetComponent<AudioSource>() == null || !fishSound.GetComponent<AudioSource>().isPlaying)
+            //{
+            //    AudioManager.instance.Play("Swimming", fishSound);
+           // }
 
             print(currentFish.CurrentDirection);
 
             if (fishCurrentDirection == Directions.Left)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(2,0,2);
+               // fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(2,0,2);
 
                 fishAudioSource.panStereo = -1;
-                if (!fishAudioSource.isPlaying)
-                {
-                    fishAudioSource.Play();
-                }
 
                 if (playerCurrentDirection == Directions.Right)
                 {
+                    AudioSource playerAudioSource = playerController.GetAudioSource();
+                    playerAudioSource.panStereo = 0.7f;
+                    if(!playerAudioSource.isPlaying) {
+                        playerAudioSource.volume= 1f;
+                        playerAudioSource.clip = rodStruggle;
+                        playerAudioSource.Play();
+                    }
+
                     currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(1f, 0);
+                    Vibrate(0f, 0);
                 }
                 else
                 {
-                    Vibrate(0, 0);
+                    Vibrate(1f, 0);
                 }
             }
 
             if (fishCurrentDirection == Directions.Right)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(-2, 0, 2);
+               // fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(-2, 0, 2);
 
                 fishAudioSource.panStereo = 1;
-                if (!fishAudioSource.isPlaying)
-                {
 
-                    fishAudioSource.Play();
-                }
                 if (playerCurrentDirection == Directions.Left)
                 {
+                    AudioSource playerAudioSource = playerController.GetAudioSource();
+                    playerAudioSource.panStereo = -0.7f;
+                    if (!playerAudioSource.isPlaying)
+                    {
+                        playerAudioSource.volume = 1f;
+                        playerAudioSource.clip = rodStruggle;
+                        playerAudioSource.Play();
+                    }
                     currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(0, 1f);
+                    Vibrate(0, 0f);
                 }
                 else
                 {
-                    Vibrate(0, 0f);
+                    Vibrate(0, 1f);
                 }
             }
 
             if (fishCurrentDirection == Directions.Up)
             {
-                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(0, 0, 4);
+               // fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(0, 0, 4);
 
                 fishAudioSource.panStereo = 0;
                 if (!fishAudioSource.isPlaying)
@@ -229,8 +246,12 @@ public class FishingGame : MonoBehaviour
         }
         if(currentFish.CurrentStamina <= 0)
         {
-            fishSound.GetComponent<AudioSource>().Stop();
             fishAudioSource.Stop();
+            playerController.GetAudioSource().Stop();
+            playerController.GetAudioSource().loop= false;
+            playerController.GetAudioSource().panStereo= 0;
+            playerController.GetAudioSource().volume = 0.2f;
+            fishAudioSource.loop= false;
             fishingPhase = 2;
             Vibrate(0, 0);
         }
@@ -238,6 +259,7 @@ public class FishingGame : MonoBehaviour
 
     private void Phase2()
     {
+        tutorialManager.updateTut(5);
         // Get the joystick position
         float horizontal = Input.GetAxis("RightJoystickHorizontal");
         float vertical = Input.GetAxis("RightJoystickVertical");
