@@ -300,6 +300,7 @@ public class FishingGame : MonoBehaviour
     {
         fishingEnabled = true;
         pool.GetComponent<AudioSource>().Stop();
+        AudioManager.instance.Play("CastReel", pool.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

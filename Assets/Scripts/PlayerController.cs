@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isFishing = false;
 
     public Image eyes;
-   
+   public bool canPlaySound = true;
 
     private Directions currentDirection;
 
@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-
+        if(leftJoystickInputY != 0 || leftJoystickInputY!= 0)
+        {
+            canPlaySound = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
 
         if (Input.GetButtonDown("StartFishing")){
-           if(fishGame != null)
+           if(fishGame != null && !isFishing)
             {
                 fishGame.StartGame();
                 isFishing = true;
@@ -211,7 +214,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("FFFF");
         if (hit.gameObject.CompareTag("Wall"))
         {
-            AudioManager.instance.Play("Thud", hit.gameObject);
+            if (!canPlaySound) return;
+            PlaySound("Thud");
+            canPlaySound = false;
         }
     }
  
