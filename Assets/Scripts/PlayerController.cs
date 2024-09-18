@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static GameEnums;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
+
+    public Image eyes;
    
 
     private Directions currentDirection;
@@ -55,7 +58,18 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
 
-       
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (eyes.enabled)
+            {
+                eyes.enabled = false;
+            }
+            else
+            {
+                eyes.enabled = true;
+            }
+        }
 
 
         if (!isFishing)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using static GameEnums;
 using static Unity.VisualScripting.Member;
 
@@ -18,9 +19,14 @@ public class FishingGame : MonoBehaviour
 
     [SerializeField] PlayerController playerController;
 
-    [SerializeField] int fishingPhase = 1;
+    [SerializeField] int fishingPhase = 0;
 
     [SerializeField] List<string> caughtFish = new List<string>();
+
+    float fishingTimer = 1.5f;
+    float bitingTimer = 0.8f;
+    bool isBiting = false;
+    public GameObject fishSound;
 
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
@@ -42,6 +48,7 @@ public class FishingGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.Play("Splash", pool.gameObject);
         currentFish = pool.GetRandomFish();
         fishAudioSource = GetComponent<AudioSource>();
     }
@@ -49,19 +56,52 @@ public class FishingGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-      
        playerCurrentDirection = playerController.GetCurrentDirection();
 
         Fishing();
-        
 
+        if (isBiting)
+        {
+            bitingTimer -= Time.deltaTime;
+
+            if (Input.GetButtonDown("StartFishing"))
+            {
+                fishingPhase = 1;
+            }
+
+            if (bitingTimer <= 0)
+            {
+                isBiting = false;
+                bitingTimer = 0.8f;
+            }
+        }
     }
 
     private void Fishing()
     {
         if (fishingEnabled)
         {
+            switch (fishingPhase)
+            {
+                case 0:
+                {
+                        phase0();
+                    break;
+                }
+
+                case 1:
+                {
+                        Phase1();
+                    break;
+                }
+
+                default:
+                {
+                        Phase2();
+                    break;
+                }
+            }
+
             if (fishingPhase == 1)
             {
                 Phase1();
@@ -75,16 +115,46 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    void phase0()
+    {
+        fishingTimer -= Time.deltaTime;
+
+        if (fishingTimer <= 0)
+        {
+            if (Random.Range(0, currentFish.Agression) < 2)
+            {
+                AudioManager.instance.Play("Bite", pool.gameObject);
+                isBiting = true;
+            }
+            else
+            {
+                AudioManager.instance.Play("Nibble", pool.gameObject);
+                if (Input.GetButtonDown("StartFishing"))
+                {
+                    fishingTimer += 7;
+                }
+            }
+
+            fishingTimer = Random.Range(3, 6);
+        }
+    }
+
     private void Phase1()
     {
         fishCurrentDirection = currentFish.CurrentDirection;
         if (currentFish.CurrentStamina > 0)
         {
+            if (fishSound.GetComponent<AudioSource>() == null || !fishSound.GetComponent<AudioSource>().isPlaying)
+            {
+                AudioManager.instance.Play("Swimming", fishSound);
+            }
 
             print(currentFish.CurrentDirection);
 
             if (fishCurrentDirection == Directions.Left)
             {
+                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(2,0,2);
+
                 fishAudioSource.panStereo = -1;
                 if (!fishAudioSource.isPlaying)
                 {
@@ -99,6 +169,8 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Right)
             {
+                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(-2, 0, 2);
+
                 fishAudioSource.panStereo = 1;
                 if (!fishAudioSource.isPlaying)
                 {
@@ -109,10 +181,16 @@ public class FishingGame : MonoBehaviour
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
                 }
+                else
+                {
+
+                }
             }
 
             if (fishCurrentDirection == Directions.Up)
             {
+                fishSound.transform.position = playerController.gameObject.transform.position + new Vector3(0, 0, 4);
+
                 fishAudioSource.panStereo = 0;
                 if (!fishAudioSource.isPlaying)
                 {
@@ -126,7 +204,7 @@ public class FishingGame : MonoBehaviour
         }
         if(currentFish.CurrentStamina <= 0)
         {
-            print("du vann jao");
+            fishSound.GetComponent<AudioSource>().Stop();
             fishAudioSource.Stop();
             fishingPhase = 2;
             playerController.StopSound();
@@ -193,6 +271,7 @@ public class FishingGame : MonoBehaviour
     public void StartGame()
     {
         fishingEnabled = true;
+        pool.GetComponent<AudioSource>().Stop();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -220,8 +299,10 @@ public class FishingGame : MonoBehaviour
 
     void resetGame()
     {
-        fishingPhase = 1;
+        AudioManager.instance.Play("Splash", pool.gameObject);
+        fishingPhase = 0;
         currentSpins = 0;
+        fishingTimer = 1.5f;
         Destroy(currentFish.gameObject);
         currentFish = pool.GetRandomFish();
     }
