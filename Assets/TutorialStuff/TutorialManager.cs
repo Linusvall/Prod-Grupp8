@@ -15,7 +15,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         tutorialSource = GetComponent<AudioSource>();
-       // updateTut(0);
+        updateTut(0);
       
     }
 

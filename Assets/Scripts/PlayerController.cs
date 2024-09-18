@@ -11,6 +11,11 @@ using static GameEnums;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] private AudioClip[] footsteps;
+    [SerializeField] private float footstepDelay;
+    private int clipIndex;
+    private AudioSource audioSource;
+
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 10f;
 
@@ -50,7 +55,10 @@ public class PlayerController : MonoBehaviour
     public float GetInputX() { return leftJoystickInputX; }
     public float GetInputY() { return leftJoystickInputY; }
 
-    // Update is called once per frame
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -58,9 +66,13 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if(leftJoystickInputY != 0 || leftJoystickInputY!= 0)
+        if((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying)
         {
-            canPlaySound = true;
+            clipIndex = Random.Range(1, footsteps.Length);
+            AudioClip clip = footsteps[clipIndex];
+            audioSource.PlayOneShot(clip);
+            footsteps[clipIndex] = footsteps[0];
+            footsteps[0] = clip;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
