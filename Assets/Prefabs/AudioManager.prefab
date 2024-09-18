@@ -83,7 +83,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Thud
     clip: {fileID: 8300000, guid: 82091f9df80cbef41a844a1a7fa856e4, type: 3}
-    volume: 2.4
+    volume: 10
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -116,4 +116,28 @@ MonoBehaviour:
     volume: 2.27
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: Nibble
+    clip: {fileID: 8300000, guid: 889b274b2d3cf6345afca3dc176aac6d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bite
+    clip: {fileID: 8300000, guid: c4975056d8922c644bf002e7223a6d3b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Swimming
+    clip: {fileID: 8300000, guid: c3108f6322b43de4b900fc29ea1b3770, type: 3}
+    volume: 2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Splash
+    clip: {fileID: 8300000, guid: 10d3f820a56a59a47a0edc3fc3af2d1a, type: 3}
+    volume: 2
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
