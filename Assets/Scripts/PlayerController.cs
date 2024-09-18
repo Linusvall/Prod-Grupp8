@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
     enum Rotaastions
     {
         Left =-90,
-        Right = 180,
+        Right = 90,
         Up = 0, 
-        Down = 90
+        Down = 180
     }
 
 
