@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
+
 using static GameEnums;
-using static Unity.VisualScripting.Member;
+using UnityEngine.InputSystem;
 
 public class FishingGame : MonoBehaviour
 {
@@ -164,6 +162,11 @@ public class FishingGame : MonoBehaviour
                 if (playerCurrentDirection == Directions.Right)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
+                    Vibrate(0.5f, 0);
+                }
+                else
+                {
+                    Vibrate(0.1f, 0);
                 }
             }
 
@@ -180,10 +183,11 @@ public class FishingGame : MonoBehaviour
                 if (playerCurrentDirection == Directions.Left)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
+                    Vibrate(0, 0.5f);
                 }
                 else
                 {
-
+                    Vibrate(0, 0.1f);
                 }
             }
 
@@ -199,6 +203,12 @@ public class FishingGame : MonoBehaviour
                 if (playerCurrentDirection == Directions.Down)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
+                    Vibrate(0.5f, 0.5f);
+                 
+                }
+                else
+                {
+                    Vibrate(0.1f, 0.1f);
                 }
             }
         }
@@ -306,4 +316,14 @@ public class FishingGame : MonoBehaviour
         Destroy(currentFish.gameObject);
         currentFish = pool.GetRandomFish();
     }
+    private void Vibrate(float left, float right)
+    {
+        if(Gamepad.current == null)
+        {
+            return; 
+        }
+        Gamepad.current.SetMotorSpeeds(left, right);
+    }
 }
+
+
