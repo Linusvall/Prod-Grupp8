@@ -6,7 +6,7 @@ using static GameEnums;
 public class Fish : MonoBehaviour
 {
 
-    public float Weight;
+    public int Weight;
     public float MaxStamina; 
     public float CurrentStamina { get; set; }
     public float RechargeRate; 
@@ -14,6 +14,8 @@ public class Fish : MonoBehaviour
     private readonly static System.Random rand = new();
     public float StaminaEnumerator;
     public float AgressionEnumerator;
+
+    public bool isFish = true;
 
     //Grim
     public string dialogID;
