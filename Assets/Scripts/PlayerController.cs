@@ -214,11 +214,6 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.Play("Thud", hit.gameObject);
         }
     }
-
-    public void StopSound()
-    {
-        print("Stoppar ljud");
-    }
  
 
     public void SetFishing(bool set)

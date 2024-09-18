@@ -21,7 +21,7 @@ public class FishingGame : MonoBehaviour
 
     [SerializeField] List<string> caughtFish = new List<string>();
 
-    float fishingTimer = 1.5f;
+    float fishingTimer = 1.5f, vibratetimer;
     float bitingTimer = 0.8f;
     bool isBiting = false;
     public GameObject fishSound;
@@ -123,6 +123,8 @@ public class FishingGame : MonoBehaviour
             {
                 AudioManager.instance.Play("Bite", pool.gameObject);
                 isBiting = true;
+                Vibrate(0.2f, 0.2f);
+                vibratetimer = 0.8f;
             }
             else
             {
@@ -131,9 +133,22 @@ public class FishingGame : MonoBehaviour
                 {
                     fishingTimer += 7;
                 }
+                Vibrate(0.1f, 0.1f);
+                vibratetimer = 0.4f;
             }
 
             fishingTimer = Random.Range(3, 6);
+        }
+
+        
+
+        if(vibratetimer <= 0)
+        {
+            Vibrate(0f, 0f);
+        }
+        else
+        {
+            vibratetimer -= Time.deltaTime;
         }
     }
 
@@ -162,11 +177,11 @@ public class FishingGame : MonoBehaviour
                 if (playerCurrentDirection == Directions.Right)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(0.5f, 0);
+                    Vibrate(1f, 0);
                 }
                 else
                 {
-                    Vibrate(0.1f, 0);
+                    Vibrate(0, 0);
                 }
             }
 
@@ -183,11 +198,11 @@ public class FishingGame : MonoBehaviour
                 if (playerCurrentDirection == Directions.Left)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(0, 0.5f);
+                    Vibrate(0, 1f);
                 }
                 else
                 {
-                    Vibrate(0, 0.1f);
+                    Vibrate(0, 0f);
                 }
             }
 
@@ -208,7 +223,7 @@ public class FishingGame : MonoBehaviour
                 }
                 else
                 {
-                    Vibrate(0.1f, 0.1f);
+                    Vibrate(0, 0);
                 }
             }
         }
@@ -217,7 +232,7 @@ public class FishingGame : MonoBehaviour
             fishSound.GetComponent<AudioSource>().Stop();
             fishAudioSource.Stop();
             fishingPhase = 2;
-            playerController.StopSound();
+            Vibrate(0, 0);
         }
     }
 
@@ -257,6 +272,8 @@ public class FishingGame : MonoBehaviour
             Debug.Log("Value increased: " + currentSpins);
         }
 
+        Vibrate(currentSpins, currentSpins);
+
         // Update the previous angle for the next frame
         previousAngle = currentAngle;
 
@@ -274,6 +291,7 @@ public class FishingGame : MonoBehaviour
                 AudioManager.instance.Play(currentFish.dialogID + "_Desc", playerController.gameObject);
             }
 
+            Vibrate(10f, 10f);
             resetGame();
         }
     }
@@ -315,6 +333,7 @@ public class FishingGame : MonoBehaviour
         fishingTimer = 1.5f;
         Destroy(currentFish.gameObject);
         currentFish = pool.GetRandomFish();
+        Vibrate(0, 0);
     }
     private void Vibrate(float left, float right)
     {

@@ -22,36 +22,19 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    public static AudioManager instance {
-        get
-        {
-            if (instance == null)
-            {
-                // spawn
-                Debug.Log("No audio manager in scene"); // to fix 
-            }
-            return instance; 
-        }
-       private set
-        {
-            if(instance == value)
-            {
-                return; 
-            }
-
-            if (instance != null) {
-               Destroy(value);
-               return; 
-            }
-
-            instance = value;
-            DontDestroyOnLoad(value);
-
-        }
-    }
+    public static AudioManager instance;
 
     void Awake()
     {
+
+        if (instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this);
         instance = this; 
         
     }
