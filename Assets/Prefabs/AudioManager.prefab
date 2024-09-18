@@ -82,32 +82,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Thud
-    clip: {fileID: 8300000, guid: 82091f9df80cbef41a844a1a7fa856e4, type: 3}
-    volume: 10
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BloodGut_Desc
-    clip: {fileID: 8300000, guid: 05c4a91d12f441143899ade05c30a176, type: 3}
-    volume: 1.38
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BloodGut_Intro
-    clip: {fileID: 8300000, guid: 2c43563c7cbc90e47a906bc7aab567a4, type: 3}
-    volume: 1.38
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: VoidScale_Desc
-    clip: {fileID: 8300000, guid: ba7eca4c02eb2304eaad3e538e190df2, type: 3}
-    volume: 1.38
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: VoidScale_Intro
-    clip: {fileID: 8300000, guid: 7a4e195c7996e1143bc988de8cd07bfd, type: 3}
-    volume: 1.38
+    clip: {fileID: 8300000, guid: 8e62e8f41a48a7f468196bc65407ed18, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -118,20 +94,20 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Nibble
-    clip: {fileID: 8300000, guid: 889b274b2d3cf6345afca3dc176aac6d, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 1d729883308541c4d8fa83d2db3de103, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Bite
-    clip: {fileID: 8300000, guid: c4975056d8922c644bf002e7223a6d3b, type: 3}
+    clip: {fileID: 8300000, guid: 06deddd033ce1344bafe353eb933dd83, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Swimming
-    clip: {fileID: 8300000, guid: c3108f6322b43de4b900fc29ea1b3770, type: 3}
-    volume: 2
+    clip: {fileID: 8300000, guid: 93954d70134022d429e89b5466f110bf, type: 3}
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -140,4 +116,142 @@ MonoBehaviour:
     volume: 2
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: CastReel
+    clip: {fileID: 8300000, guid: 6483d431057b1614aae6326beef62c0c, type: 3}
+    volume: 0.2
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScreatchRay_Intro
+    clip: {fileID: 8300000, guid: d76de287f5b97ac4e8fe2b521f2ba2d9, type: 3}
+    volume: 1.38
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScreatchRay_Desc
+    clip: {fileID: 8300000, guid: f5e33f705ad59834491c7e8de82214b6, type: 3}
+    volume: 1.38
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Intro
+    clip: {fileID: 8300000, guid: d29f4d8c278e72440a4a9bffc1cd1ff1, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Desc
+    clip: {fileID: 8300000, guid: 1d80521ed4acebc4baad5c1ced0cc44b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Intro
+    clip: {fileID: 8300000, guid: 78bf20d8e9ef3ee469f137ca987121ed, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Desc
+    clip: {fileID: 8300000, guid: 51da4f9b3a1de9b469f7ce087d6e1f21, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bloatfin_Intro
+    clip: {fileID: 8300000, guid: 43a9415203901b84ea4da0f493614302, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bloatfin_Desc
+    clip: {fileID: 8300000, guid: 634127376aa770c41979b95a6a69ee02, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Drownedeye_Desc
+    clip: {fileID: 8300000, guid: b439ce479ce6f584badec22888f47366, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Drownedeye_Intro
+    clip: {fileID: 8300000, guid: 3ec55c0ca382bf44480bb11fde865a21, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HatsuneMiku
+    clip: {fileID: 8300000, guid: 8aebf15b4f58e1647aa9aac78384b210, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Heart
+    clip: {fileID: 8300000, guid: ab1c161e9f51d9342a79a968d91f026b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Desc
+    clip: {fileID: 8300000, guid: f05effbca8af97d4fab2660a97d56e45, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Intro
+    clip: {fileID: 8300000, guid: e3bb5956ebc55274b8970659dec2730a, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Desc
+    clip: {fileID: 8300000, guid: f5e33f705ad59834491c7e8de82214b6, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Intro
+    clip: {fileID: 8300000, guid: d76de287f5b97ac4e8fe2b521f2ba2d9, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skull
+    clip: {fileID: 8300000, guid: ce67b3896d8a7204abdab8b77442071f, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skullhook_Desc
+    clip: {fileID: 8300000, guid: 3f74de2094e6fed4990c1b9c0448f5c9, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skullhook_Intro
+    clip: {fileID: 8300000, guid: a6f81c8cfe39f6742bfa3cc0d016f05b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TookBait
+    clip: {fileID: 8300000, guid: f10ca8a64a74b3f459aea9b474a0e288, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Tentacle
+    clip: {fileID: 8300000, guid: e5214740fe0ce8c4a9e1218446666134, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidWeed
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
