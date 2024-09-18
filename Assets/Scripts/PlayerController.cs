@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 using static GameEnums;
 
@@ -209,17 +210,23 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.Play(soundToPlay, gameObject);
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+  /*  private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log("FFFF");
+        Debug.Log("Hit a wall");
         if (hit.gameObject.CompareTag("Wall"))
         {
             if (!canPlaySound) return;
             PlaySound("Thud");
             canPlaySound = false;
         }
+  
+    }*/
+    private void OnCollisionEnter(Collision hit)
+    {
+        Debug.Log("Hit a wall");
+        PlaySound("Thud");
     }
- 
+
 
     public void SetFishing(bool set)
     {
