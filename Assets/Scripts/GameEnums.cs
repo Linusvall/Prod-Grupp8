@@ -9,5 +9,5 @@ public class GameEnums
         Up = 4
     }
 
-    public static readonly Directions[] ListOfDirections = { Directions.Right, Directions.Left };
+    public static readonly Directions[] ListOfDirections = { Directions.Right, Directions.Left, Directions.Up };
 }
