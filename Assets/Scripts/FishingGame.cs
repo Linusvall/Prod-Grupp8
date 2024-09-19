@@ -29,7 +29,7 @@ public class FishingGame : MonoBehaviour
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
 
-    public void SetFish (Fish fish) { currentFish = fish; }
+    public void SetFish(Fish fish) { currentFish = fish; }
 
 
     public float spinThreshold = 360f;  // Amount of degrees needed to complete a spin
@@ -55,7 +55,7 @@ public class FishingGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       playerCurrentDirection = playerController.GetCurrentDirection();
+        playerCurrentDirection = playerController.GetCurrentDirection();
 
         Fishing();
 
@@ -83,22 +83,22 @@ public class FishingGame : MonoBehaviour
             switch (fishingPhase)
             {
                 case 0:
-                {
+                    {
                         phase0();
-                    break;
-                }
+                        break;
+                    }
 
                 case 1:
-                {
+                    {
                         Phase1();
-                    break;
-                }
+                        break;
+                    }
 
                 default:
-                {
+                    {
                         Phase2();
-                    break;
-                }
+                        break;
+                    }
             }
 
             if (fishingPhase == 1)
@@ -141,9 +141,9 @@ public class FishingGame : MonoBehaviour
             fishingTimer = Random.Range(3, 6);
         }
 
-        
 
-        if(vibratetimer <= 0)
+
+        if (vibratetimer <= 0)
         {
             Vibrate(0f, 0f);
         }
@@ -220,7 +220,7 @@ public class FishingGame : MonoBehaviour
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
                     Vibrate(0.5f, 0.5f);
-                 
+
                 }
                 else
                 {
@@ -228,7 +228,7 @@ public class FishingGame : MonoBehaviour
                 }
             }
         }
-        if(currentFish.CurrentStamina <= 0)
+        if (currentFish.CurrentStamina <= 0)
         {
             fishSound.GetComponent<AudioSource>().Stop();
             fishAudioSource.Stop();
@@ -278,7 +278,7 @@ public class FishingGame : MonoBehaviour
         // Update the previous angle for the next frame
         previousAngle = currentAngle;
 
-        if(goal == currentSpins)
+        if (goal == currentSpins)
         {
             fishAudioSource.PlayOneShot(victory);
             fishingPhase = 3;
@@ -286,7 +286,7 @@ public class FishingGame : MonoBehaviour
             playerController.SetFishing(false);
             print("yippieeee");
 
-            if (currentFish.isFish) 
+            if (currentFish.isFish)
             {
                 AudioManager.instance.Play(currentFish.dialogID + "_Intro", narrator);
                 if (!checkFish())
@@ -298,7 +298,7 @@ public class FishingGame : MonoBehaviour
             {
                 AudioManager.instance.Play(currentFish.dialogID, narrator);
             }
-            
+
 
             Vibrate(10f, 10f);
             resetGame();
@@ -347,9 +347,9 @@ public class FishingGame : MonoBehaviour
     }
     private void Vibrate(float left, float right)
     {
-        if(Gamepad.current == null)
+        if (Gamepad.current == null)
         {
-            return; 
+            return;
         }
         Gamepad.current.SetMotorSpeeds(left, right);
     }
