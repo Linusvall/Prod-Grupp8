@@ -1,0 +1,257 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6428703716437564169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7968694766213152517}
+  - component: {fileID: 2075367360024758749}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7968694766213152517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428703716437564169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8894649, y: 0.40897638, z: 5.380255}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2075367360024758749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428703716437564169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e391cefe6ef2f49b144ffc2b75fdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Give me Fish
+    clip: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
+    volume: 10
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: More Fish
+    clip: {fileID: 8300000, guid: d69f81b48975a7d438589fcdc87699fe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing North
+    clip: {fileID: 8300000, guid: 43e19ae686c4aea43a3d41fe2c4d2d14, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing South
+    clip: {fileID: 8300000, guid: b34419cc14be05847a12464becb8a6c0, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing East
+    clip: {fileID: 8300000, guid: 7b39f91020ba600479d6e468c485e348, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Facing West
+    clip: {fileID: 8300000, guid: c8ebb58d7c6ab384dae985bdc2c5c9a3, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Thud
+    clip: {fileID: 8300000, guid: 8e62e8f41a48a7f468196bc65407ed18, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: AudioCompass
+    clip: {fileID: 8300000, guid: 18841b4f62f2752499b2010d37b9e6dd, type: 3}
+    volume: 2.27
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Nibble
+    clip: {fileID: 8300000, guid: 1d729883308541c4d8fa83d2db3de103, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bite
+    clip: {fileID: 8300000, guid: 06deddd033ce1344bafe353eb933dd83, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Swimming
+    clip: {fileID: 8300000, guid: 93954d70134022d429e89b5466f110bf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Splash
+    clip: {fileID: 8300000, guid: 10d3f820a56a59a47a0edc3fc3af2d1a, type: 3}
+    volume: 2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CastReel
+    clip: {fileID: 8300000, guid: 6483d431057b1614aae6326beef62c0c, type: 3}
+    volume: 0.2
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScreatchRay_Intro
+    clip: {fileID: 8300000, guid: d76de287f5b97ac4e8fe2b521f2ba2d9, type: 3}
+    volume: 1.38
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: ScreatchRay_Desc
+    clip: {fileID: 8300000, guid: f5e33f705ad59834491c7e8de82214b6, type: 3}
+    volume: 1.38
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Intro
+    clip: {fileID: 8300000, guid: d29f4d8c278e72440a4a9bffc1cd1ff1, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodGut_Desc
+    clip: {fileID: 8300000, guid: 1d80521ed4acebc4baad5c1ced0cc44b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Intro
+    clip: {fileID: 8300000, guid: 78bf20d8e9ef3ee469f137ca987121ed, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidScale_Desc
+    clip: {fileID: 8300000, guid: 51da4f9b3a1de9b469f7ce087d6e1f21, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bloatfin_Intro
+    clip: {fileID: 8300000, guid: 43a9415203901b84ea4da0f493614302, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bloatfin_Desc
+    clip: {fileID: 8300000, guid: 634127376aa770c41979b95a6a69ee02, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Drownedeye_Desc
+    clip: {fileID: 8300000, guid: b439ce479ce6f584badec22888f47366, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Drownedeye_Intro
+    clip: {fileID: 8300000, guid: 3ec55c0ca382bf44480bb11fde865a21, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HatsuneMiku
+    clip: {fileID: 8300000, guid: 8aebf15b4f58e1647aa9aac78384b210, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Heart
+    clip: {fileID: 8300000, guid: ab1c161e9f51d9342a79a968d91f026b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Desc
+    clip: {fileID: 8300000, guid: f05effbca8af97d4fab2660a97d56e45, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Intro
+    clip: {fileID: 8300000, guid: e3bb5956ebc55274b8970659dec2730a, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Desc
+    clip: {fileID: 8300000, guid: f5e33f705ad59834491c7e8de82214b6, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Rotfang_Intro
+    clip: {fileID: 8300000, guid: d76de287f5b97ac4e8fe2b521f2ba2d9, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skull
+    clip: {fileID: 8300000, guid: ce67b3896d8a7204abdab8b77442071f, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skullhook_Desc
+    clip: {fileID: 8300000, guid: 3f74de2094e6fed4990c1b9c0448f5c9, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skullhook_Intro
+    clip: {fileID: 8300000, guid: a6f81c8cfe39f6742bfa3cc0d016f05b, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TookBait
+    clip: {fileID: 8300000, guid: f10ca8a64a74b3f459aea9b474a0e288, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Tentacle
+    clip: {fileID: 8300000, guid: e5214740fe0ce8c4a9e1218446666134, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: VoidWeed
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
