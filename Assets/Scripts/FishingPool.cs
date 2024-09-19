@@ -26,7 +26,7 @@ public class FishingPool : MonoBehaviour
             return (fish);
         }
 
-        int n = Random.Range(1,101);
+        int n = Random.Range(1,99);
 
         switch (n)
         {
@@ -50,6 +50,7 @@ public class FishingPool : MonoBehaviour
             default:
             {
                 fish = Instantiate<Fish>(funnyFishInThePool[Random.Range(0, funnyFishInThePool.Length)]);
+                    //:(
                 break;
             }
         }
