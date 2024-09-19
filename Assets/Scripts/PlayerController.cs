@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying && !isFishing)
+        if((leftJoystickInputY > 0.1f || leftJoystickInputX > 0.1f || leftJoystickInputX < -0.1f || leftJoystickInputY < -0.1f) && !audioSource.isPlaying && !isFishing)
         {
             clipIndex = Random.Range(1, footsteps.Length);
             AudioClip clip = footsteps[clipIndex];

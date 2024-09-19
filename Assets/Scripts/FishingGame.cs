@@ -27,10 +27,12 @@ public class FishingGame : MonoBehaviour
     float fishingTimer = 1.5f, vibratetimer;
     float bitingTimer = 0.8f;
     bool isBiting = false;
-    public GameObject fishSound;
+    public GameObject fishSound,narrator;
 
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
+
+   
 
     public void SetFish (Fish fish) { currentFish = fish; }
 
@@ -299,7 +301,7 @@ public class FishingGame : MonoBehaviour
         // Update the previous angle for the next frame
         previousAngle = currentAngle;
 
-        if(goal == currentSpins)
+        if (goal == currentSpins)
         {
             fishAudioSource.PlayOneShot(victory);
             fishingPhase = 3;
@@ -307,16 +309,26 @@ public class FishingGame : MonoBehaviour
             playerController.SetFishing(false);
             print("yippieeee");
 
-            AudioManager.instance.Play(currentFish.dialogID + "_Intro", playerController.gameObject);
-            if (!checkFish())
+            if (currentFish.isFish)
             {
-                AudioManager.instance.Play(currentFish.dialogID + "_Desc", playerController.gameObject);
+                AudioManager.instance.Play(currentFish.dialogID + "_Intro", narrator);
+                if (!checkFish())
+                {
+                    AudioManager.instance.Play(currentFish.dialogID + "_Desc", narrator);
+                }
             }
+            else
+            {
+                AudioManager.instance.Play(currentFish.dialogID, narrator);
+            }
+
 
             Vibrate(10f, 10f);
             resetGame();
         }
     }
+
+   
 
     public void StartGame()
     {
