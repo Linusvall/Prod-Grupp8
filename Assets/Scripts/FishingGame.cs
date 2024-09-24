@@ -94,9 +94,15 @@ public class FishingGame : MonoBehaviour
                         break;
                     }
 
-                default:
+                case 2:
                     {
                         Phase2();
+                        break;
+                    }
+
+                default:
+                    {
+                        Phase3();
                         break;
                     }
             }
@@ -284,7 +290,6 @@ public class FishingGame : MonoBehaviour
             fishingPhase = 3;
             fishingEnabled = false;
             playerController.SetFishing(false);
-            print("yippieeee");
 
             if (currentFish.isFish)
             {
@@ -301,6 +306,16 @@ public class FishingGame : MonoBehaviour
 
 
             Vibrate(10f, 10f);
+            fishingPhase = 3;
+        }
+    }
+
+    void Phase3()
+    {
+        currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 4;
+
+        if (Input.GetButtonDown("StartFishing"))
+        {
             resetGame();
         }
     }
