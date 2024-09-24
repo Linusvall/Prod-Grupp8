@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 10f;
+    public float wait;
 
     [SerializeField] float rotationSpeed = 10f;
 
@@ -105,10 +106,13 @@ public class PlayerController : MonoBehaviour
             controller.Move(direction * Time.deltaTime * speed);
         }
 
-
+        if (wait > 0)
+        {
+            wait -= Time.deltaTime;
+        }
 
         if (Input.GetButtonDown("StartFishing")){
-           if(fishGame != null && !isFishing)
+            if(fishGame != null && !isFishing && wait <= 0)
             {
                 fishGame.StartGame();
                 isFishing = true;

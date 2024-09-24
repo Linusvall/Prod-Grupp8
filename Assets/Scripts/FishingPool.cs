@@ -22,7 +22,8 @@ public class FishingPool : MonoBehaviour
 
         if (x == 1)
         {
-            fish = Instantiate<Fish>(trashInThePool[Random.Range(0, trashInThePool.Length)]);
+            fish = Instantiate(trashInThePool[Random.Range(0, trashInThePool.Length)]);
+            fish.transform.position -= new Vector3(0, 10, 0);
             return (fish);
         }
 
@@ -55,6 +56,7 @@ public class FishingPool : MonoBehaviour
             }
         }
 
+        fish.transform.position -= new Vector3(0, 10, 0);
         return (fish);
     }
 

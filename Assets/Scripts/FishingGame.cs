@@ -107,7 +107,7 @@ public class FishingGame : MonoBehaviour
                     }
             }
 
-            if (fishingPhase == 1)
+            /*if (fishingPhase == 1)
             {
                 Phase1();
             }
@@ -115,8 +115,8 @@ public class FishingGame : MonoBehaviour
             if (fishingPhase == 2)
             {
                 Phase2();
-                fishAudioSource.panStereo = 0;
-            }
+                //fishAudioSource.panStereo = 0;
+            }*/
         }
     }
 
@@ -175,11 +175,11 @@ public class FishingGame : MonoBehaviour
             {
                 fishSound.transform.position = playerController.transform.position + (playerController.transform.right * -2) + (playerController.transform.forward * 2);
 
-                fishAudioSource.panStereo = -1;
-                if (!fishAudioSource.isPlaying)
+                //fishAudioSource.panStereo = -1;
+                /*if (!fishAudioSource.isPlaying)
                 {
                     fishAudioSource.Play();
-                }
+                }*/
 
                 if (playerCurrentDirection == Directions.Right)
                 {
@@ -196,12 +196,12 @@ public class FishingGame : MonoBehaviour
             {
                 fishSound.transform.position = playerController.transform.position + (playerController.transform.forward * 2) + (playerController.transform.right * 2);
 
-                fishAudioSource.panStereo = 1;
-                if (!fishAudioSource.isPlaying)
+                //fishAudioSource.panStereo = 1;
+                /*if (!fishAudioSource.isPlaying)
                 {
 
                     fishAudioSource.Play();
-                }
+                }*/
                 if (playerCurrentDirection == Directions.Left)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
@@ -217,11 +217,11 @@ public class FishingGame : MonoBehaviour
             {
                 fishSound.transform.position = playerController.transform.position + playerController.transform.forward * 4;
 
-                fishAudioSource.panStereo = 0;
-                if (!fishAudioSource.isPlaying)
+                //fishAudioSource.panStereo = 0;
+                /*if (!fishAudioSource.isPlaying)
                 {
                     fishAudioSource.Play();
-                }
+                }*/
                 if (playerCurrentDirection == Directions.Down)
                 {
                     currentFish.LowerStamina(1 * Time.deltaTime);
@@ -237,7 +237,7 @@ public class FishingGame : MonoBehaviour
         if (currentFish.CurrentStamina <= 0)
         {
             fishSound.GetComponent<AudioSource>().Stop();
-            fishAudioSource.Stop();
+            //fishAudioSource.Stop();
             fishingPhase = 2;
             Vibrate(0, 0);
         }
@@ -287,9 +287,6 @@ public class FishingGame : MonoBehaviour
         if (goal == currentSpins)
         {
             fishAudioSource.PlayOneShot(victory);
-            fishingPhase = 3;
-            fishingEnabled = false;
-            playerController.SetFishing(false);
 
             if (currentFish.isFish)
             {
@@ -304,7 +301,6 @@ public class FishingGame : MonoBehaviour
                 AudioManager.instance.Play(currentFish.dialogID, narrator);
             }
 
-
             Vibrate(10f, 10f);
             fishingPhase = 3;
         }
@@ -312,10 +308,15 @@ public class FishingGame : MonoBehaviour
 
     void Phase3()
     {
-        currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 4;
+        Vibrate(0, 0);
+        currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 1.5f + playerController.transform.up * 0.75f;
+        currentFish.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
 
         if (Input.GetButtonDown("StartFishing"))
         {
+            playerController.wait = 0.2f;
+            fishingEnabled = false;
+            playerController.SetFishing(false);
             resetGame();
         }
     }
@@ -367,6 +368,11 @@ public class FishingGame : MonoBehaviour
             return;
         }
         Gamepad.current.SetMotorSpeeds(left, right);
+    }
+
+    public int GetPhase()
+    {
+        return (fishingPhase);
     }
 }
 
