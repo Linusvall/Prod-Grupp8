@@ -41,6 +41,7 @@ public class GUManager : MonoBehaviour
         _controller.inShop = false;
         gameObject.SetActive(false);
         _controller.inShopRange = false;
+        PlayAudio("GoodBye");
 
     }
     
