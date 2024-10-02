@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static GameEnums;
 
@@ -30,10 +26,11 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
-
+    public bool inShop = false;
+    public bool inShopRange = false; 
     public Image eyes;
    public bool canPlaySound = true;
-
+   [SerializeField]private GameObject shopGUI; 
     private Directions currentDirection;
 
     public Directions GetCurrentDirection () { return currentDirection; }  
@@ -49,10 +46,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
-
-    
-
     public float GetInputX() { return leftJoystickInputX; }
     public float GetInputY() { return leftJoystickInputY; }
 
@@ -63,7 +56,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+        if (inShop || isFishing) return; 
+        
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
@@ -111,6 +105,13 @@ public class PlayerController : MonoBehaviour
             wait -= Time.deltaTime;
         }
 
+        if (Input.GetButtonDown("StartFishing") && inShopRange)
+        {
+            inShop = true;
+            shopGUI.SetActive(true);
+            return; 
+        }
+
         if (Input.GetButtonDown("StartFishing")){
             if(fishGame != null && !isFishing && wait <= 0)
             {
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())
         {
             
-            if(controller.transform.rotation.y == (float)Rotaastions.Left)
+            if(Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Left))
             {
                 return; 
             }
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
         {
           
-            if (controller.transform.rotation.y == (float)Rotaastions.Up)
+            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Up))
             {
                 return;
             }
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.L) || CheckDpadRight())
         {
             
-            if (controller.transform.rotation.y == (float)Rotaastions.Right)
+            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Right))
             {
                 return;
             }
@@ -160,7 +161,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.K) || CheckDpadDown())
         {
            
-            if (controller.transform.rotation.y == (float)Rotaastions.Down)
+            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Down))
             {
                 return;
             }

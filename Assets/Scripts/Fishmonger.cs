@@ -9,7 +9,7 @@ public class Fishmonger : MonoBehaviour
     private bool interacted = false;
     [SerializeField] private AudioClip humming;
     [SerializeField] private AudioClip interact;
-
+    [SerializeField] private UpgradeDataContainer[] upgrades;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,11 @@ public class Fishmonger : MonoBehaviour
             audioSource.clip = interact;
             audioSource.Play();
             interacted = true;
+            if (!other.gameObject.CompareTag("Player")) return;
+            PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            player.inShopRange = true;
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -39,5 +43,9 @@ public class Fishmonger : MonoBehaviour
         audioSource.volume = 0.6f;
         audioSource.loop = true;
         audioSource.Play();
+        interacted = false;
+        if (!other.gameObject.CompareTag("Player")) return;
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        player.inShopRange = false;
     }
 }
