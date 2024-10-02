@@ -2027,7 +2027,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: sounds.Array.size
-      value: 46
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: sounds.Array.data[35].clip
@@ -2118,6 +2118,14 @@ PrefabInstance:
       value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[46].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c6917f865ff82a48987b96ca0a85a76, type: 3}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[46].name
+      value: GoodBye
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: sounds.Array.data[35].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -2162,6 +2170,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[46].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: sounds.Array.data[35].volume
       value: 1.38
       objectReference: {fileID: 0}
@@ -2203,6 +2215,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: sounds.Array.data[45].volume
+      value: 1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[46].volume
       value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 6428703716437564169, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
@@ -3951,7 +3967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02dd2cd7ffa54a644a67fcfc073d1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
   upgradePoints: 0
 --- !u!1 &1846302332
 GameObject:
