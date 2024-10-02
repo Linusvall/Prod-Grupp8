@@ -255,3 +255,27 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: TutBite
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TutDirection
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TutReel
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TutInventoryFull
+    clip: {fileID: 8300000, guid: aca0a13a683b5cd4888876dd0df8b429, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
