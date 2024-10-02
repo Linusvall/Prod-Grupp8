@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] AudioClip closeDoorClip;
     [SerializeField] GameObject closeDoorBarrier;
     [SerializeField] GameObject fishmonger;
+    [SerializeField] GameObject interactRadius;
     private AudioSource fishmongerAudio;
     private AudioSource audioSource;
     bool canInteract;
@@ -46,7 +47,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Interact"))
         {
             canInteract = true;
             
@@ -56,6 +57,7 @@ public class Door : MonoBehaviour
     {
         if (canEnter)
         {
+            interactRadius.GetComponent<InteractSound>().PauseInteractSound();
             closeDoorBarrier.SetActive(false);
             hasBeenOpened = true;
             audioSource.PlayOneShot(openDoorClip);
