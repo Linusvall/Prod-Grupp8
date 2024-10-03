@@ -61,9 +61,17 @@ public class Fish : MonoBehaviour
     {
         return CurrentStamina <= 0; 
     }
+
     public void LowerStamina(float amount)
     {
         CurrentStamina -= amount;
     }
 
+    public void IncreaseStamina()
+    {
+        if (CurrentStamina < MaxStamina)
+        {
+            CurrentStamina += RechargeRate * Time.deltaTime;
+        }
+    }
 }

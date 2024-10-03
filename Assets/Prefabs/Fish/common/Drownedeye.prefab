@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819c5b3a61631ec42a0cb6a5395c67b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 2
-  MaxStamina: 5
-  RechargeRate: 10
+  Weight: 3
+  MaxStamina: 7
+  RechargeRate: 1
   Agression: 3
   StaminaEnumerator: 1
   AgressionEnumerator: 1

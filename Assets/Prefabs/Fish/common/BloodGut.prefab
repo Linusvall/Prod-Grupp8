@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 10
-  MaxStamina: 5
-  RechargeRate: 10
+  MaxStamina: 6
+  RechargeRate: 1
   Agression: 4
   StaminaEnumerator: 1
   AgressionEnumerator: 1
