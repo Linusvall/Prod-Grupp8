@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private int clipIndex;
     private AudioSource audioSource;
 
-    [SerializeField] CharacterController controller;
+     [SerializeField]  public CharacterController controller;
     [SerializeField] float speed = 10f;
     public float wait;
 
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         Down = 180
     }
 
+   
 
 
 
