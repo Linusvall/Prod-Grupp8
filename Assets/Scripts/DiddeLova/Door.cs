@@ -12,7 +12,6 @@ public class Door : MonoBehaviour
     private AudioSource fishmongerAudio;
     private AudioSource audioSource;
     bool canInteract;
-    bool canPlay = true;
     bool hasBeenOpened;
     bool canEnter = true;
 
@@ -57,7 +56,6 @@ public class Door : MonoBehaviour
     {
         if (canEnter)
         {
-            interactRadius.GetComponent<InteractSound>().PauseInteractSound();
             closeDoorBarrier.SetActive(false);
             hasBeenOpened = true;
             audioSource.PlayOneShot(openDoorClip);
@@ -70,7 +68,6 @@ public class Door : MonoBehaviour
         if (hasBeenOpened)
         {
             audioSource.PlayOneShot(closeDoorClip);
-            canPlay = false;
             Debug.Log("Door is closed");
             hasBeenOpened=false;
             closeDoorBarrier.SetActive(true);

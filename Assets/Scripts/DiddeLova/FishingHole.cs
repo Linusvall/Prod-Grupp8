@@ -45,6 +45,7 @@ public class FishingHole : MonoBehaviour
 
     private IEnumerator StartFishing()
     {
+        canInteract = false;
         Debug.Log("Fishing");
         source.PlayOneShot(fishingClip);
         yield return new WaitForSeconds(fishingClip.length);
