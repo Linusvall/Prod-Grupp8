@@ -266,5 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b531416e8aaf96541b5944543e06e301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishingClip: {fileID: 8300000, guid: d69f81b48975a7d438589fcdc87699fe, type: 3}
+  fishingClips:
+  - {fileID: 8300000, guid: 06deddd033ce1344bafe353eb933dd83, type: 3}
+  scaryClips:
+  - {fileID: 8300000, guid: 394913ed0db5e66419ed05fbb111eeb5, type: 3}
+  - {fileID: 8300000, guid: 0e578d81656889645a446ff5fdd8dce7, type: 3}
+  - {fileID: 8300000, guid: 8ea801f16970fec4f8fca893b656ee75, type: 3}
   fishingHoleManager: {fileID: 0}

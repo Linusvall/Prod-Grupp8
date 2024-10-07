@@ -6,7 +6,8 @@ public class FishingHole : MonoBehaviour
 {
 
     private bool canInteract = false;
-    [SerializeField] private AudioClip fishingClip;
+    [SerializeField] private AudioClip[] fishingClips;
+    [SerializeField] private AudioClip[] scaryClips;
     [SerializeField] private GameObject fishingHoleManager;
     private AudioSource source;
 
@@ -14,6 +15,7 @@ public class FishingHole : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        source.Play();
     }
 
     // Update is called once per frame
@@ -47,8 +49,10 @@ public class FishingHole : MonoBehaviour
     {
         canInteract = false;
         Debug.Log("Fishing");
-        source.PlayOneShot(fishingClip);
-        yield return new WaitForSeconds(fishingClip.length);
+        source.Stop();
+        source.PlayOneShot(fishingClips[Random.Range(0, fishingClips.Length)]);
+        source.PlayOneShot(scaryClips[Random.Range(0, scaryClips.Length)]);
+        yield return new WaitForSeconds(4);
         fishingHoleManager.GetComponent<FishingHoleManager>().OpenNewFishingHole();
         gameObject.SetActive(false);
         Debug.Log("Complete!");
