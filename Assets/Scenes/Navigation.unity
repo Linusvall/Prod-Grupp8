@@ -357,6 +357,7 @@ Transform:
   m_Children:
   - {fileID: 1661240934}
   - {fileID: 409235457}
+  - {fileID: 2125266126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -92.757, z: 0}
 --- !u!64 &340269903
@@ -1077,6 +1078,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.658068
@@ -1342,9 +1347,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376303236946753115, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: fishingHoleManager
+      value: 
+      objectReference: {fileID: 1037908345}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.63377
+      value: 44.33
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1352,11 +1365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.661655
+      value: -23.85
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.65577626
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1364,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7549553
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1376,7 +1389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -98.043
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1623,6 +1636,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376303236946753115, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: fishingHoleManager
+      value: 
+      objectReference: {fileID: 1037908345}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.20377
@@ -1663,10 +1684,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8695856510985103892, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5042b7e9c02b76d42931eda0f17e497c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1708,6 +1725,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1270423120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &812932978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1683246611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &821286329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1829,9 +1851,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376303236946753115, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: fishingHoleManager
+      value: 
+      objectReference: {fileID: 1037908345}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.93377
+      value: 43.27
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1839,11 +1869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.971655
+      value: -28.88
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9184309
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1851,7 +1881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.39558157
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1863,7 +1893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -46.605
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1882,6 +1912,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
   m_PrefabInstance: {fileID: 865479787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &867253454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1886751077}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &879555005
 GameObject:
@@ -2007,7 +2042,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1367636386}
+  fishingHoleManager: {fileID: 1293794121}
   destination: {fileID: 1153475145}
+  teleportSound: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
 --- !u!82 &879555011
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2104,6 +2141,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &918924251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 865479787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &922739482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2325,11 @@ Transform:
   - {fileID: 378447865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1037908345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5998172328729638566, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+  m_PrefabInstance: {fileID: 2125266125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049092501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,7 +2453,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1367636386}
+  fishingHoleManager: {fileID: 1037908345}
   destination: {fileID: 405414214}
+  teleportSound: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
 --- !u!82 &1049092507
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2591,6 +2640,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 879555009}
   m_LocalEulerAnglesHint: {x: 186.712, y: 90.509, z: 85.657}
+--- !u!1 &1267606595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 646848018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1270423116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,7 +2768,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1367636386}
+  fishingHoleManager: {fileID: 1293794121}
   destination: {fileID: 742607263}
+  teleportSound: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
 --- !u!82 &1270423122
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2852,6 +2908,16 @@ Transform:
   - {fileID: 1691460940}
   m_Father: {fileID: 1653148182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1293794121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5998172328729638566, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+  m_PrefabInstance: {fileID: 4933715885041607701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1293794122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+  m_PrefabInstance: {fileID: 4933715885041607701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1312979442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 653829912586952195, guid: 822709b695209f644924c21f1552d90e, type: 3}
@@ -2861,6 +2927,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1501370368032967390, guid: 822709b695209f644924c21f1552d90e, type: 3}
   m_PrefabInstance: {fileID: 821286329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399437486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 714963984}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1418365559
 GameObject:
@@ -3142,6 +3213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.348068
@@ -3208,9 +3283,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376303236946753115, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: fishingHoleManager
+      value: 
+      objectReference: {fileID: 1037908345}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.40377
+      value: 41.3
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3218,11 +3301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.131655
+      value: -20.07
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.19790246
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3230,7 +3313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.98022175
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3242,7 +3325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -157.171
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3692,7 +3775,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1367636386}
+  fishingHoleManager: {fileID: 1037908345}
   destination: {fileID: 1523653625}
+  teleportSound: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
+--- !u!1 &1648645922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1532555336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650463116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,6 +3901,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1284374552}
+  - {fileID: 1293794122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 175.661, z: 0}
 --- !u!64 &1653148183
@@ -3883,6 +3974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.021932
@@ -3949,6 +4044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.9380684
@@ -4002,6 +4101,16 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
   m_PrefabInstance: {fileID: 1691460939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1761917249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1691460939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1778333166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1558552023}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &1840077934
 BoxCollider:
@@ -4366,9 +4475,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376303236946753115, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: fishingHoleManager
+      value: 
+      objectReference: {fileID: 1037908345}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.17377
+      value: 33.1
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4376,11 +4493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.751656
+      value: -19.75
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.018195359
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4388,7 +4505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.9998345
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4400,7 +4517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -182.085
       objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -4537,6 +4654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishing hole (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.2719316
@@ -4590,6 +4711,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5276013806798987301, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
   m_PrefabInstance: {fileID: 1906487039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1912884425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 456859010}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1948308994
 GameObject:
@@ -4801,6 +4927,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 975884022}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &2088124172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
+  m_PrefabInstance: {fileID: 1906487039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2123868230
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,6 +5015,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 975884022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2125266125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 340269902}
+    m_Modifications:
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16844901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 29.389267
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5499634
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.037853725
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9992833
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998172328729638566, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_Name
+      value: FishingHoleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[0]
+      value: 
+      objectReference: {fileID: 1399437486}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1778333166}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[2]
+      value: 
+      objectReference: {fileID: 918924251}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[3]
+      value: 
+      objectReference: {fileID: 867253454}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[4]
+      value: 
+      objectReference: {fileID: 1267606595}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+--- !u!4 &2125266126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+  m_PrefabInstance: {fileID: 2125266125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141740758
 GameObject:
   m_ObjectHideFlags: 0
@@ -4991,6 +5204,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 879555009}
   m_LocalEulerAnglesHint: {x: 90.41901, y: 0, z: 0}
+--- !u!1001 &4933715885041607701
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1653148182}
+    m_Modifications:
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16844901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 29.389267
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5499634
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.037853725
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9992833
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107481024589260333, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998172328729638566, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: m_Name
+      value: FishingHoleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[0]
+      value: 
+      objectReference: {fileID: 812932978}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[1]
+      value: 
+      objectReference: {fileID: 2088124172}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1648645922}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[3]
+      value: 
+      objectReference: {fileID: 1912884425}
+    - target: {fileID: 8606349153634551929, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
+      propertyPath: fishingHoles.Array.data[4]
+      value: 
+      objectReference: {fileID: 1761917249}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 261ed2526bcbebd40a559a7c35675c1a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

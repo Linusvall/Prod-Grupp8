@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b531416e8aaf96541b5944543e06e301
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fishingClip: {fileID: 8300000, guid: d69f81b48975a7d438589fcdc87699fe, type: 3}
+  - fishingHoleManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

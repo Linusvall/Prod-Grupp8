@@ -9,7 +9,9 @@ public class VoidPortal : MonoBehaviour
     private AudioSource source;
     private bool canInteract = false;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject fishingHoleManager;
     [SerializeField] private Transform destination;
+    [SerializeField] private AudioClip teleportSound;
    
     CharacterController characterController;
 
@@ -29,8 +31,7 @@ public class VoidPortal : MonoBehaviour
     {
         if (Input.GetButtonDown("StartFishing") && canInteract)
         {
-            Debug.Log("Teleported");
-            TransportPlayer();
+            StartCoroutine(TransportPlayer());
         }
     }
 
@@ -52,14 +53,21 @@ public class VoidPortal : MonoBehaviour
         }
     }
 
-    private void TransportPlayer()
+    private IEnumerator TransportPlayer()
     {
-        Debug.Log("Teleported again");
-
         characterController.enabled = false;
-        player.transform.position = destination.position;   
+        player.transform.position = destination.position;
+
+        Debug.Log("Teleported");
+
+        source.PlayOneShot(teleportSound);
+        yield return new WaitForSeconds(teleportSound.length);
         characterController.enabled = true;
 
-        Debug.Log("Teleported again");
+        if(fishingHoleManager.activeSelf == false)
+            fishingHoleManager.SetActive(true);
+        else fishingHoleManager.SetActive(false);
+
+        Debug.Log("Can move again");
     }
 }
