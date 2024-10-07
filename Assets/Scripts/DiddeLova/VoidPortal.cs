@@ -12,6 +12,7 @@ public class VoidPortal : MonoBehaviour
     [SerializeField] private GameObject fishingHoleManager;
     [SerializeField] private Transform destination;
     [SerializeField] private AudioClip teleportSound;
+    [SerializeField] private GameObject ambience;
    
     CharacterController characterController;
 
@@ -65,8 +66,15 @@ public class VoidPortal : MonoBehaviour
         characterController.enabled = true;
 
         if(fishingHoleManager.activeSelf == false)
+        {
             fishingHoleManager.SetActive(true);
-        else fishingHoleManager.SetActive(false);
+            ambience.SetActive(true);
+        }
+        else 
+        {
+            fishingHoleManager.SetActive(false);
+            ambience.SetActive(false);
+        }
 
         Debug.Log("Can move again");
     }

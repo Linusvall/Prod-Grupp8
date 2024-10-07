@@ -6,14 +6,17 @@ public class Door : MonoBehaviour
 {
     [SerializeField] AudioClip openDoorClip;
     [SerializeField] AudioClip closeDoorClip;
+    [SerializeField] AudioClip[] doorCreaks;
     [SerializeField] GameObject closeDoorBarrier;
     [SerializeField] GameObject fishmonger;
     [SerializeField] GameObject interactRadius;
+    [SerializeField] GameObject outsideAmbience;
     private AudioSource fishmongerAudio;
     private AudioSource audioSource;
-    bool canInteract;
-    bool hasBeenOpened;
-    bool canEnter = true;
+    private bool canInteract;
+    private bool hasBeenOpened;
+    private bool canEnter = true;
+    private int clipIndex;
 
    
 
@@ -27,6 +30,16 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hasBeenOpened == false && audioSource.isPlaying == false)
+        {
+            clipIndex = Random.Range(1, doorCreaks.Length);
+            AudioClip clip = doorCreaks[clipIndex];
+            audioSource.PlayOneShot(clip);
+            doorCreaks[clipIndex] = doorCreaks[0];
+            doorCreaks[0] = clip;
+        }
+
+
         if (Input.GetButtonDown("StartFishing") && canInteract) {
 
             OpenDoor();
@@ -39,7 +52,7 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") ) {
        
-            CloseDoor();
+            StartCoroutine(CloseDoor());
     }
         return;
     }
@@ -56,6 +69,8 @@ public class Door : MonoBehaviour
     {
         if (canEnter)
         {
+            audioSource.Stop();
+            audioSource.volume= 1.0f;
             closeDoorBarrier.SetActive(false);
             hasBeenOpened = true;
             audioSource.PlayOneShot(openDoorClip);
@@ -63,16 +78,17 @@ public class Door : MonoBehaviour
         }
         
     }
-    private void CloseDoor()
+    private IEnumerator CloseDoor()
     {
         if (hasBeenOpened)
         {
             audioSource.PlayOneShot(closeDoorClip);
             Debug.Log("Door is closed");
-            hasBeenOpened=false;
             closeDoorBarrier.SetActive(true);
+            outsideAmbience.GetComponent<AudioLowPassFilter>().enabled = true;
+            yield return new WaitForSeconds(closeDoorClip.length);
             fishmongerAudio.Play();
-
+            gameObject.SetActive(false);
         }
        
         

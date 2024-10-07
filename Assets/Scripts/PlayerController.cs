@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if((leftJoystickInputY > 0.1f || leftJoystickInputX > 0.1f) && !audioSource.isPlaying && !isFishing)
+        if((leftJoystickInputY > 0.1f || leftJoystickInputX > 0.1f || leftJoystickInputY < -0.1f || leftJoystickInputX < -0.1f) && !audioSource.isPlaying && !isFishing)
         {
             clipIndex = Random.Range(1, footsteps.Length);
             AudioClip clip = footsteps[clipIndex];
