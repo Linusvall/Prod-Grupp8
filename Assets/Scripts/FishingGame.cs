@@ -21,8 +21,11 @@ public class FishingGame : MonoBehaviour
 
     [SerializeField] List<string> caughtFish = new List<string>();
 
+    [SerializeField] Transform[] spots;
+
     float fishingTimer = 1.5f, vibratetimer;
     float bitingTimer = 0.8f;
+    float lineLength = 0, maxLineLength = 10;
     bool isBiting = false;
     public GameObject fishSound, narrator;
 
@@ -55,6 +58,8 @@ public class FishingGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print("Phase: " + fishingPhase);
+
         playerCurrentDirection = playerController.GetCurrentDirection();
 
         Fishing();
@@ -123,6 +128,8 @@ public class FishingGame : MonoBehaviour
     //Fish is nibbling or biting
     void phase0()
     {
+        fishSound.transform.position = pool.transform.position;
+
         fishingTimer -= Time.deltaTime;
 
         if (fishingTimer <= 0)
@@ -175,18 +182,24 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Left)
             {
-                fishSound.transform.position = playerController.transform.position + (playerController.transform.right * -2) + (playerController.transform.forward * 2);
+                fishSound.transform.position = Vector3.Lerp(fishSound.transform.position, spots[0].position, 1.5f * Time.deltaTime);
 
-                //fishAudioSource.panStereo = -1;
-                /*if (!fishAudioSource.isPlaying)
+                if (Vector3.Distance(fishSound.transform.position, spots[0].position) < 0.1f)
                 {
-                    fishAudioSource.Play();
-                }*/
+                    if (playerCurrentDirection == Directions.Right)
+                    {
+                        currentFish.LowerStamina(1 * Time.deltaTime);
+                        Vibrate(0, 0);
 
-                if (playerCurrentDirection == Directions.Right)
-                {
-                    currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(1f, 0);
+                        if (lineLength > 0)
+                        {
+                            lineLength -= Time.deltaTime;
+                        }
+                    }
+                    else
+                    {
+                        Escaping();
+                    }
                 }
                 else
                 {
@@ -196,39 +209,51 @@ public class FishingGame : MonoBehaviour
 
             if (fishCurrentDirection == Directions.Right)
             {
-                fishSound.transform.position = playerController.transform.position + (playerController.transform.forward * 2) + (playerController.transform.right * 2);
+                fishSound.transform.position = Vector3.Lerp(fishSound.transform.position, spots[2].position, 1.5f * Time.deltaTime);
 
-                //fishAudioSource.panStereo = 1;
-                /*if (!fishAudioSource.isPlaying)
+                if (Vector3.Distance(fishSound.transform.position, spots[2].position) < 0.1f)
                 {
+                    if (playerCurrentDirection == Directions.Left)
+                    {
+                        currentFish.LowerStamina(1 * Time.deltaTime);
+                        Vibrate(0, 0);
 
-                    fishAudioSource.Play();
-                }*/
-                if (playerCurrentDirection == Directions.Left)
-                {
-                    currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(0, 1f);
+                        if (lineLength > 0)
+                        {
+                            lineLength -= Time.deltaTime;
+                        }
+                    }
+                    else
+                    {
+                        Escaping();
+                    }
                 }
                 else
                 {
-                    Vibrate(0, 0f);
+                    Vibrate(0, 0);
                 }
             }
 
             if (fishCurrentDirection == Directions.Up)
             {
-                fishSound.transform.position = playerController.transform.position + playerController.transform.forward * 4;
+                fishSound.transform.position = Vector3.Lerp(fishSound.transform.position, spots[1].position, 1.5f * Time.deltaTime);
 
-                //fishAudioSource.panStereo = 0;
-                /*if (!fishAudioSource.isPlaying)
+                if (Vector3.Distance(fishSound.transform.position, spots[1].position) < 0.1f)
                 {
-                    fishAudioSource.Play();
-                }*/
-                if (playerCurrentDirection == Directions.Down)
-                {
-                    currentFish.LowerStamina(1 * Time.deltaTime);
-                    Vibrate(0.5f, 0.5f);
+                    if (playerCurrentDirection == Directions.Down)
+                    {
+                        currentFish.LowerStamina(1 * Time.deltaTime);
+                        Vibrate(0, 0);
 
+                        if (lineLength > 0)
+                        {
+                            lineLength -= Time.deltaTime;
+                        }
+                    }
+                    else
+                    {
+                        Escaping();
+                    }
                 }
                 else
                 {
@@ -239,7 +264,6 @@ public class FishingGame : MonoBehaviour
         if (currentFish.CurrentStamina <= 0)
         {
             fishSound.GetComponent<AudioSource>().Stop();
-            //fishAudioSource.Stop();
             fishingPhase = 2;
             Vibrate(0, 0);
         }
@@ -247,6 +271,15 @@ public class FishingGame : MonoBehaviour
 
     private void Phase2()
     {
+        currentFish.IncreaseStamina();
+
+        print("Regerating stamina: " + currentFish.CurrentStamina);
+
+        if (currentFish.CurrentStamina >= currentFish.MaxStamina)
+        {
+            fishingPhase = 1;
+        }
+
         // Get the joystick position
         float horizontal = Input.GetAxis("RightJoystickHorizontal");
         float vertical = Input.GetAxis("RightJoystickVertical");
@@ -338,6 +371,28 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    void Escaping()
+    {
+        print(lineLength);
+
+        currentFish.IncreaseStamina();
+
+        Vibrate(lineLength/10, lineLength/10);
+
+        if (lineLength < maxLineLength)
+        {
+            lineLength += Time.deltaTime;
+        }
+        else
+        {
+            AudioManager.instance.Play("Splash", playerController.gameObject);
+            playerController.wait = 0.2f;
+            fishingEnabled = false;
+            playerController.SetFishing(false);
+            resetGame();
+        }
+    }
+
     //Check if fish type has been caught before, if not catalog it
     bool checkFish()
     {
@@ -355,6 +410,7 @@ public class FishingGame : MonoBehaviour
 
     void resetGame()
     {
+        lineLength = 0;
         AudioManager.instance.Play("Splash", pool.gameObject);
         fishingPhase = 0;
         currentSpins = 0;
@@ -375,6 +431,17 @@ public class FishingGame : MonoBehaviour
     public int GetPhase()
     {
         return (fishingPhase);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(spots[0].position, 0.2f);
+        Gizmos.DrawWireSphere(spots[1].position, 0.2f);
+        Gizmos.DrawWireSphere(spots[2].position, 0.2f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(fishSound.transform.position, 0.1f);
     }
 }
 
