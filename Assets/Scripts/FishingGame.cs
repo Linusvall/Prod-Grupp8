@@ -120,6 +120,7 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    //Fish is nibbling or biting
     void phase0()
     {
         fishingTimer -= Time.deltaTime;
@@ -159,6 +160,7 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    //Fish is swimming away
     private void Phase1()
     {
         fishCurrentDirection = currentFish.CurrentDirection;
