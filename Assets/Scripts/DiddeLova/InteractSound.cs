@@ -6,7 +6,7 @@ public class InteractSound : MonoBehaviour
 {
     private AudioSource source;
     private bool canInteract;
-    private float fadeDuration;
+    private float timeToFade;
     private float startVolume;
 
     
@@ -14,7 +14,7 @@ public class InteractSound : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         canInteract = false;
-        fadeDuration = 0.4f;
+        timeToFade = 0.4f;
         startVolume = source.volume;
     }
 
@@ -60,6 +60,7 @@ public class InteractSound : MonoBehaviour
     public void PauseInteractSound()
     {
         source.Pause();
+        source.volume = startVolume; //bara för säkerhets skull
     }
 
     public void StartInteractSound()
@@ -71,13 +72,12 @@ public class InteractSound : MonoBehaviour
 
     IEnumerator FadeOutVolume()
     {
-        float startVolume = source.volume;
-        float elapsedTime = 0f;
+        float timer = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (timer < timeToFade)
         {
-            elapsedTime += Time.deltaTime;
-            source.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / fadeDuration);
+           timer += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, 0f, timer / timeToFade);
             yield return null; 
         }
 

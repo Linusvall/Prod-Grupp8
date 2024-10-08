@@ -13,6 +13,9 @@ public class VoidPortal : MonoBehaviour
     [SerializeField] private Transform destination;
     [SerializeField] private AudioClip teleportSound;
     [SerializeField] private GameObject ambience;
+    [SerializeField] private GameObject audioCompass;
+    [SerializeField] private GameObject audioCompassNewLocation;
+    [SerializeField] private AudioClip audioCompassNewClip;
    
     CharacterController characterController;
 
@@ -67,11 +70,13 @@ public class VoidPortal : MonoBehaviour
 
         if(fishingHoleManager.activeSelf == false)
         {
+            audioCompass.GetComponent<ObjectiveCompass>().ChangeAudioCompassPosition(audioCompassNewLocation, audioCompassNewClip);
             fishingHoleManager.SetActive(true);
             ambience.SetActive(true);
         }
         else 
         {
+            audioCompass.GetComponent<ObjectiveCompass>().ChangeAudioCompassPosition(audioCompassNewLocation, audioCompassNewClip);
             fishingHoleManager.SetActive(false);
             ambience.SetActive(false);
         }
