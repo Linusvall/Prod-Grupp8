@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class FishingPool : MonoBehaviour
 {
+    public Fish tutorialFish;
     public Fish[] trashInThePool;
     public Fish[] commonFishInThePool;
     public Fish[] rareFishInThePool;
@@ -16,6 +17,7 @@ public class FishingPool : MonoBehaviour
 
     public Fish GetRandomFish()
     {
+        Debug.Log("FISHEIIE OOOOOOOOOOOOOO");
         Fish fish;
 
         int x = Random.Range(1, 11);
@@ -59,6 +61,23 @@ public class FishingPool : MonoBehaviour
         fish.transform.position -= new Vector3(0, 10, 0);
         return (fish);
     }
+
+
+    public Fish GetTutorial()
+    {
+        Fish fish;
+
+      
+
+        int n = Random.Range(1, 99);
+
+        fish = Instantiate<Fish>(tutorialFish);
+
+
+        fish.transform.position -= new Vector3(0, 10, 0);
+        return (fish);
+    }
+
 
     public void Move()
     {

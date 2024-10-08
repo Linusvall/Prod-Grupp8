@@ -46,18 +46,40 @@ public class FishingGame : MonoBehaviour
 
     private bool fishingEnabled = false;
 
-    public GameObject player;
+    
     bool tutDirection = false;
     bool tutReel = false;
     bool tutBite = false;
+    public GameObject tutFish;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-      // player = GameObject.Find("Player");
+       player = GameObject.Find("Player");
 
         AudioManager.instance.Play("Splash", pool.gameObject);
-        currentFish = pool.GetRandomFish();
+        /* if (caughtFish.Count == 0)
+         {
+             Debug.Log("boi");
+             currentFish = tutFish.GetComponent<Fish>();
+         }
+         else if(caughtFish.Count > 0)
+         {
+             currentFish = pool.GetRandomFish(); 
+         }
+        */
+        if (caughtFish.Count == 0)
+        {
+           currentFish = pool.GetTutorial();
+        }
+        else
+        {
+            currentFish = pool.GetRandomFish();
+        }
+
+      //  currentFish = pool.GetRandomFish();
+
         goal = currentFish.Weight;
         fishAudioSource = GetComponent<AudioSource>();
     }
@@ -138,7 +160,7 @@ public class FishingGame : MonoBehaviour
         if (caughtFish.Count == 0 && tutBite == false)
         {
             tutBite = true;
-            AudioManager.instance.Play("TutBite", narrator);
+            AudioManager.instance.Play("TutBite", player);
 
         }
       
@@ -188,7 +210,7 @@ public class FishingGame : MonoBehaviour
         if(caughtFish.Count == 0 && tutDirection == false)
         {
             tutDirection = true;
-            AudioManager.instance.Play("TutDirection", narrator);
+            AudioManager.instance.Play("TutDirection", player);
         }
 
         fishCurrentDirection = currentFish.CurrentDirection;
@@ -296,7 +318,7 @@ public class FishingGame : MonoBehaviour
         if (caughtFish.Count == 0 && tutReel == false)
         {
             tutReel = true;
-            AudioManager.instance.Play("TutReel", narrator);
+            AudioManager.instance.Play("TutReel", player);
         }
           
 
