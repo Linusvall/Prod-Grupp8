@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class FishingGame : MonoBehaviour
 {
-
+   
     private AudioSource fishAudioSource;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
@@ -34,6 +34,7 @@ public class FishingGame : MonoBehaviour
 
     public void SetFish(Fish fish) { currentFish = fish; }
 
+  
 
     public float spinThreshold = 360f;  // Amount of degrees needed to complete a spin
     public int goal = 5;  // The value you want to increase
@@ -45,10 +46,16 @@ public class FishingGame : MonoBehaviour
 
     private bool fishingEnabled = false;
 
+    public GameObject player;
+    bool tutDirection = false;
+    bool tutReel = false;
+    bool tutBite = false;
 
     // Start is called before the first frame update
     void Start()
     {
+      // player = GameObject.Find("Player");
+
         AudioManager.instance.Play("Splash", pool.gameObject);
         currentFish = pool.GetRandomFish();
         goal = currentFish.Weight;
@@ -128,6 +135,14 @@ public class FishingGame : MonoBehaviour
     //Fish is nibbling or biting
     void phase0()
     {
+        if (caughtFish.Count == 0 && tutBite == false)
+        {
+            tutBite = true;
+            AudioManager.instance.Play("TutBite", narrator);
+
+        }
+      
+
         fishSound.transform.position = pool.transform.position;
 
         fishingTimer -= Time.deltaTime;
@@ -170,6 +185,12 @@ public class FishingGame : MonoBehaviour
     //Fish is swimming away
     private void Phase1()
     {
+        if(caughtFish.Count == 0 && tutDirection == false)
+        {
+            tutDirection = true;
+            AudioManager.instance.Play("TutDirection", narrator);
+        }
+
         fishCurrentDirection = currentFish.CurrentDirection;
         if (currentFish.CurrentStamina > 0)
         {
@@ -188,6 +209,7 @@ public class FishingGame : MonoBehaviour
                 {
                     if (playerCurrentDirection == Directions.Right)
                     {
+
                         currentFish.LowerStamina(1 * Time.deltaTime);
                         Vibrate(0, 0);
 
@@ -271,6 +293,13 @@ public class FishingGame : MonoBehaviour
 
     private void Phase2()
     {
+        if (caughtFish.Count == 0 && tutReel == false)
+        {
+            tutReel = true;
+            AudioManager.instance.Play("TutReel", narrator);
+        }
+          
+
         currentFish.IncreaseStamina();
 
         print("Regerating stamina: " + currentFish.CurrentStamina);
@@ -341,6 +370,7 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    //
     void Phase3()
     {
         Vibrate(0, 0);
