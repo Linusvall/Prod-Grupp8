@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class InteractSound : MonoBehaviour
 {
+    [SerializeField] private AudioClip getBackClip;
+    [SerializeField] private GameObject fishmonger;
     private AudioSource source;
     private bool canInteract;
+    private bool canGetFish; //temp
     private float timeToFade;
     private float startVolume;
+    private int fishCounter;
 
     
     void Start()
@@ -15,13 +19,26 @@ public class InteractSound : MonoBehaviour
         source = GetComponent<AudioSource>();
         canInteract = false;
         timeToFade = 0.4f;
-        startVolume = source.volume;
+        startVolume = 0;
     }
 
     void Update()
     {
         if (canInteract && Input.GetButtonDown("StartFishing")) {
             PauseInteractSound();
+            canInteract= false;
+            if(canGetFish)
+            {
+                fishCounter++;
+                if(fishCounter >= 3) 
+                {
+                    source.Stop();
+                    source.PlayOneShot(getBackClip);
+                    fishmonger.GetComponent<FishmongerVoice>().ProceedDialogue();
+                    fishCounter = 0;
+
+                }
+            }
         }
 
 
@@ -31,10 +48,14 @@ public class InteractSound : MonoBehaviour
     {
         if(other.gameObject.layer == 6)
         {
+            StartCoroutine(FadeInVolume());
             canInteract = true;
-            StartInteractSound();
-            source.volume = startVolume;
-            
+
+            if(other.gameObject.CompareTag("FishingHole"))
+            {
+                canGetFish = true;
+            }
+
         }
     }
 
@@ -42,31 +63,30 @@ public class InteractSound : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            FadeOutInteractSound();
+            StartCoroutine(FadeOutVolume());
             canInteract = false;
+            canGetFish = false;
         }
-    }
-
-
-
-
-
-
-    public void FadeOutInteractSound()
-    {
-        StartCoroutine(FadeOutVolume());
     }
 
     public void PauseInteractSound()
     {
         source.Pause();
-        source.volume = startVolume; //bara för säkerhets skull
     }
 
-    public void StartInteractSound()
+    IEnumerator FadeInVolume()
     {
-    source.volume = startVolume;
-    source.Play(); 
+        source.volume = 0f;
+        source.Play();
+
+        float timer = 0f;
+
+        while (timer < timeToFade)
+        {
+            timer += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, 1f, timer / timeToFade);
+            yield return null;
+        }
     }
 
 
@@ -77,7 +97,7 @@ public class InteractSound : MonoBehaviour
         while (timer < timeToFade)
         {
            timer += Time.deltaTime;
-            source.volume = Mathf.Lerp(startVolume, 0f, timer / timeToFade);
+            source.volume = Mathf.Lerp(source.volume, 0f, timer / timeToFade);
             yield return null; 
         }
 

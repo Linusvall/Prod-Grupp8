@@ -8,6 +8,7 @@ TagManager:
   - Keeper
   - Floor
   - Interact
+  - FishingHole
   layers:
   - Default
   - TransparentFX

@@ -9,13 +9,29 @@ public class FishingHole : MonoBehaviour
     [SerializeField] private AudioClip[] fishingClips;
     [SerializeField] private AudioClip[] scaryClips;
     [SerializeField] private GameObject fishingHoleManager;
+    [SerializeField] private float fadeDuration;
     private AudioSource source;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         source = GetComponent<AudioSource>();
+        source.volume = 0;
         source.Play();
+        StartCoroutine(FadeIn());
+    }
+
+    IEnumerator FadeIn()
+    {
+        float startVolume = source.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, 1f, elapsedTime / fadeDuration);
+            yield return null;
+        }
     }
 
     // Update is called once per frame
@@ -50,9 +66,10 @@ public class FishingHole : MonoBehaviour
         canInteract = false;
         Debug.Log("Fishing");
         source.Stop();
+        source.volume = 0.5f;
         source.PlayOneShot(fishingClips[Random.Range(0, fishingClips.Length)]);
         source.PlayOneShot(scaryClips[Random.Range(0, scaryClips.Length)]);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         fishingHoleManager.GetComponent<FishingHoleManager>().OpenNewFishingHole();
         gameObject.SetActive(false);
         Debug.Log("Complete!");

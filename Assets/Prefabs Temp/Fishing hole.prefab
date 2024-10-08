@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4376303236946753115}
   m_Layer: 6
   m_Name: Fishing hole
-  m_TagString: Untagged
+  m_TagString: FishingHole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c155d27c55a1b98479ebc967b1ed36c2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: beeef11ce0ad3d340b194743384dd854, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -267,9 +267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingClips:
-  - {fileID: 8300000, guid: 06deddd033ce1344bafe353eb933dd83, type: 3}
+  - {fileID: 8300000, guid: 9fb3eeb7855c9c8469197df5b45c7529, type: 3}
   scaryClips:
   - {fileID: 8300000, guid: 394913ed0db5e66419ed05fbb111eeb5, type: 3}
   - {fileID: 8300000, guid: 0e578d81656889645a446ff5fdd8dce7, type: 3}
   - {fileID: 8300000, guid: 8ea801f16970fec4f8fca893b656ee75, type: 3}
   fishingHoleManager: {fileID: 0}
+  fadeDuration: 1

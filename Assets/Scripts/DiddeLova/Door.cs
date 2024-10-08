@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] AudioClip closeDoorClip;
     [SerializeField] AudioClip[] doorCreaks;
     [SerializeField] GameObject closeDoorBarrier;
+    [SerializeField] GameObject player;
     [SerializeField] GameObject fishmonger;
     [SerializeField] GameObject interactRadius;
     [SerializeField] GameObject outsideAmbience;
@@ -62,7 +63,7 @@ public class Door : MonoBehaviour
         if (other.gameObject.CompareTag("Interact"))
         {
             canInteract = true;
-            
+            player.GetComponent<PlayerController>().ChangeFootstep("Floor");
         }
     }
     private void OpenDoor()
@@ -85,6 +86,7 @@ public class Door : MonoBehaviour
             audioSource.PlayOneShot(closeDoorClip);
             Debug.Log("Door is closed");
             closeDoorBarrier.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
             outsideAmbience.GetComponent<AudioLowPassFilter>().enabled = true;
             yield return new WaitForSeconds(closeDoorClip.length);
             fishmongerAudio.Play();

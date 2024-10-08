@@ -11,7 +11,11 @@ using static GameEnums;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private AudioClip[] footsteps;
+    [SerializeField] private AudioClip[] gravelFootsteps;
+    [SerializeField] private AudioClip[] floorFootsteps;
+    [SerializeField] private AudioClip[] waterFootsteps;
+    [SerializeField] private AudioClip[] caveFootsteps;
+    private AudioClip[] currentFootsteps;
     [SerializeField] private float footstepDelay;
     private int clipIndex;
     private AudioSource audioSource;
@@ -46,19 +50,14 @@ public class PlayerController : MonoBehaviour
         Right = 90,
         Up = 0, 
         Down = 180
-    }
-
-   
-
-
-
-    
+    }  
 
     public float GetInputX() { return leftJoystickInputX; }
     public float GetInputY() { return leftJoystickInputY; }
 
     void Start()
     {
+        currentFootsteps = gravelFootsteps;
         audioSource = gameObject.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
@@ -70,11 +69,12 @@ public class PlayerController : MonoBehaviour
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
         if((leftJoystickInputY > 0.1f || leftJoystickInputX > 0.1f || leftJoystickInputY < -0.1f || leftJoystickInputX < -0.1f) && !audioSource.isPlaying && !isFishing)
         {
-            clipIndex = Random.Range(1, footsteps.Length);
-            AudioClip clip = footsteps[clipIndex];
+            audioSource.panStereo = 0f;
+            clipIndex = Random.Range(1, currentFootsteps.Length);
+            AudioClip clip = currentFootsteps[clipIndex];
             audioSource.PlayOneShot(clip);
-            footsteps[clipIndex] = footsteps[0];
-            footsteps[0] = clip;
+            currentFootsteps[clipIndex] = currentFootsteps[0];
+            currentFootsteps[0] = clip;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -254,6 +254,29 @@ public class PlayerController : MonoBehaviour
     {
         return audioSource;
     }
+
+    public void ChangeFootstep(string footstepType)
+    {
+        switch (footstepType)
+        {
+            case "Cave":
+                audioSource.volume = 0.2f;
+                currentFootsteps = caveFootsteps;
+                break;
+            case "Water":
+                audioSource.volume = 0.14f;
+                currentFootsteps = waterFootsteps;
+                break;
+            case "Floor":
+                audioSource.volume = 0.2f;
+                currentFootsteps = floorFootsteps;
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }
 
 
