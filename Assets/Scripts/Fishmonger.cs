@@ -28,10 +28,11 @@ public class Fishmonger : MonoBehaviour
             audioSource.loop = false;
             audioSource.volume= 0.4f;
             audioSource.clip = interact;
-            audioSource.Play();
+           audioSource.Play();
             interacted = true;
             if (!other.gameObject.CompareTag("Player")) return;
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            audioSource.volume = 0.2f;
             player.inShopRange = true;
         }
         
