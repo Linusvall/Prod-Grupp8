@@ -96,6 +96,7 @@ public class FishmongerVoice : MonoBehaviour
 
     public void ProceedDialogue()
     {
+        if(dialogueStep < 3)
         dialogueStep++;
     }
 

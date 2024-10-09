@@ -1950,6 +1950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getBackClip: {fileID: 8300000, guid: a64d9b199b9a3c042a15c8e1ab7a42d2, type: 3}
   fishmonger: {fileID: 376569995}
+  fishHoleManager1: {fileID: 1293794121}
+  fishHoleManager2: {fileID: 1037908345}
 --- !u!82 &650308531
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3186,7 +3188,6 @@ MonoBehaviour:
   fishingHoleManager: {fileID: 1293794121}
   destination: {fileID: 1153475145}
   teleportSound: {fileID: 8300000, guid: e3999c1840541a841b4cc4ff136c3cdf, type: 3}
-  portalOpenClip: {fileID: 8300000, guid: e36b5773de38a894b8d06461c426fd06, type: 3}
   ambience: {fileID: 790612686}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 1270423116}
@@ -3212,10 +3213,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 15
+  MinDistance: 3.87
+  MaxDistance: 15.06
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3621,7 +3622,6 @@ MonoBehaviour:
   fishingHoleManager: {fileID: 1037908345}
   destination: {fileID: 405414214}
   teleportSound: {fileID: 8300000, guid: 335aef7036deb524998240fe5f8ee23d, type: 3}
-  portalOpenClip: {fileID: 0}
   ambience: {fileID: 724009251}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 376569995}
@@ -4081,7 +4081,6 @@ MonoBehaviour:
   fishingHoleManager: {fileID: 1293794121}
   destination: {fileID: 742607263}
   teleportSound: {fileID: 8300000, guid: 335aef7036deb524998240fe5f8ee23d, type: 3}
-  portalOpenClip: {fileID: 0}
   ambience: {fileID: 790612686}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 376569995}
@@ -5199,7 +5198,6 @@ MonoBehaviour:
   fishingHoleManager: {fileID: 1037908345}
   destination: {fileID: 1523653625}
   teleportSound: {fileID: 8300000, guid: 8c7b3e1220273484bb07fa4bc5f85f35, type: 3}
-  portalOpenClip: {fileID: 8300000, guid: e36b5773de38a894b8d06461c426fd06, type: 3}
   ambience: {fileID: 724009251}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 1049092501}
@@ -5803,6 +5801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1773461643}
   - component: {fileID: 1773461644}
+  - component: {fileID: 1773461645}
   m_Layer: 6
   m_Name: PortalAmbience
   m_TagString: Untagged
@@ -5845,7 +5844,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
+  MinDistance: 8.32
   MaxDistance: 15
   Pan2D: 0
   rolloffMode: 2
@@ -5856,37 +5855,19 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.2
+      time: 0.55466664
       value: 1
-      inSlope: -5.0019917
-      outSlope: -5.0019917
+      inSlope: -1.8036057
+      outSlope: -1.8036057
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.38693848
-      value: 0.45611572
-      inSlope: -1.7428986
-      outSlope: -1.7428986
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.24796651
-    - serializedVersion: 3
-      time: 0.6302307
-      value: 0.17044067
-      inSlope: -0.8600855
-      outSlope: -0.8600855
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.24085361
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.20007975
-      outSlope: -0.20007975
+      inSlope: -0.55488795
+      outSlope: -0.55488795
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -5939,6 +5920,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1773461645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773461642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168344b284b8c0245bbdd9e15baf63bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: e36b5773de38a894b8d06461c426fd06, type: 3}
 --- !u!1 &1778333166 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2793693932012600688, guid: b9e0948bc22c6154d9dc24b067e7b02e, type: 3}
@@ -5954,6 +5948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790706374}
   - component: {fileID: 1790706375}
+  - component: {fileID: 1790706376}
   m_Layer: 6
   m_Name: PortalAmbience
   m_TagString: Untagged
@@ -5996,8 +5991,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 15
+  MinDistance: 7.37
+  MaxDistance: 16.4
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -6007,37 +6002,28 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.2
+      time: 0.44939023
       value: 1
-      inSlope: -5.0019917
-      outSlope: -5.0019917
+      inSlope: -2.2261274
+      outSlope: -2.2261274
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.38693848
-      value: 0.45611572
-      inSlope: -1.7428986
-      outSlope: -1.7428986
+      time: 0.72391474
+      value: 0.31800842
+      inSlope: -1.938558
+      outSlope: -1.938558
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.24796651
-    - serializedVersion: 3
-      time: 0.6302307
-      value: 0.17044067
-      inSlope: -0.8600855
-      outSlope: -0.8600855
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.24085361
-      outWeight: 0
+      outWeight: 0.11473309
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.20007975
-      outSlope: -0.20007975
+      inSlope: -0.44956952
+      outSlope: -0.44956952
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -6090,6 +6076,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1790706376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790706373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168344b284b8c0245bbdd9e15baf63bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: e36b5773de38a894b8d06461c426fd06, type: 3}
 --- !u!1 &1799642629
 GameObject:
   m_ObjectHideFlags: 0

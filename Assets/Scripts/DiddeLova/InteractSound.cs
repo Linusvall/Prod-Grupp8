@@ -6,6 +6,8 @@ public class InteractSound : MonoBehaviour
 {
     [SerializeField] private AudioClip getBackClip;
     [SerializeField] private GameObject fishmonger;
+    [SerializeField] private GameObject fishHoleManager1;
+    [SerializeField] private GameObject fishHoleManager2;
     private AudioSource source;
     private bool canInteract;
     private bool canGetFish; //temp
@@ -36,7 +38,8 @@ public class InteractSound : MonoBehaviour
                     source.PlayOneShot(getBackClip);
                     fishmonger.GetComponent<FishmongerVoice>().ProceedDialogue();
                     fishCounter = 0;
-
+                    fishHoleManager1.SetActive(false);
+                    fishHoleManager2.SetActive(false);
                 }
             }
         }
