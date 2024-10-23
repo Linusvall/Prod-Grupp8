@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Keeper
   - Floor
+  - Interact
+  - FishingHole
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Interactable
   - 
   - 
   - 

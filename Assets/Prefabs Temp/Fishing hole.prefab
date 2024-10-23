@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 5873486648731764746}
   - component: {fileID: 9009768470514314575}
   - component: {fileID: 7946352723296104489}
-  m_Layer: 0
+  - component: {fileID: 4376303236946753115}
+  m_Layer: 6
   m_Name: Fishing hole
-  m_TagString: Untagged
+  m_TagString: FishingHole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5276013806798987301
 Transform:
   m_ObjectHideFlags: 0
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5042b7e9c02b76d42931eda0f17e497c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,14 +102,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 1.4
+  m_Height: 28.802532
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 3.872552, z: 0}
 --- !u!114 &9009768470514314575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,20 +151,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: beeef11ce0ad3d340b194743384dd854, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 26.73
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -171,55 +172,37 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.039682537
+      time: 0.066962734
       value: 1
-      inSlope: -25.21008
-      outSlope: -25.21008
+      inSlope: -2.3231952
+      outSlope: -2.3231952
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.76444256
     - serializedVersion: 3
-      time: 0.079365075
-      value: 0.5
-      inSlope: -6.30252
-      outSlope: -6.30252
+      time: 0.2208844
+      value: 0.46183777
+      inSlope: -1.681012
+      outSlope: -1.681012
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.1763467
     - serializedVersion: 3
-      time: 0.3174603
-      value: 0.125
-      inSlope: -0.3939075
-      outSlope: -0.3939075
+      time: 0.731156
+      value: 0.035308838
+      inSlope: -0.29020032
+      outSlope: -0.29020032
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.29055476
       outWeight: 0
     - serializedVersion: 3
-      time: 0.34545195
-      value: 0.39730835
-      inSlope: -1.57563
-      outSlope: -1.57563
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.6322961
-      value: 0.035369873
-      inSlope: -0.09847687
-      outSlope: -0.09847687
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9973755
+      time: 1
       value: 0
-      inSlope: -0.03969837
-      outSlope: -0.03969837
+      inSlope: -0.020007975
+      outSlope: -0.020007975
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -272,3 +255,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4376303236946753115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793693932012600688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b531416e8aaf96541b5944543e06e301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishingClips:
+  - {fileID: 8300000, guid: 9fb3eeb7855c9c8469197df5b45c7529, type: 3}
+  scaryClips:
+  - {fileID: 8300000, guid: 394913ed0db5e66419ed05fbb111eeb5, type: 3}
+  - {fileID: 8300000, guid: 0e578d81656889645a446ff5fdd8dce7, type: 3}
+  - {fileID: 8300000, guid: 8ea801f16970fec4f8fca893b656ee75, type: 3}
+  fishingHoleManager: {fileID: 0}
+  fadeDuration: 1
