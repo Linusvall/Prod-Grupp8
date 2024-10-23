@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7546621212451899416}
   - component: {fileID: 349264734196694208}
   m_Layer: 0
-  m_Name: BloodGut
+  m_Name: TutorialFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 10
-  MaxStamina: 6
-  RechargeRate: 1
+  MaxStamina: 5
+  RechargeRate: 0
   Agression: 4
   StaminaEnumerator: 1
   AgressionEnumerator: 1
   isFish: 1
-  dialogID: BloodGut
+  dialogID: tutFish
   SoundBite: 
 --- !u!1001 &6022895726818860146
 PrefabInstance:

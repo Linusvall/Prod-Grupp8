@@ -35,6 +35,9 @@ public class Fish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Stamina: " + CurrentStamina);
+       
+        /*
         if(IsStaminaDelpeted())
         {
             StaminaEnumerator += Time.deltaTime;
@@ -45,7 +48,7 @@ public class Fish : MonoBehaviour
             }
             return; 
         }
-
+        */
         AgressionEnumerator += Time.deltaTime; 
 
         if(AgressionEnumerator >= Agression)
@@ -61,9 +64,17 @@ public class Fish : MonoBehaviour
     {
         return CurrentStamina <= 0; 
     }
+
     public void LowerStamina(float amount)
     {
         CurrentStamina -= amount;
     }
 
+    public void IncreaseStamina()
+    {
+        if (CurrentStamina < MaxStamina)
+        {
+            CurrentStamina += RechargeRate * Time.deltaTime;
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class TutorialCollider : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            Debug.Log("JOEL");
+            //Debug.Log("JOEL");
             tutorialManager.GetComponent<TutorialManager>().updateTut(tutNumber);
         }
     }

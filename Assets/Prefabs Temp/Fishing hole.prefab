@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4efeaa72472464c90c3fa0773a4593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialFish: {fileID: 349264734196694208, guid: 6ceb9d6056e5e2143bb5120cb62725ba, type: 3}
   trashInThePool:
   - {fileID: 349264734196694208, guid: e20869ff82a0e2045ba8d54342e8180f, type: 3}
   - {fileID: 349264734196694208, guid: b4ecd6dbd520e114db5fbfc262cc36bb, type: 3}
