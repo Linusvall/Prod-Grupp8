@@ -42,6 +42,8 @@ public class SettingsLoader : MonoBehaviour
         loadedSettings = new();
         JsonUtility.FromJsonOverwrite(content, loadedSettings);
         DontDestroyOnLoad(this.gameObject);
+        Logger.Log("Test");
+        Logger.Log("Test2");
 
     }
 

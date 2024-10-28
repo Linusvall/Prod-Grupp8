@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
-        instance = this; 
+        instance = this;
         
     }
 
