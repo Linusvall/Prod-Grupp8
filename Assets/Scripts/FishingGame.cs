@@ -8,9 +8,10 @@ using UnityEngine.InputSystem;
 public class FishingGame : MonoBehaviour
 {
    
-    private AudioSource fishAudioSource;
+    private AudioSource rodAudioSource;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
+    [SerializeField] private AudioClip rodCreakingClip;
     [SerializeField] Fish currentFish;
     [SerializeField] private FishingPool pool;
     [SerializeField] PlayerController playerController;
@@ -67,7 +68,7 @@ public class FishingGame : MonoBehaviour
       //  currentFish = pool.GetRandomFish();
 
         goal = currentFish.Weight;
-        fishAudioSource = GetComponent<AudioSource>();
+        rodAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -220,6 +221,12 @@ public class FishingGame : MonoBehaviour
 
                         currentFish.LowerStamina(1 * Time.deltaTime);
                         Vibrate(0, 0);
+                        if (!rodAudioSource.isPlaying)
+                        {
+                            rodAudioSource.panStereo = 1f;
+                            rodAudioSource.clip = rodCreakingClip;
+                            rodAudioSource.Play();
+                        }
 
                         if (lineLength > 0)
                         {
@@ -229,6 +236,8 @@ public class FishingGame : MonoBehaviour
                     else
                     {
                         Escaping();
+                        rodAudioSource.panStereo = 0f;
+                        rodAudioSource.Stop();
                     }
                 }
                 else
@@ -247,6 +256,12 @@ public class FishingGame : MonoBehaviour
                     {
                         currentFish.LowerStamina(1 * Time.deltaTime);
                         Vibrate(0, 0);
+                        if(!rodAudioSource.isPlaying) 
+                        {
+                            rodAudioSource.panStereo = -1f;
+                            rodAudioSource.clip = rodCreakingClip;
+                            rodAudioSource.Play();
+                        }
 
                         if (lineLength > 0)
                         {
@@ -256,6 +271,8 @@ public class FishingGame : MonoBehaviour
                     else
                     {
                         Escaping();
+                        rodAudioSource.panStereo = 0f;
+                        rodAudioSource.Stop();
                     }
                 }
                 else
@@ -274,6 +291,12 @@ public class FishingGame : MonoBehaviour
                     {
                         currentFish.LowerStamina(1 * Time.deltaTime);
                         Vibrate(0, 0);
+                        if (!rodAudioSource.isPlaying)
+                        {
+                            rodAudioSource.panStereo = 0f;
+                            rodAudioSource.clip = rodCreakingClip;
+                            rodAudioSource.Play();
+                        }
 
                         if (lineLength > 0)
                         {
@@ -283,6 +306,8 @@ public class FishingGame : MonoBehaviour
                     else
                     {
                         Escaping();
+                        rodAudioSource.panStereo = 0f;
+                        rodAudioSource.Stop();
                     }
                 }
                 else
@@ -294,6 +319,8 @@ public class FishingGame : MonoBehaviour
         if (currentFish.CurrentStamina <= 0)
         {
             fishSound.GetComponent<AudioSource>().Stop();
+            rodAudioSource.panStereo = 0f;
+            rodAudioSource.Stop();
             fishingPhase = 2;
             Vibrate(0, 0);
         }
@@ -341,9 +368,10 @@ public class FishingGame : MonoBehaviour
         {
             // Full spin detected, increase the value
             currentSpins += increaseAmount;
-            if (!fishAudioSource.isPlaying)
+            if (!rodAudioSource.isPlaying)
             {
-                fishAudioSource.PlayOneShot(reelIn);
+                rodAudioSource.clip = reelIn;
+                rodAudioSource.Play();
             }
             // Reset the accumulated angle
             accumulatedAngle = 0f;
@@ -358,7 +386,8 @@ public class FishingGame : MonoBehaviour
 
         if (goal == currentSpins)
         {
-            fishAudioSource.PlayOneShot(victory);
+            rodAudioSource.Stop();
+            rodAudioSource.PlayOneShot(victory);
 
             if (currentFish.isFish)
             {

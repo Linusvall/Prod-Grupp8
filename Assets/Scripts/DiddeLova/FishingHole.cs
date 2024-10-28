@@ -18,6 +18,7 @@ public class FishingHole : MonoBehaviour
     public void OnEnable()
     {
         source = GetComponent<AudioSource>();
+        source.volume = 0f;
         source.Play();
         StartCoroutine(FadeIn());
         fishingHoleManager.GetComponent<FishingHoleManager>().OpenNewFishingHole();
