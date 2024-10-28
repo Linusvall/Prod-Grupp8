@@ -6,7 +6,7 @@ using UnityEngine;
 public class SettingsObject : ScriptableObject
 {
 
-    public float MovementSpeed =5;
+    public float MovementSpeed = 5;
 
     public int UpgradeCost = 1;
    

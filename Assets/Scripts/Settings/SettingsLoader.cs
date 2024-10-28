@@ -13,7 +13,7 @@ public class SettingsLoader : MonoBehaviour
     [SerializeField]
     SettingsObject defaultSettings;
 
-    SettingsObject loadedSettings = new();
+    SettingsObject loadedSettings;
 
     readonly string FileName = "settings.json";
     Func<SettingsLoader> GetInstance = () => null;
@@ -38,7 +38,8 @@ public class SettingsLoader : MonoBehaviour
             }
             WriteFile(JsonUtility.ToJson(defaultSettings));
         }
-        string content = GetJsonContent(MakeFilePath()); 
+        string content = GetJsonContent(MakeFilePath());
+        loadedSettings = new();
         JsonUtility.FromJsonOverwrite(content, loadedSettings);
         DontDestroyOnLoad(this.gameObject);
 
