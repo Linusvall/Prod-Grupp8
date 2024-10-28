@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 474255039}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2819,6 +2819,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 5c52a60ad5be02a449267ea79c8e4159, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
+      propertyPath: scrapeWallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 93a0442f31638e3418685d566aab5030, type: 3}
+    - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2976,6 +2980,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5859998962393009813, guid: 822709b695209f644924c21f1552d90e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1375100452}
+    - targetCorrespondingSourceObject: {fileID: 5859998962393009813, guid: 822709b695209f644924c21f1552d90e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1905959157}
     - targetCorrespondingSourceObject: {fileID: 653829912586952195, guid: 822709b695209f644924c21f1552d90e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1280340197}
@@ -3499,7 +3506,7 @@ GameObject:
   - component: {fileID: 931269238}
   m_Layer: 0
   m_Name: DoorBarrier
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3874,6 +3881,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.size
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[39].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 93a0442f31638e3418685d566aab5030, type: 3}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[39].name
+      value: Scrape
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[39].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075367360024758749, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
+      propertyPath: sounds.Array.data[39].volume
+      value: 1.38
+      objectReference: {fileID: 0}
     - target: {fileID: 6428703716437564169, guid: 27f521cbd46e71e4e8e461037a563a27, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -5027,7 +5054,7 @@ GameObject:
   - component: {fileID: 1588138758}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5980,7 +6007,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 83dc9549de2c83e458032fb760392620, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6817,7 +6844,7 @@ GameObject:
   - component: {fileID: 1888527317}
   m_Layer: 0
   m_Name: Wall5
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6908,6 +6935,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 975884022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1905959156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905959157}
+  - component: {fileID: 1905959158}
+  m_Layer: 0
+  m_Name: HitCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905959157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905959156}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.7337, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1840077946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1905959158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905959156}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1906487039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7143,7 +7223,7 @@ GameObject:
   - component: {fileID: 1948308995}
   m_Layer: 0
   m_Name: Wall4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7353,7 +7433,7 @@ GameObject:
   - component: {fileID: 1973756451}
   m_Layer: 0
   m_Name: Wall3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

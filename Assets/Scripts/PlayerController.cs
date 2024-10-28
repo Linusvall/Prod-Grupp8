@@ -6,19 +6,20 @@ using static GameEnums;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [SerializeField] private AudioClip scrapeWallSound;
     [SerializeField] private AudioClip[] footsteps;
     [SerializeField] private float footstepDelay;
     private int clipIndex;
     private AudioSource audioSource;
 
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
     [SerializeField] float speed = 10f;
     public float wait;
 
     [SerializeField] float rotationSpeed = 10f;
 
     private float leftJoystickInputX;
+    
     private float leftJoystickInputY;
 
     private float rightJoystickInputX;
@@ -26,10 +27,12 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
+    private bool isMoving = false;
+    private bool isTouchingWall = false;
     public bool inShop = false;
     public bool inShopRange = false; 
     public Image eyes;
-   public bool canPlaySound = true;
+    public bool canPlaySound = true;
    [SerializeField]private GameObject shopGUI; 
     private Directions currentDirection;
 
@@ -61,15 +64,18 @@ public class PlayerController : MonoBehaviour
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying && !isFishing)
+        if((leftJoystickInputY > 0.1 || leftJoystickInputX > 0.1))
         {
-            /*
-            clipIndex = Random.Range(1, footsteps.Length);
-            AudioClip clip = footsteps[clipIndex];
-            audioSource.PlayOneShot(clip);
-            footsteps[clipIndex] = footsteps[0];
-            footsteps[0] = clip;
-            */
+            isMoving = true;
+
+        }
+        else if ((leftJoystickInputY < -0.1 || leftJoystickInputX < -0.1))
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -83,6 +89,17 @@ public class PlayerController : MonoBehaviour
                 eyes.enabled = true;
             }
         }
+
+        if(isMoving && !isTouchingWall && !audioSource.isPlaying && !isFishing)
+        {
+            clipIndex = Random.Range(1, footsteps.Length);
+            AudioClip clip = footsteps[clipIndex];
+            audioSource.PlayOneShot(clip);
+            footsteps[clipIndex] = footsteps[0];
+            footsteps[0] = clip;
+        }
+
+
 
 
         if (!isFishing)
@@ -244,6 +261,42 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Hit a wall");
         PlaySound("Thud");
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isTouchingWall = true;
+
+            if (isMoving)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = scrapeWallSound;
+                    audioSource.Play();
+                    Debug.Log("Staying in wall");
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+                Debug.Log("Stopping wall scrape");
+            }
+
+        }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            audioSource.Stop();
+            isTouchingWall = false;
+
+        }
     }
 
 

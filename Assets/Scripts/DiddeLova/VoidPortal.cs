@@ -68,7 +68,7 @@ public class VoidPortal : MonoBehaviour
         source.PlayOneShot(teleportSound);
         yield return new WaitForSeconds(3);
         characterController.enabled = true;
-        player.GetComponent<PlayerController>().ChangeFootstep(footstepType);
+        //player.GetComponent<PlayerController>().ChangeFootstep(footstepType);
 
         if(fishingHoleManager.activeSelf == false)
         {

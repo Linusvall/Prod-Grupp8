@@ -63,7 +63,7 @@ public class Door : MonoBehaviour
         if (other.gameObject.CompareTag("Interact"))
         {
             canInteract = true;
-            player.GetComponent<PlayerController>().ChangeFootstep("Floor");
+            //player.GetComponent<PlayerController>().ChangeFootstep("Floor");
         }
     }
     private void OpenDoor()
