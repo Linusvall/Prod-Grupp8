@@ -38,9 +38,9 @@ public class GUManager : MonoBehaviour
         {
             _controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
-        _controller.inShop = false;
+        //_controller.inShop = false;
         gameObject.SetActive(false);
-        _controller.inShopRange = false;
+        //_controller.inShopRange = false;
         PlayAudio("GoodBye");
 
     }

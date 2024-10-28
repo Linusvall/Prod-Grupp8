@@ -1,12 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 using static GameEnums;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private AudioClip scrapeWallSound;
+
     [SerializeField] private AudioClip[] footsteps;
     [SerializeField] private float footstepDelay;
     private int clipIndex;
@@ -19,7 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
 
     private float leftJoystickInputX;
-    
     private float leftJoystickInputY;
 
     private float rightJoystickInputX;
@@ -27,26 +30,27 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
-    private bool isMoving = false;
-    private bool isTouchingWall = false;
-    public bool inShop = false;
-    public bool inShopRange = false; 
+
     public Image eyes;
     public bool canPlaySound = true;
-   [SerializeField]private GameObject shopGUI; 
+
     private Directions currentDirection;
 
-    public Directions GetCurrentDirection () { return currentDirection; }  
+    public Directions GetCurrentDirection() { return currentDirection; }
 
     public void SetCurrentFishGame(FishingGame game) { fishGame = game; }
 
     enum Rotaastions
     {
-        Left =-90,
+        Left = -90,
         Right = 90,
-        Up = 0, 
+        Up = 0,
         Down = 180
     }
+
+
+
+
 
 
     public float GetInputX() { return leftJoystickInputX; }
@@ -59,23 +63,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inShop || isFishing) return; 
-        
+
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if((leftJoystickInputY > 0.1 || leftJoystickInputX > 0.1))
+        if ((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying && !isFishing)
         {
-            isMoving = true;
-
-        }
-        else if ((leftJoystickInputY < -0.1 || leftJoystickInputX < -0.1))
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
+            clipIndex = Random.Range(1, footsteps.Length);
+            AudioClip clip = footsteps[clipIndex];
+            audioSource.PlayOneShot(clip);
+            footsteps[clipIndex] = footsteps[0];
+            footsteps[0] = clip;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -90,24 +88,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(isMoving && !isTouchingWall && !audioSource.isPlaying && !isFishing)
-        {
-            clipIndex = Random.Range(1, footsteps.Length);
-            AudioClip clip = footsteps[clipIndex];
-            audioSource.PlayOneShot(clip);
-            footsteps[clipIndex] = footsteps[0];
-            footsteps[0] = clip;
-        }
-
-
-
 
         if (!isFishing)
         {
             float rotationAmount = rightJoystickInputX * rotationSpeed * Time.deltaTime;
             controller.transform.Rotate(0, rotationAmount, 0);
-            Vector3 forward = controller.transform.forward;  
-            Vector3 right = controller.transform.right;      
+            Vector3 forward = controller.transform.forward;
+            Vector3 right = controller.transform.right;
 
             Vector3 direction = (forward * leftJoystickInputY) + (right * leftJoystickInputX);
 
@@ -124,21 +111,15 @@ public class PlayerController : MonoBehaviour
             wait -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("StartFishing") && inShopRange)
+        if (Input.GetButtonDown("StartFishing"))
         {
-            inShop = true;
-            shopGUI.SetActive(true);
-            return; 
-        }
-
-        if (Input.GetButtonDown("StartFishing")){
-            if(fishGame != null && !isFishing && wait <= 0)
+            if (fishGame != null && !isFishing && wait <= 0)
             {
                 fishGame.StartGame();
                 isFishing = true;
             }
         }
-    
+
 
 
 
@@ -148,29 +129,29 @@ public class PlayerController : MonoBehaviour
         //Gamepad.current.dpad.left.isPressed || 
         if (Input.GetKeyDown(KeyCode.J) || CheckDpadLeft())
         {
-            
-            if(Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Left))
+
+            if (controller.transform.rotation.y == (float)Rotaastions.Left)
             {
-                return; 
+                return;
             }
             controller.transform.eulerAngles = new(0, (float)Rotaastions.Left, 0);
-          
+
             PlaySound("Facing West");
         }
         else if (Input.GetKeyDown(KeyCode.I) || CheckDpadUp())
         {
-          
-            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Up))
+
+            if (controller.transform.rotation.y == (float)Rotaastions.Up)
             {
                 return;
             }
-            controller.transform.eulerAngles = new (0, (float)Rotaastions.Up, 0);
+            controller.transform.eulerAngles = new(0, (float)Rotaastions.Up, 0);
             PlaySound("Facing North");
         }
         else if (Input.GetKeyDown(KeyCode.L) || CheckDpadRight())
         {
-            
-            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Right))
+
+            if (controller.transform.rotation.y == (float)Rotaastions.Right)
             {
                 return;
             }
@@ -179,8 +160,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.K) || CheckDpadDown())
         {
-           
-            if (Mathf.Approximately(controller.transform.rotation.y, (float)Rotaastions.Down))
+
+            if (controller.transform.rotation.y == (float)Rotaastions.Down)
             {
                 return;
             }
@@ -192,11 +173,11 @@ public class PlayerController : MonoBehaviour
     private bool CheckDpadLeft()
     {
 
-        if(Gamepad.current == null)
+        if (Gamepad.current == null)
         {
-            return false; 
+            return false;
         }
-        return Gamepad.current.dpad.left.isPressed; 
+        return Gamepad.current.dpad.left.isPressed;
     }
     private bool CheckDpadRight()
     {
@@ -238,65 +219,29 @@ public class PlayerController : MonoBehaviour
 
     private void PlaySound(string soundToPlay)
     {
-        if(AudioManager.instance == null || soundToPlay == null)
+        if (AudioManager.instance == null || soundToPlay == null)
         {
-            return; 
+            return;
         }
 
         AudioManager.instance.Play(soundToPlay, gameObject);
     }
 
-  /*  private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log("Hit a wall");
-        if (hit.gameObject.CompareTag("Wall"))
-        {
-            if (!canPlaySound) return;
-            PlaySound("Thud");
-            canPlaySound = false;
-        }
-  
-    }*/
+    /*  private void OnControllerColliderHit(ControllerColliderHit hit)
+      {
+          Debug.Log("Hit a wall");
+          if (hit.gameObject.CompareTag("Wall"))
+          {
+              if (!canPlaySound) return;
+              PlaySound("Thud");
+              canPlaySound = false;
+          }
+
+      }*/
     private void OnCollisionEnter(Collision hit)
     {
         Debug.Log("Hit a wall");
         PlaySound("Thud");
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            isTouchingWall = true;
-
-            if (isMoving)
-            {
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.clip = scrapeWallSound;
-                    audioSource.Play();
-                    Debug.Log("Staying in wall");
-                }
-            }
-            else
-            {
-                audioSource.Stop();
-                Debug.Log("Stopping wall scrape");
-            }
-
-        }
-        
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            audioSource.Stop();
-            isTouchingWall = false;
-
-        }
     }
 
 

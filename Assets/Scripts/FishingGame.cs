@@ -11,42 +11,29 @@ public class FishingGame : MonoBehaviour
     private AudioSource fishAudioSource;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
-
     [SerializeField] Fish currentFish;
     [SerializeField] private FishingPool pool;
-
     [SerializeField] PlayerController playerController;
-
     [SerializeField] int fishingPhase = 0;
-
     [SerializeField] List<string> caughtFish = new List<string>();
-
     [SerializeField] Transform[] spots;
 
     float fishingTimer = 1.5f, vibratetimer;
-    float bitingTimer = 0.8f;
+    float bitingTimer = 5f;
     float lineLength = 0, maxLineLength = 10;
     bool isBiting = false;
     public GameObject fishSound, narrator;
-
     private Directions fishCurrentDirection;
     private Directions playerCurrentDirection;
 
     public void SetFish(Fish fish) { currentFish = fish; }
-
-  
-
     public float spinThreshold = 360f;  // Amount of degrees needed to complete a spin
     public int goal = 5;  // The value you want to increase
     private int currentSpins = 0;
     public int increaseAmount = 1;   // Amount to increase value each spin
-
     private float previousAngle = 0f;   // Angle of the joystick in the last frame
     private float accumulatedAngle = 0f;
-
     private bool fishingEnabled = false;
-
-    
     bool tutDirection = false;
     bool tutReel = false;
     bool tutBite = false;
@@ -58,7 +45,6 @@ public class FishingGame : MonoBehaviour
     {
        player = GameObject.Find("Player");
 
-        AudioManager.instance.Play("Splash", pool.gameObject);
         /* if (caughtFish.Count == 0)
          {
              Debug.Log("boi");
@@ -173,14 +159,14 @@ public class FishingGame : MonoBehaviour
         {
             if (Random.Range(0, currentFish.Agression) < 2)
             {
-                AudioManager.instance.Play("Bite", pool.gameObject);
+                AudioManager.instance.Play("Bite", fishSound.gameObject);
                 isBiting = true;
                 Vibrate(0.2f, 0.2f);
                 vibratetimer = 0.8f;
             }
             else
             {
-                AudioManager.instance.Play("Nibble", pool.gameObject);
+                AudioManager.instance.Play("Nibble", fishSound.gameObject);
                 if (Input.GetButtonDown("StartFishing"))
                 {
                     fishingTimer += 7;
@@ -412,7 +398,7 @@ public class FishingGame : MonoBehaviour
     {
         fishingEnabled = true;
         pool.GetComponent<AudioSource>().Stop();
-        AudioManager.instance.Play("CastReel", pool.gameObject);
+        AudioManager.instance.Play("CastReel", fishSound.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -437,7 +423,6 @@ public class FishingGame : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.Play("Splash", playerController.gameObject);
             playerController.wait = 0.2f;
             fishingEnabled = false;
             playerController.SetFishing(false);
@@ -463,7 +448,7 @@ public class FishingGame : MonoBehaviour
     void resetGame()
     {
         lineLength = 0;
-        AudioManager.instance.Play("Splash", pool.gameObject);
+        pool.gameObject.SetActive(true);
         fishingPhase = 0;
         currentSpins = 0;
         fishingTimer = 1.5f;

@@ -33,7 +33,7 @@ public class Fishmonger : MonoBehaviour
             if (!other.gameObject.CompareTag("Player")) return;
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
             audioSource.volume = 0.2f;
-            player.inShopRange = true;
+            //player.inShopRange = true;
         }
         
     }
@@ -47,6 +47,6 @@ public class Fishmonger : MonoBehaviour
         interacted = false;
         if (!other.gameObject.CompareTag("Player")) return;
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
-        player.inShopRange = false;
+        //player.inShopRange = false;
     }
 }

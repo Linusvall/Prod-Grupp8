@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FishingHoleManager : MonoBehaviour
 {
-
-    [SerializeField] private GameObject[] fishingHoles;
-    private int fishingHoleIndex;
+    [SerializeField] private GameObject fishingHole;
+    [SerializeField] private GameObject fishingGame;
+    [SerializeField] private GameObject[] fishingHoleLocations;
+    private int locationIndex;
 
 
     // Start is called before the first frame update
@@ -15,29 +16,15 @@ public class FishingHoleManager : MonoBehaviour
         OpenNewFishingHole();
     }
 
-    private void OnDisable()
-    {
-        CloseAllFishingHoles();
-    }
-
     public void OpenNewFishingHole()
     {
-        fishingHoleIndex = Random.Range(1, fishingHoles.Length);
-        GameObject fishingHoleToOpen = fishingHoles[fishingHoleIndex];
-        fishingHoleToOpen.SetActive(true);
-        fishingHoles[fishingHoleIndex] = fishingHoles[0];
-        fishingHoles[0] = fishingHoleToOpen;
+        locationIndex = Random.Range(1, fishingHoleLocations.Length);
+        GameObject currentLocation = fishingHoleLocations[locationIndex];
+        fishingGame.transform.position = currentLocation.transform.position;
+        fishingHole.SetActive(true);
+        fishingHoleLocations[locationIndex] = fishingHoleLocations[0];
+        fishingHoleLocations[0] = currentLocation;
         Debug.Log("New fishing hole opened");
     }
-
-    private void CloseAllFishingHoles()
-    {
-        foreach(GameObject fishingHole in fishingHoles)
-        {
-            fishingHole.SetActive(false);
-            Debug.Log("Closed all fishing holes");
-        }
-    }
-
 
 }
