@@ -18,6 +18,8 @@ public class Logger
     readonly static string FileName = "gamelog.txt";
     private StreamWriter writer; 
 
+
+
     private Logger()
     {
         //writer = File.AppendText(MakeFilePath());
@@ -25,19 +27,23 @@ public class Logger
 
     ~Logger()
     {
-        writer.Close(); 
+        writer?.Close(); 
     }
    
 
     public static void Log(string log)
     {
         string AdjusetLogText = DateTime.Now.ToString() + ": " + log;
-        Debug.Log(AdjusetLogText);
-        GetInstance().writer = File.AppendText(MakeFilePath());
-        GetInstance().writer.WriteLineAsync(AdjusetLogText);
-        GetInstance().writer.Close();
+        var file = File.AppendText(MakeFilePath());
+        file.WriteLineAsync(AdjusetLogText);
+        file.Close();
+    }
+
+    public static void LogBuffered()
+    {
 
     }
+
 
 
 
