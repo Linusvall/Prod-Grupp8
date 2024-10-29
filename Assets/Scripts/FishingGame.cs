@@ -14,6 +14,7 @@ public class FishingGame : MonoBehaviour
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip rodCreakingClip;
+    [SerializeField] private AudioClip fishmongerTutClip;
     [SerializeField] Fish currentFish;
     [SerializeField] private FishingPool pool;
     [SerializeField] PlayerController playerController;
@@ -37,6 +38,7 @@ public class FishingGame : MonoBehaviour
     private float previousAngle = 0f;   // Angle of the joystick in the last frame
     private float accumulatedAngle = 0f;
     private bool fishingEnabled = false;
+    private bool playFishmongerClip = true;
     bool tutDirection = false;
     bool tutReel = false;
     bool tutBite = false;
@@ -429,6 +431,15 @@ public class FishingGame : MonoBehaviour
         if(caughtFish.Count == 1)
         {
             fishmonger.GetComponent<ShopKeeper>().ProceedDialogue();
+
+            if(playFishmongerClip)
+            {
+                player.GetComponent<AudioSource>().clip = fishmongerTutClip;
+                player.GetComponent<AudioSource>().Play();
+                playFishmongerClip = false;
+            }
+
+
         }
         player_script.AddFish(currentFish);
         Vibrate(0, 0);
