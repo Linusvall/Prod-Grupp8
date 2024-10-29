@@ -25,38 +25,22 @@ public class ShopKeeper : MonoBehaviour
 
     [SerializeField] private AudioSource audioSource;
     private bool canInteract = false;
-    private int dialogueStep = 1;
-
-    private bool completedTutorial = false; 
+    [SerializeField] private int dialogueStep = 1;
 
     private float SoundEffectEnumerator = 0;
     private bool HasExitedTheCollider = true; 
 
     private static readonly System.Random rand = new();
 
-    private List<Func<IEnumerator>>  steps = new ();
-
-    int step = 0; 
-
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Ayo??????"); 
-
         if(!TryGetComponent<CapsuleCollider>(out CapCollider))
         {
             Debug.Log("No collider on object");
             enabled = false;
             return;
         }
-        steps = new()
-        {
-            PlayIntroDialogue,
-            PlayDialogue,
-            PlaySecondDialogue
-        };
-        Debug.Log(steps.Count); 
-
 
     }
 
@@ -65,21 +49,24 @@ public class ShopKeeper : MonoBehaviour
     {
         if (Input.GetButtonDown("StartFishing") && canInteract)
         {
-            if (!completedTutorial)
+            switch (dialogueStep)
             {
-                Debug.Log(step); 
-                StartCoroutine(steps[step].Invoke());
-                return;
+                case 1:
+                    StartCoroutine(PlayIntroDialogue());
+                    break;
+                case 2:
+                    StartCoroutine(PlayRepeatedDialogue());
+                    break;
+                case 3:
+                    StartCoroutine(PlaySecondDialogue());
+                    break;
+                default:
+                    StartShop();
+                    break;
             }
-            else
-            {
-               Logger.Log("Shop started"); 
-               StartShop();
-            }
-            
+
         }
     }
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -99,17 +86,6 @@ public class ShopKeeper : MonoBehaviour
         }
     }
 
-
-
-    public void CompletedTutorial(bool state)
-    {
-        Logger.Log("Shop activated");
-        completedTutorial = state;
-    }
-
-
-
-
     IEnumerator PlayIntroDialogue()
     {
         canInteract = false;
@@ -118,7 +94,6 @@ public class ShopKeeper : MonoBehaviour
         yield return new WaitForSeconds(introDialogue.length);
         dialogueStep++;
         cavePortal.SetActive(true);
-        canInteract = true;
         audioSource.clip = humming;
         audioSource.Play();
 
@@ -136,13 +111,12 @@ public class ShopKeeper : MonoBehaviour
     }
 
 
-    IEnumerator PlayDialogue()
+    IEnumerator PlayRepeatedDialogue()
     {
         canInteract = false;
         audioSource.clip = repeatedDialogue;
         audioSource.Play();
         yield return new WaitForSeconds(repeatedDialogue.length);
-        canInteract = true;
         audioSource.clip = humming;
         audioSource.Play();
     }
@@ -155,18 +129,15 @@ public class ShopKeeper : MonoBehaviour
         yield return new WaitForSeconds(secondDialogue.length);
         dialogueStep++;
         swampPortal.SetActive(true);
-        completedTutorial = true;
-        CompletedTutorial(true);
         audioSource.clip = humming;
         audioSource.Play();
         
     }
 
-    public void ProceedDialogue()
+        public void ProceedDialogue()
     {
-        if (dialogueStep < steps.Count)
-            dialogueStep++;
-
+        if(dialogueStep < 3)
+        dialogueStep++;
     }
 
 

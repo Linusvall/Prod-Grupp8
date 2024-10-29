@@ -12,10 +12,16 @@ using static GameEnums;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private AudioClip scrapeWallSound;
-    [SerializeField] private AudioClip[] footsteps;
+    [SerializeField] private AudioClip[] gravelFootsteps;
+    [SerializeField] private AudioClip[] floorFootsteps;
+    [SerializeField] private AudioClip[] waterFootsteps;
+    [SerializeField] private AudioClip[] caveFootsteps;
+    private AudioClip[] currentFootsteps;
+
     [SerializeField] private float footstepDelay;
     private int clipIndex;
     private AudioSource audioSource;
+    private AudioSource footstepSource;
 
     [SerializeField] public CharacterController controller;
     [SerializeField] float speed = 10f;
@@ -64,6 +70,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        footstepSource = gameObject.transform.GetChild(2).GetComponent<AudioSource>();
+        currentFootsteps = gravelFootsteps;
     }
     // Update is called once per frame
     void Update()
@@ -135,13 +143,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(isMoving && !isTouchingWall && !audioSource.isPlaying && !isFishing)
+        if(isMoving && !isTouchingWall && !footstepSource.isPlaying && !isFishing)
         {
-            clipIndex = UnityEngine.Random.Range(1, footsteps.Length);
-            AudioClip clip = footsteps[clipIndex];
-            audioSource.PlayOneShot(clip);
-            footsteps[clipIndex] = footsteps[0];
-            footsteps[0] = clip;
+            clipIndex = UnityEngine.Random.Range(1, currentFootsteps.Length);
+            AudioClip clip = currentFootsteps[clipIndex];
+            footstepSource.PlayOneShot(clip);
+            currentFootsteps[clipIndex] = currentFootsteps[0];
+            currentFootsteps[0] = clip;
         }
 
         UpdateCharacterDirection();
@@ -304,6 +312,26 @@ public class PlayerController : MonoBehaviour
     {
         canMove = state;
 
+    }
+    public void ChangeFootstep(string footstepType)
+    {
+        switch (footstepType)
+        {
+            case "Cave":
+                footstepSource.volume = 0.2f;
+                currentFootsteps = caveFootsteps;
+                break;
+            case "Water":
+                footstepSource.volume = 0.08f;
+                currentFootsteps = waterFootsteps;
+                break;
+            case "Floor":
+                footstepSource.volume = 0.26f;
+                currentFootsteps = floorFootsteps;
+                break;
+            default:
+                break;
+        }
     }
 }
 

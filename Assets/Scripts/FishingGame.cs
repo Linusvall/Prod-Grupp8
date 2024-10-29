@@ -10,6 +10,7 @@ public class FishingGame : MonoBehaviour
 {
    
     private AudioSource rodAudioSource;
+    [SerializeField] private GameObject fishmonger;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip rodCreakingClip;
@@ -420,6 +421,10 @@ public class FishingGame : MonoBehaviour
     //
     void Phase3()
     {
+        if(caughtFish.Count == 1)
+        {
+            fishmonger.GetComponent<ShopKeeper>().ProceedDialogue();
+        }
         Vibrate(0, 0);
         currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 1.5f + playerController.transform.up * 0.75f;
         currentFish.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
@@ -488,7 +493,7 @@ public class FishingGame : MonoBehaviour
     void resetGame()
     {
         rodAudioSource.pitch = 1;
-      lineLength = 0;
+        lineLength = 0;
         pool.gameObject.SetActive(true);
         fishingPhase = 0;
         currentSpins = 0;

@@ -75,6 +75,7 @@ public class Door : MonoBehaviour
             closeDoorBarrier.SetActive(false);
             hasBeenOpened = true;
             audioSource.PlayOneShot(openDoorClip);
+            player.GetComponent<PlayerController>().ChangeFootstep("Floor");
             canEnter = false;
         }
         

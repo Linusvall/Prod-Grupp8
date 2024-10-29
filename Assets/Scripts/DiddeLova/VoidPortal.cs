@@ -62,6 +62,7 @@ public class VoidPortal : MonoBehaviour
     {
         characterController.enabled = false;
         player.transform.position = destination.position;
+        player.GetComponent<PlayerController>().ChangeFootstep(footstepType);
 
         Debug.Log("Teleported");
 

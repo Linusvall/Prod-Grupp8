@@ -312,6 +312,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1992964308}
     - target: {fileID: 1151336469365504101, guid: 391d3eacca640264ea3d356b3e63b7c2, type: 3}
+      propertyPath: fishmonger
+      value: 
+      objectReference: {fileID: 376569995}
+    - target: {fileID: 1151336469365504101, guid: 391d3eacca640264ea3d356b3e63b7c2, type: 3}
       propertyPath: fishingPhase
       value: 0
       objectReference: {fileID: 0}
@@ -779,7 +783,7 @@ GameObject:
   - component: {fileID: 340269903}
   m_Layer: 0
   m_Name: Swamp
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -902,7 +906,7 @@ GameObject:
   - component: {fileID: 378447862}
   m_Layer: 0
   m_Name: OutsideGround
-  m_TagString: Floor
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3000,8 +3004,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 43446693432238829, guid: 822709b695209f644924c21f1552d90e, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 43446693432238829, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: eyes
@@ -4666,7 +4674,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.17
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5824,7 +5832,7 @@ GameObject:
   - component: {fileID: 1653148183}
   m_Layer: 0
   m_Name: Cave
-  m_TagString: Untagged
+  m_TagString: CaveFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8800,6 +8808,18 @@ PrefabInstance:
       propertyPath: swampPortal
       value: 
       objectReference: {fileID: 1627138827}
+    - target: {fileID: 7411284316550112836, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
+      propertyPath: introDialogue
+      value: 
+      objectReference: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
+    - target: {fileID: 7411284316550112836, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
+      propertyPath: secondDialogue
+      value: 
+      objectReference: {fileID: 8300000, guid: d69f81b48975a7d438589fcdc87699fe, type: 3}
+    - target: {fileID: 7411284316550112836, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
+      propertyPath: repeatedDialogue
+      value: 
+      objectReference: {fileID: 8300000, guid: 09aec41e95242cc4889233151efd91d6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

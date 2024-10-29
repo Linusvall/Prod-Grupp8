@@ -9,6 +9,9 @@ TagManager:
   - Floor
   - Interact
   - FishingHole
+  - Ground
+  - Water
+  - CaveFloor
   layers:
   - Default
   - TransparentFX

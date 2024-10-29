@@ -29,19 +29,6 @@ public class InteractSound : MonoBehaviour
         if (canInteract && Input.GetButtonDown("StartFishing")) {
             PauseInteractSound();
             canInteract= false;
-            if(canGetFish)
-            {
-                fishCounter++;
-                if(fishCounter >= 3) 
-                {
-                    source.Stop();
-                    source.PlayOneShot(getBackClip);
-                    fishmonger.GetComponent<ShopKeeper>().ProceedDialogue();
-                    fishCounter = 0;
-                    fishHoleManager1.SetActive(false);
-                    fishHoleManager2.SetActive(false);
-                }
-            }
         }
 
 
@@ -53,12 +40,6 @@ public class InteractSound : MonoBehaviour
         {
             StartCoroutine(FadeInVolume());
             canInteract = true;
-
-            if(other.gameObject.CompareTag("FishingHole"))
-            {
-                canGetFish = true;
-            }
-
         }
     }
 
@@ -68,7 +49,6 @@ public class InteractSound : MonoBehaviour
         {
             StartCoroutine(FadeOutVolume());
             canInteract = false;
-            canGetFish = false;
         }
     }
 
