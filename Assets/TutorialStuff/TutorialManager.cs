@@ -26,7 +26,8 @@ public class TutorialManager : MonoBehaviour
         {
             if(currentTut == 2)
             {
-                updateTut(3);
+                //Tar bort för att det finns en annan tutorial
+              //  updateTut(3);
             }
         }
 
