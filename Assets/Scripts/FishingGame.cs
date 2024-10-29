@@ -13,6 +13,7 @@ public class FishingGame : MonoBehaviour
     [SerializeField] private GameObject fishmonger;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
+    [SerializeField] private AudioClip failClip;
     [SerializeField] private AudioClip rodCreakingClip;
     [SerializeField] private AudioClip fishmongerTutClip;
     [SerializeField] Fish currentFish;
@@ -358,6 +359,7 @@ public class FishingGame : MonoBehaviour
         {
             rodAudioSource.pitch = 1;
             fishingPhase = 1;
+            
             return;
         }
 
@@ -404,6 +406,7 @@ public class FishingGame : MonoBehaviour
 
         if (goal == currentSpins)
         {
+            rodAudioSource.pitch = 1;
             rodAudioSource.Stop();
             rodAudioSource.PlayOneShot(victory);
 
@@ -481,13 +484,15 @@ public class FishingGame : MonoBehaviour
         {
             lineLength += Time.deltaTime;
         }
-       /* else
+        else
         {
             playerController.wait = 0.2f;
             fishingEnabled = false;
+            rodAudioSource.Stop();
+            rodAudioSource.PlayOneShot(failClip);
             playerController.SetFishing(false);
             resetGame();
-        }*/
+
     }
 
     //Check if fish type has been caught before, if not catalog it

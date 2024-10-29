@@ -304,6 +304,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 1968fbc8f297fea4f84c2aedcd2e2b4a, type: 3}
     - target: {fileID: 1151336469365504101, guid: 391d3eacca640264ea3d356b3e63b7c2, type: 3}
+      propertyPath: failClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 03f2c3bfaf62e4a4c9524a5c67551bc7, type: 3}
+    - target: {fileID: 1151336469365504101, guid: 391d3eacca640264ea3d356b3e63b7c2, type: 3}
       propertyPath: narrator
       value: 
       objectReference: {fileID: 922739482}
@@ -3097,7 +3101,7 @@ PrefabInstance:
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: scrapeWallSound
       value: 
-      objectReference: {fileID: 8300000, guid: 93a0442f31638e3418685d566aab5030, type: 3}
+      objectReference: {fileID: 8300000, guid: 985e0b33a78843c4194f5ae90b7f9504, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.size
       value: 4
@@ -3632,7 +3636,7 @@ MonoBehaviour:
   ambience: {fileID: 790612686}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 1270423116}
-  audioCompassNewClip: {fileID: 8300000, guid: 0fd2647854aedaf4c852163b74bf2452, type: 3}
+  audioCompassNewClip: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
   footstepType: Cave
 --- !u!82 &879555011
 AudioSource:
@@ -4070,7 +4074,7 @@ MonoBehaviour:
   ambience: {fileID: 724009251}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 376569995}
-  audioCompassNewClip: {fileID: 8300000, guid: 0fd2647854aedaf4c852163b74bf2452, type: 3}
+  audioCompassNewClip: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
   footstepType: Floor
 --- !u!82 &1049092507
 AudioSource:
@@ -4574,7 +4578,7 @@ MonoBehaviour:
   ambience: {fileID: 790612686}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 376569995}
-  audioCompassNewClip: {fileID: 8300000, guid: 0fd2647854aedaf4c852163b74bf2452, type: 3}
+  audioCompassNewClip: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
   footstepType: Floor
 --- !u!82 &1270423122
 AudioSource:
@@ -5946,7 +5950,7 @@ MonoBehaviour:
   ambience: {fileID: 724009251}
   audioCompass: {fileID: 1729023079}
   audioCompassNewLocation: {fileID: 1049092501}
-  audioCompassNewClip: {fileID: 8300000, guid: 0fd2647854aedaf4c852163b74bf2452, type: 3}
+  audioCompassNewClip: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
   footstepType: Water
 --- !u!1 &1650463116
 GameObject:
@@ -9153,6 +9157,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1392776870}
     - target: {fileID: 7411284316550112836, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
+      propertyPath: humming
+      value: 
+      objectReference: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
+    - target: {fileID: 7411284316550112836, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
       propertyPath: cavePortal
       value: 
       objectReference: {fileID: 879555005}
@@ -9172,6 +9180,10 @@ PrefabInstance:
       propertyPath: repeatedDialogue
       value: 
       objectReference: {fileID: 8300000, guid: 94ad2a791b858a24ab5dbc838899ba56, type: 3}
+    - target: {fileID: 7979759102272914162, guid: 17d4f012dabd4fe4a99a55b7251ad53d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9abca1abb2eb3534eb8d7ae48cb4f69f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
