@@ -31,7 +31,7 @@ public class Fish : MonoBehaviour
 
     void Start()
     {
-        //MaxStamina = MaxStamina * SettingsLoader.GetInstance().GetSettings().StaminaModifer;
+        MaxStamina = MaxStamina * SettingsLoader.GetInstance().GetSettings().StaminaModifer;
         CurrentStamina = MaxStamina;
         
         CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length)];
