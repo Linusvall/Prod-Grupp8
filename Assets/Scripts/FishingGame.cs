@@ -98,6 +98,7 @@ public class FishingGame : MonoBehaviour
             {
                 fishingPhase = 1;
                 fishSound.GetComponent<AudioSource>().Stop();
+                Logger.Log("Hooked fish " + currentFish.name);
             }
 
             if (bitingTimer <= 0)
@@ -444,7 +445,9 @@ public class FishingGame : MonoBehaviour
 
 
         }
+
         player_script.AddFish(currentFish);
+        Logger.Log("Caught fish " + currentFish.name); 
         Vibrate(0, 0);
         currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 1.5f + playerController.transform.up * 0.75f;
         currentFish.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
@@ -461,6 +464,7 @@ public class FishingGame : MonoBehaviour
         fishingEnabled = true;
         pool.GetComponent<AudioSource>().Stop();
         AudioManager.instance.Play("CastReel", fishSound.gameObject);
+        Logger.Log("Started fishing");
     }
 
     private void OnTriggerEnter(Collider other)

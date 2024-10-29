@@ -39,7 +39,7 @@ public class SettingsLoader : MonoBehaviour
             WriteFile(JsonUtility.ToJson(defaultSettings));
         }
         string content = GetJsonContent(MakeFilePath());
-        loadedSettings = new();
+        loadedSettings = ScriptableObject.CreateInstance<SettingsObject>(); 
         JsonUtility.FromJsonOverwrite(content, loadedSettings);
         DontDestroyOnLoad(this.gameObject);
         Logger.Log("Test");
