@@ -27,7 +27,7 @@ public class ShopKeeper : MonoBehaviour
     private bool canInteract = false;
     private int dialogueStep = 1;
 
-    private bool completedTutorial = true; 
+    private bool completedTutorial = false; 
 
     private float SoundEffectEnumerator = 0;
     private bool HasExitedTheCollider = true; 
@@ -41,20 +41,21 @@ public class ShopKeeper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(CapCollider != null)
-        {
-            return; 
-        }
+        Debug.Log("Ayo??????"); 
+
         if(!TryGetComponent<CapsuleCollider>(out CapCollider))
         {
             Debug.Log("No collider on object");
             enabled = false;
             return;
         }
-
-        steps.Add(PlayIntroDialogue);
-        steps.Add(PlayDialogue);
-        steps.Add(PlaySecondDialogue);
+        steps = new()
+        {
+            PlayIntroDialogue,
+            PlayDialogue,
+            PlaySecondDialogue
+        };
+        Debug.Log(steps.Count); 
 
 
     }
@@ -66,12 +67,13 @@ public class ShopKeeper : MonoBehaviour
         {
             if (!completedTutorial)
             {
+                Debug.Log(step); 
                 StartCoroutine(steps[step].Invoke());
                 return;
             }
             else
             {
-               //Logger.Log("Shop started"); 
+               Logger.Log("Shop started"); 
                StartShop();
             }
             
@@ -101,7 +103,7 @@ public class ShopKeeper : MonoBehaviour
 
     public void CompletedTutorial(bool state)
     {
-        //Logger.Log("Shop activated");
+        Logger.Log("Shop activated");
         completedTutorial = state;
     }
 
@@ -153,15 +155,18 @@ public class ShopKeeper : MonoBehaviour
         yield return new WaitForSeconds(secondDialogue.length);
         dialogueStep++;
         swampPortal.SetActive(true);
-        canInteract = true;
+        completedTutorial = true;
+        CompletedTutorial(true);
         audioSource.clip = humming;
         audioSource.Play();
+        
     }
 
     public void ProceedDialogue()
     {
         if (dialogueStep < steps.Count)
             dialogueStep++;
+
     }
 
 
