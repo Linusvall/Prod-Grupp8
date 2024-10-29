@@ -4,6 +4,7 @@ using UnityEngine;
 
 using static GameEnums;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class FishingGame : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class FishingGame : MonoBehaviour
     bool tutBite = false;
     public GameObject tutFish;
     private GameObject player;
+
+    float minPitch = 0.5f;
+    float maxPitch = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -206,6 +210,9 @@ public class FishingGame : MonoBehaviour
             if (fishSound.GetComponent<AudioSource>() == null || !fishSound.GetComponent<AudioSource>().isPlaying)
             {
                 AudioManager.instance.Play("Swimming", fishSound);
+
+                float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, maxLineLength, lineLength));
+                AudioManager.instance.sounds[9].pitch = pitch;
             }
 
             print(currentFish.CurrentDirection);
