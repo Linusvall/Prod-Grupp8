@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,29 @@ public class ShopKeeper : MonoBehaviour
     public string SoundEffectToPlayRandomly;
     public int ChanceToPlaySoundEffect;
     public float FrequencyToPlayEffect;
+
+    [SerializeField] private AudioClip introDialogue;
+    [SerializeField] private AudioClip repeatedDialogue;
+    [SerializeField] private AudioClip secondDialogue;
+    [SerializeField] private AudioClip humming;
+    [SerializeField] private GameObject cavePortal;
+    [SerializeField] private GameObject swampPortal;
+    [SerializeField] GameObject ShopGUI;
+
+    [SerializeField] private AudioSource audioSource;
+    private bool canInteract = false;
+    private int dialogueStep = 1;
+
+    private bool completedTutorial = true; 
+
     private float SoundEffectEnumerator = 0;
     private bool HasExitedTheCollider = true; 
 
-    private static readonly System.Random rand = new(); 
+    private static readonly System.Random rand = new();
+
+    private List<Func<IEnumerator>>  steps = new ();
+
+    int step = 0; 
 
     // Start is called before the first frame update
     void Start()
@@ -32,68 +52,118 @@ public class ShopKeeper : MonoBehaviour
             return;
         }
 
+        steps.Add(PlayIntroDialogue);
+        steps.Add(PlayDialogue);
+        steps.Add(PlaySecondDialogue);
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        SoundEffectEnumerator += Time.deltaTime; 
-
-        if (SoundEffectEnumerator > FrequencyToPlayEffect)
+        if (Input.GetButtonDown("StartFishing") && canInteract)
         {
-            // should we add randomness to it?
-            if(AudioManager.instance != null && HasExitedTheCollider)
+            if (!completedTutorial)
             {
-                AudioManager.instance.Play(SoundEffectToPlayRandomly, gameObject);
+                StartCoroutine(steps[step].Invoke());
+                return;
             }
-
-            SoundEffectEnumerator = 0;
+            else
+            {
+               //Logger.Log("Shop started"); 
+               StartShop();
+            }
+            
         }
-        
     }
 
-    public void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Someone entered my area~"); 
-        if (!other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Interact") && audioSource.clip != introDialogue)
         {
-            return; 
+            canInteract = true;
+            Debug.Log("Can interact with portal");
         }
-
-        if(AudioManager.instance == null)
-        {
-            Debug.Log("Error: Can not play sound effect. No audio manager in scene");
-            return; 
-        }
-
-        if (HasExitedTheCollider)
-        {
-            AudioManager.instance.Play(SoundEffectToPlayOnEnter, gameObject);
-        }
-        HasExitedTheCollider = false;
-
-
     }
 
-
-    public void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Someone exited  my area~");
-        if (!other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Interact"))
         {
-            return;
+            canInteract = false;
+            Debug.Log("Can not interact with portal");
+        }
+    }
+
+
+
+    public void CompletedTutorial(bool state)
+    {
+        //Logger.Log("Shop activated");
+        completedTutorial = state;
+    }
+
+
+
+
+    IEnumerator PlayIntroDialogue()
+    {
+        canInteract = false;
+        audioSource.clip = introDialogue;
+        audioSource.Play();
+        yield return new WaitForSeconds(introDialogue.length);
+        dialogueStep++;
+        cavePortal.SetActive(true);
+        canInteract = true;
+        audioSource.clip = humming;
+        audioSource.Play();
+
+    }
+
+    void StartShop()
+    {
+        if(ShopGUI != null)
+        {
+            ShopGUI.SetActive(true);
+            canInteract = false;
+            PlayerController.GetInstance().DisableMovement(false);
         }
 
-        if (AudioManager.instance == null)
-        {
-            Debug.Log("Error: Can not play sound effect. No audio manager in scene");
-            return;
-        }
-        if(!HasExitedTheCollider)
-        {
-            AudioManager.instance.Play(SoundEffectToPlayOnExit, gameObject);
-        }
-        HasExitedTheCollider = true; 
     }
+
+
+    IEnumerator PlayDialogue()
+    {
+        canInteract = false;
+        audioSource.clip = repeatedDialogue;
+        audioSource.Play();
+        yield return new WaitForSeconds(repeatedDialogue.length);
+        canInteract = true;
+        audioSource.clip = humming;
+        audioSource.Play();
+    }
+
+    IEnumerator PlaySecondDialogue()
+    {
+        canInteract = false;
+        audioSource.clip = secondDialogue;
+        audioSource.Play();
+        yield return new WaitForSeconds(secondDialogue.length);
+        dialogueStep++;
+        swampPortal.SetActive(true);
+        canInteract = true;
+        audioSource.clip = humming;
+        audioSource.Play();
+    }
+
+    public void ProceedDialogue()
+    {
+        if (dialogueStep < steps.Count)
+            dialogueStep++;
+    }
+
+
+
 }

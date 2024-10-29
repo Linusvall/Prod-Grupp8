@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 10f;
     public float wait;
 
+    public static Func<PlayerController> GetInstance = () => null;
+
     [SerializeField] float rotationSpeed = 10f;
 
     private float leftJoystickInputX;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
+    bool canMove = true; 
 
     public Image eyes;
     public bool canPlaySound = true;
@@ -56,6 +60,10 @@ public class PlayerController : MonoBehaviour
     public float GetInputX() { return leftJoystickInputX; }
     public float GetInputY() { return leftJoystickInputY; }
 
+    private void Awake()
+    {
+        GetInstance = () => this; 
+    }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -64,12 +72,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        if (!canMove)
+        {
+            return;
+        }
+
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
         if ((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying && !isFishing)
         {
-            clipIndex = Random.Range(1, footsteps.Length);
+            clipIndex = UnityEngine.Random.Range(1, footsteps.Length);
             AudioClip clip = footsteps[clipIndex];
             audioSource.PlayOneShot(clip);
             footsteps[clipIndex] = footsteps[0];
@@ -253,6 +266,11 @@ public class PlayerController : MonoBehaviour
     public AudioSource GetAudioSource()
     {
         return audioSource;
+    }
+    public void DisableMovement(bool state)
+    {
+        canMove = state;
+
     }
 }
 

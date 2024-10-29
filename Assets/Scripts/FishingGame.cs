@@ -74,7 +74,7 @@ public class FishingGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Phase: " + fishingPhase);
+        //print("Phase: " + fishingPhase);
 
         playerCurrentDirection = playerController.GetCurrentDirection();
 

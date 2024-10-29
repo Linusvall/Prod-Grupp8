@@ -16,6 +16,8 @@ public class GUManager : MonoBehaviour
     
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject UpgradeShop;
+    bool canInteract = false;
+    
     
     
     public void OnSelect(string SoundBiteToPlay)
@@ -25,6 +27,11 @@ public class GUManager : MonoBehaviour
 
     public void ClickBuyButton()
     {
+        if ((!canInteract))
+        {
+            return; 
+        }
+
         Debug.Log("Click Buy button");
         //Show Upgrade menu
         UpgradeShop.SetActive(true);
@@ -38,9 +45,12 @@ public class GUManager : MonoBehaviour
         {
             _controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
-        //_controller.inShop = false;
+        PlayerController.GetInstance().DisableMovement(true);
+
         gameObject.SetActive(false);
-        //_controller.inShopRange = false;
+        UpgradeShop.SetActive(false);
+        MainMenu.SetActive(true);
+        
         PlayAudio("GoodBye");
 
     }
@@ -94,7 +104,11 @@ public class GUManager : MonoBehaviour
     void OnEnable()
     {
         buyButton.Select();
+        Debug.Log("No"); 
         OnSelect("BuyButtonSelected");
+        UpgradeShop.SetActive(false);
+        MainMenu.SetActive(true);
+        StartCoroutine(WaitForInput());
     }
 
     
@@ -113,5 +127,14 @@ public class GUManager : MonoBehaviour
             return;
         }
         AudioManager.instance.Play(audioToPlay, Keeper);
+    }
+
+    IEnumerator WaitForInput()
+    {
+        canInteract = false; 
+        yield return new WaitForSeconds(0.2f);
+        canInteract = true; 
+
+
     }
 }
