@@ -193,6 +193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1750197354950549132, guid: 349bd2528bba01b42a34d143e51bdba7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5405e49856214d49bc4936cd89868b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 349bd2528bba01b42a34d143e51bdba7, type: 3}
       propertyPath: m_Name
       value: Fish4A
