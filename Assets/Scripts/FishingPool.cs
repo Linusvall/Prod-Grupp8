@@ -30,7 +30,7 @@ public class FishingPool : MonoBehaviour
         }
 
         int n = Random.Range(1,99);
-
+        n += (int)Player.GetInstance().GetRareFishModifer(); 
         switch (n)
         {
             case <= 60:
@@ -52,7 +52,7 @@ public class FishingPool : MonoBehaviour
             }
             default:
             {
-                fish = Instantiate<Fish>(funnyFishInThePool[Random.Range(0, funnyFishInThePool.Length)]);
+                fish = Instantiate<Fish>(mythicalFishInThePool[Random.Range(0, funnyFishInThePool.Length)]); // no funny today
                     //:(
                 break;
             }

@@ -45,11 +45,13 @@ public class FishingGame : MonoBehaviour
 
     float minPitch = 0.5f;
     float maxPitch = 1.5f;
+    Player player_script; 
 
     // Start is called before the first frame update
     void Start()
     {
        player = GameObject.Find("Player");
+       player_script = Player.GetInstance(); 
 
         /* if (caughtFish.Count == 0)
          {
@@ -228,7 +230,7 @@ public class FishingGame : MonoBehaviour
                     if (playerCurrentDirection == Directions.Right)
                     {
 
-                        currentFish.LowerStamina(1 * Time.deltaTime);
+                        currentFish.LowerStamina((1 + (int)player_script.GetStaminaModifer()) * Time.deltaTime );
                         Vibrate(0, 0);
                         if (!rodAudioSource.isPlaying)
                         {
@@ -377,7 +379,7 @@ public class FishingGame : MonoBehaviour
         if (Mathf.Abs(accumulatedAngle) >= spinThreshold)
         {
             // Full spin detected, increase the value
-            currentSpins += increaseAmount;
+            currentSpins += increaseAmount + (int)player_script.GetReelInPower();
             if (!rodAudioSource.isPlaying)
             {
                 rodAudioSource.clip = reelIn;
@@ -425,6 +427,7 @@ public class FishingGame : MonoBehaviour
         {
             fishmonger.GetComponent<ShopKeeper>().ProceedDialogue();
         }
+        player_script.AddFish(currentFish);
         Vibrate(0, 0);
         currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 1.5f + playerController.transform.up * 0.75f;
         currentFish.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
@@ -498,7 +501,7 @@ public class FishingGame : MonoBehaviour
         fishingPhase = 0;
         currentSpins = 0;
         fishingTimer = 1.5f;
-        Destroy(currentFish.gameObject);
+        currentFish.enabled = false; 
         currentFish = pool.GetRandomFish();
         Vibrate(0, 0);
     }
