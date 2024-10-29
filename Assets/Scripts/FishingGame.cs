@@ -211,8 +211,9 @@ public class FishingGame : MonoBehaviour
             {
                 AudioManager.instance.Play("Swimming", fishSound);
 
-                float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, maxLineLength, lineLength));
-                AudioManager.instance.sounds[9].pitch = pitch;
+             //   float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, maxLineLength, lineLength));
+               // AudioManager.instance.sounds[10].pitch = pitch;
+                //Debug.Log(AudioManager.instance.sounds[9].pitch);
             }
 
             print(currentFish.CurrentDirection);
@@ -340,7 +341,8 @@ public class FishingGame : MonoBehaviour
             tutReel = true;
             AudioManager.instance.Play("TutReel", player);
         }
-          
+           float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, goal, currentSpins));
+         rodAudioSource.pitch = pitch;
 
         currentFish.IncreaseStamina();
 
@@ -379,6 +381,7 @@ public class FishingGame : MonoBehaviour
             {
                 rodAudioSource.clip = reelIn;
                 rodAudioSource.Play();
+
             }
             // Reset the accumulated angle
             accumulatedAngle = 0f;
@@ -452,6 +455,7 @@ public class FishingGame : MonoBehaviour
         currentFish.IncreaseStamina();
 
         Vibrate(lineLength/10, lineLength/10);
+        AudioManager.instance.sounds[10].pitch = lineLength/10;
 
         if (lineLength < maxLineLength)
         {
@@ -483,7 +487,8 @@ public class FishingGame : MonoBehaviour
 
     void resetGame()
     {
-        lineLength = 0;
+        rodAudioSource.pitch = 1;
+      lineLength = 0;
         pool.gameObject.SetActive(true);
         fishingPhase = 0;
         currentSpins = 0;
