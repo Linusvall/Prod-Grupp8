@@ -75,3 +75,4 @@ crashlytics-build.properties
 /Prod/Temp
 /Prod
 .DS_Store
+Assets/Resources/gamelog.txt
