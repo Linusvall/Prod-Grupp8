@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -10,7 +11,7 @@ using static GameEnums;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [SerializeField] private AudioClip scrapeWallSound;
     [SerializeField] private AudioClip[] footsteps;
     [SerializeField] private float footstepDelay;
     private int clipIndex;
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public CharacterController controller;
     [SerializeField] float speed = 10f;
     public float wait;
+
+    public static Func<PlayerController> GetInstance = () => null;
 
     [SerializeField] float rotationSpeed = 10f;
 
@@ -30,9 +33,12 @@ public class PlayerController : MonoBehaviour
     private FishingGame fishGame;
 
     [SerializeField] bool isFishing = false;
+    bool canMove = true; 
 
     public Image eyes;
     public bool canPlaySound = true;
+    private bool isMoving = false;
+    private bool isTouchingWall = false;
 
     private Directions currentDirection;
 
@@ -48,14 +54,13 @@ public class PlayerController : MonoBehaviour
         Down = 180
     }
 
-
-
-
-
-
     public float GetInputX() { return leftJoystickInputX; }
     public float GetInputY() { return leftJoystickInputY; }
 
+    private void Awake()
+    {
+        GetInstance = () => this; 
+    }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -64,19 +69,29 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        if (!canMove)
+        {
+            return;
+        }
+
         leftJoystickInputX = Input.GetAxis("LeftJoystickHorizontal");
         leftJoystickInputY = -Input.GetAxis("LeftJoystickVertical");
         rightJoystickInputX = Input.GetAxis("RightJoystickHorizontal");
-        if ((leftJoystickInputY != 0 || leftJoystickInputX != 0) && !audioSource.isPlaying && !isFishing)
+
+        if ((leftJoystickInputY > 0.1 || leftJoystickInputX > 0.1))
         {
-            clipIndex = Random.Range(1, footsteps.Length);
-            AudioClip clip = footsteps[clipIndex];
-            audioSource.PlayOneShot(clip);
-            footsteps[clipIndex] = footsteps[0];
-            footsteps[0] = clip;
+            isMoving = true;
+        }
+        else if ((leftJoystickInputY < -0.1 || leftJoystickInputX < -0.1))
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
         {
             if (eyes.enabled)
             {
@@ -120,9 +135,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-
-
+        if(isMoving && !isTouchingWall && !audioSource.isPlaying && !isFishing)
+        {
+            clipIndex = UnityEngine.Random.Range(1, footsteps.Length);
+            AudioClip clip = footsteps[clipIndex];
+            audioSource.PlayOneShot(clip);
+            footsteps[clipIndex] = footsteps[0];
+            footsteps[0] = clip;
+        }
 
         UpdateCharacterDirection();
 
@@ -227,21 +247,47 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.Play(soundToPlay, gameObject);
     }
 
-    /*  private void OnControllerColliderHit(ControllerColliderHit hit)
-      {
-          Debug.Log("Hit a wall");
-          if (hit.gameObject.CompareTag("Wall"))
-          {
-              if (!canPlaySound) return;
-              PlaySound("Thud");
-              canPlaySound = false;
-          }
-
-      }*/
     private void OnCollisionEnter(Collision hit)
     {
-        Debug.Log("Hit a wall");
-        PlaySound("Thud");
+        if(hit.gameObject.CompareTag("Wall") == true)
+        {
+            Debug.Log("Hit a wall");
+            PlaySound("Thud");
+        }
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isTouchingWall = true;
+
+            if (isMoving)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = scrapeWallSound;
+                    audioSource.Play();
+                    Debug.Log("Staying in wall");
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+                Debug.Log("Stopping wall scrape");
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            audioSource.Stop();
+            isTouchingWall = false;
+
+        }
     }
 
 
@@ -253,6 +299,11 @@ public class PlayerController : MonoBehaviour
     public AudioSource GetAudioSource()
     {
         return audioSource;
+    }
+    public void DisableMovement(bool state)
+    {
+        canMove = state;
+
     }
 }
 

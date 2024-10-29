@@ -39,7 +39,7 @@ public class Fish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Stamina: " + CurrentStamina);
+        //Debug.Log("Stamina: " + CurrentStamina);
        
         /*
         if(IsStaminaDelpeted())

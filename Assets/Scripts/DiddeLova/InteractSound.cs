@@ -36,7 +36,7 @@ public class InteractSound : MonoBehaviour
                 {
                     source.Stop();
                     source.PlayOneShot(getBackClip);
-                    fishmonger.GetComponent<FishmongerVoice>().ProceedDialogue();
+                    fishmonger.GetComponent<ShopKeeper>().ProceedDialogue();
                     fishCounter = 0;
                     fishHoleManager1.SetActive(false);
                     fishHoleManager2.SetActive(false);
