@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 4
   UpgradeCost: 1
-  StaminaModifer: 0
+  StaminaModifer: 1
   ClockVolume: 0.9
   GameVolume: 0.5
   WormBucketVolume: 0.5

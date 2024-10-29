@@ -10,7 +10,7 @@ public class SettingsObject : ScriptableObject
 
     public int UpgradeCost = 1;
    
-    public float StaminaModifer = 0;
+    public float StaminaModifer = 1;
 
     public float ClockVolume = 0.5f;
 
@@ -18,6 +18,6 @@ public class SettingsObject : ScriptableObject
 
     public float WormBucketVolume = 0.5f;
 
-    public float FishSpawnRateModifer = 0; 
+    public float FishSpawnRateModifer = 1; 
 
 }
