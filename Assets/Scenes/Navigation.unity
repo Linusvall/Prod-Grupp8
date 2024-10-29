@@ -3030,17 +3030,21 @@ PrefabInstance:
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: f12aa8074c01fe640a5230f37085fe4d, type: 3}
+      objectReference: {fileID: 8300000, guid: a037aeffe2831f842a2c55f925f5d66a, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 94e0df95933f1e64bb58290b1bdf7745, type: 3}
+      objectReference: {fileID: 8300000, guid: c7623e3c838036143858fc46466141af, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: ee022cfd6ebc7d340adaadc276853e70, type: 3}
+      objectReference: {fileID: 8300000, guid: a3d14642b55930442bb8dfdc4bb8074f, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
       propertyPath: footsteps.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8565baf8d0b35844c837a5cb2560c85d, type: 3}
+    - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
+      propertyPath: footsteps.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: ac632f5843e443845b4d74536638b697, type: 3}
     - target: {fileID: 389231579363916954, guid: 822709b695209f644924c21f1552d90e, type: 3}
@@ -5346,7 +5350,7 @@ GameObject:
   - component: {fileID: 1583664055}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
