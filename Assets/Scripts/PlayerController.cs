@@ -253,8 +253,21 @@ public class PlayerController : MonoBehaviour
       }*/
     private void OnCollisionEnter(Collision hit)
     {
-        Debug.Log("Hit a wall");
-        PlaySound("Thud");
+        if(hit.gameObject.CompareTag("Wall") == true)
+        {
+            Debug.Log("Hit a wall");
+            PlaySound("Thud");
+        }
+
+    }
+
+    private void OnCollisionStay(Collision hit)
+    {
+        if(hit.gameObject.CompareTag("Wall") == true)
+        {
+            Debug.Log("Scraping wall");
+            
+        }
     }
 
 
