@@ -492,6 +492,7 @@ public class FishingGame : MonoBehaviour
             rodAudioSource.PlayOneShot(failClip);
             playerController.SetFishing(false);
             resetGame();
+        }
 
     }
 
