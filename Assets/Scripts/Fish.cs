@@ -26,9 +26,13 @@ public class Fish : MonoBehaviour
     
 
     // Start is called before the first frame update
+
+
+
     void Start()
     {
-        CurrentStamina = MaxStamina;
+      
+        CurrentStamina = MaxStamina * SettingsLoader.GetInstance().GetSettings().StaminaModifer;
         CurrentDirection = ListOfDirections[rand.Next(ListOfDirections.Length)];
     }
 
