@@ -91,6 +91,7 @@ public class FishingGame : MonoBehaviour
             if (Input.GetButtonDown("StartFishing"))
             {
                 fishingPhase = 1;
+                fishSound.GetComponent<AudioSource>().Stop();
             }
 
             if (bitingTimer <= 0)
@@ -341,8 +342,8 @@ public class FishingGame : MonoBehaviour
             tutReel = true;
             AudioManager.instance.Play("TutReel", player);
         }
-           float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, goal, currentSpins));
-         rodAudioSource.pitch = pitch;
+        float pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(0, goal, currentSpins));
+        rodAudioSource.pitch = pitch;
 
         currentFish.IncreaseStamina();
 
@@ -350,7 +351,9 @@ public class FishingGame : MonoBehaviour
 
         if (currentFish.CurrentStamina >= currentFish.MaxStamina)
         {
+            rodAudioSource.pitch = 1;
             fishingPhase = 1;
+            return;
         }
 
         // Get the joystick position
@@ -424,13 +427,11 @@ public class FishingGame : MonoBehaviour
         currentFish.transform.position = playerController.transform.position + playerController.transform.forward * 1.5f + playerController.transform.up * 0.75f;
         currentFish.transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
 
-        if (Input.GetButtonDown("StartFishing"))
-        {
-            playerController.wait = 0.2f;
-            fishingEnabled = false;
-            playerController.SetFishing(false);
-            resetGame();
-        }
+
+        playerController.wait = 0.2f;
+        fishingEnabled = false;
+        playerController.SetFishing(false);
+        resetGame();
     }
 
     public void StartGame()
@@ -461,13 +462,13 @@ public class FishingGame : MonoBehaviour
         {
             lineLength += Time.deltaTime;
         }
-        else
+       /* else
         {
             playerController.wait = 0.2f;
             fishingEnabled = false;
             playerController.SetFishing(false);
             resetGame();
-        }
+        }*/
     }
 
     //Check if fish type has been caught before, if not catalog it
