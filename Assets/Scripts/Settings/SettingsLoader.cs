@@ -16,7 +16,7 @@ public class SettingsLoader : MonoBehaviour
     SettingsObject loadedSettings;
 
     readonly string FileName = "settings.json";
-    Func<SettingsLoader> GetInstance = () => null;
+    public static Func<SettingsLoader> GetInstance = () => null;
 
 
     private void Awake()
