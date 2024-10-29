@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -91,7 +92,7 @@ public class GUManager : MonoBehaviour
             return;
         }
         
-        if (_player.upgradePoints < upgrade.CostOfUpgrade)
+        if (_player.upgradePoints < upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost)
         {
             PlayAudio("YouCanNotAffordThatUpgrade");
             return;
