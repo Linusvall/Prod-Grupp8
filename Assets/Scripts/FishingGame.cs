@@ -502,7 +502,7 @@ public class FishingGame : MonoBehaviour
         fishingPhase = 0;
         currentSpins = 0;
         fishingTimer = 1.5f;
-        currentFish.enabled = false; 
+        currentFish.gameObject.SetActive(false); 
         currentFish = pool.GetRandomFish();
         Vibrate(0, 0);
     }
