@@ -279,3 +279,39 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: GoodBye
+    clip: {fileID: 8300000, guid: e3e22d0219ee2f14784e48511fb1a050, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NoFish
+    clip: {fileID: 8300000, guid: f8d9afd76f2ea9a49a96e31692a93b69, type: 3}
+    volume: 1.38
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SoldFish
+    clip: {fileID: 8300000, guid: f02837a32be4354439c2e56996975062, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: YouCanNotAffordThatUpgrade
+    clip: {fileID: 8300000, guid: 680e7047e4c4a8142bdb3b01bd2835a2, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeBought
+    clip: {fileID: 8300000, guid: 1ef3485467d836748ba6d822faa8dc58, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BuyButtonSelected
+    clip: {fileID: 8300000, guid: cb864cd9cfb0be44db5ad0bbcf253c60, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
