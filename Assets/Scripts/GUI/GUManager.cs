@@ -98,7 +98,7 @@ public class GUManager : MonoBehaviour
             return;
         }
         Debug.Log(_player.upgradePoints);
-        _player.upgradePoints -= upgrade.CostOfUpgrade;
+        _player.upgradePoints -= (upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost);
         _player.AddUpgrade(upgrade);
         PlayAudio("UpgradeBought");
     }
