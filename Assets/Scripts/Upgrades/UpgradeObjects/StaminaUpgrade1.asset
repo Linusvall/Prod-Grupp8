@@ -16,4 +16,4 @@ MonoBehaviour:
   RealInPower: 0
   RareFishModifer: 0
   StaminaModifer: 1
-  CostOfUpgrade: 0
+  CostOfUpgrade: 1

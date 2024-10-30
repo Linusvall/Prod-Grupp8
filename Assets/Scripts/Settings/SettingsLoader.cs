@@ -42,8 +42,8 @@ public class SettingsLoader : MonoBehaviour
         loadedSettings = ScriptableObject.CreateInstance<SettingsObject>(); 
         JsonUtility.FromJsonOverwrite(content, loadedSettings);
         DontDestroyOnLoad(this.gameObject);
-        Logger.Log("Test");
-        Logger.Log("Test2");
+        Logger.Log("---------------Game Started---------------");
+       
 
     }
 
@@ -59,7 +59,7 @@ public class SettingsLoader : MonoBehaviour
 
     private string MakeFilePath()
     {
-        string path = Path.Combine("Assets/Resources/", FileName);
+        string path = Path.Combine(Application.persistentDataPath, FileName);
 
         return path; 
     }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+using Environment = System.Environment;
+
 public class Logger 
 {
     private static readonly Func<Logger> GetInstance = () =>
@@ -49,7 +51,8 @@ public class Logger
 
     private static string MakeFilePath()
     {
-        string path = Path.Combine("Assets/Resources/", FileName);
+        string path = Path.Combine(Application.persistentDataPath, FileName); 
+
         return path;
     }
 

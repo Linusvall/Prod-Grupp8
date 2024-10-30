@@ -65,7 +65,7 @@ public class GUManager : MonoBehaviour
             return;
         }
 
-        _player.upgradePoints = _player.SellFish();
+        _player.upgradePoints += _player.SellFish();
         PlayAudio("SoldFish");
     }
    
@@ -91,12 +91,13 @@ public class GUManager : MonoBehaviour
             Debug.Log("Invalid upgrade data");
             return;
         }
-        
+        Debug.Log(_player.upgradePoints);
         if (_player.upgradePoints < upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost)
         {
             PlayAudio("YouCanNotAffordThatUpgrade");
             return;
         }
+        Debug.Log(_player.upgradePoints);
         _player.upgradePoints -= upgrade.CostOfUpgrade;
         _player.AddUpgrade(upgrade);
         PlayAudio("UpgradeBought");
