@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 public class FishingGame : MonoBehaviour
 {
    
-    private AudioSource rodAudioSource;
+    public AudioSource rodAudioSource;
     [SerializeField] private GameObject fishmonger;
     [SerializeField] private AudioClip reelIn;
     [SerializeField] private AudioClip victory;
@@ -482,7 +482,7 @@ public class FishingGame : MonoBehaviour
         currentFish.IncreaseStamina();
 
         Vibrate(lineLength/10, lineLength/10);
-        AudioManager.instance.sounds[10].pitch = lineLength/10;
+        //AudioManager.instance.sounds[10].pitch = lineLength/10;
 
         if (lineLength < maxLineLength)
         {
