@@ -315,3 +315,39 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: ExitSelected
+    clip: {fileID: 8300000, guid: c4e26bada4556cb4690a1cb730db0282, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SellFishSelected
+    clip: {fileID: 8300000, guid: f8d9afd76f2ea9a49a96e31692a93b69, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StaminaUpgrade
+    clip: {fileID: 8300000, guid: 5ceaabbd4e1b2554690a054df520ef80, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RarityUpgrade
+    clip: {fileID: 8300000, guid: 1388f26943bb3694b814de6c2c00ed4f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Back
+    clip: {fileID: 8300000, guid: 687854c7598b01d419d92b6e9c0fec98, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ReelUpgrade
+    clip: {fileID: 8300000, guid: a17ebbc2ad6321947b7ba1391eabefff, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
