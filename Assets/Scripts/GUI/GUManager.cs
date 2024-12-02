@@ -26,6 +26,32 @@ public class GUManager : MonoBehaviour
         PlayAudio(SoundBiteToPlay);
     }
 
+    public void PlayInfoText(string info, UpgradeDataContainer upgrade = null)
+    {
+        switch (info)
+        {
+            case "Power":
+                WindowsVoice.speak("The power upgrade helps you deplete the stamina of fish faster."); 
+                break;
+            case "Reeling":
+                WindowsVoice.speak("The reeling upgrade helps you reel in fish faster.");
+                break;
+            case "Rarity":
+                WindowsVoice.speak("The rarity upgrade helps you find rare fish more often.");
+                break;
+            case "Price":
+                break;
+
+        }
+
+        if (upgrade != null)
+        {
+            WindowsVoice.speak("The upgrade costs " + upgrade.CostOfUpgrade + ". You have " + _player.upgradePoints);
+        }
+       
+
+    }
+
     public void ClickBuyButton()
     {
         if ((!canInteract))
@@ -64,9 +90,13 @@ public class GUManager : MonoBehaviour
             PlayAudio("NoFish");
             return;
         }
-
-        _player.upgradePoints += _player.SellFish();
-        PlayAudio("SoldFish");
+        string toSay = "You sold " + _player.HowManyFishesHasBeenCaught() + ". You gain "; 
+        int fishSold = _player.SellFish();
+        _player.upgradePoints += fishSold;
+        WindowsVoice.speak(toSay + fishSold + " upgrade points. You now have "+  _player.upgradePoints + " upgrade points");
+        
+        WindowsVoice.speak("You sold ");
+        //PlayAudio("SoldFish");
     }
    
     // Start is called before the first frame update
