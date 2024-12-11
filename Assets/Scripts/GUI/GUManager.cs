@@ -97,6 +97,7 @@ public class GUManager : MonoBehaviour
     public void ClickSellFishButton()
     {
         Debug.Log("Click Sell  button");
+        WindowsVoice.clearSpeechQueue();
         if (_player.HowManyFishesHasBeenCaught() < 1)
         {
             PlayAudio("NoFish");
@@ -105,9 +106,8 @@ public class GUManager : MonoBehaviour
         string toSay = "You sold " + _player.HowManyFishesHasBeenCaught() + ". You gain "; 
         int fishSold = _player.SellFish();
         _player.upgradePoints += fishSold;
-        WindowsVoice.speak(toSay + fishSold + " upgrade points. You now have "+  _player.upgradePoints + " upgrade points");
+        WindowsVoice.addToSpeechQueue(toSay + fishSold + " upgrade points. You now have "+  _player.upgradePoints + " upgrade points");
         
-        WindowsVoice.speak("You sold ");
         //PlayAudio("SoldFish");
     }
    
@@ -136,13 +136,22 @@ public class GUManager : MonoBehaviour
         Debug.Log(_player.upgradePoints);
         if (_player.upgradePoints < upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost)
         {
-            PlayAudio("YouCanNotAffordThatUpgrade");
+            string cantAfford = "You can not afford a " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost + 
+                ". You  have " + _player.upgradePoints + " upgrade points. You need " + upgrade.CostOfUpgrade + (SettingsLoader.GetInstance().GetSettings().UpgradeCost - _player.upgradePoints) + " more upgrade points.";
+            WindowsVoice.clearSpeechQueue();
+            WindowsVoice.addToSpeechQueue(cantAfford);
+
+
             return;
         }
         Debug.Log(_player.upgradePoints);
         _player.upgradePoints -= (upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost);
+        string ToSay = "You bought the " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost + ". You now have " + _player.upgradePoints + " left.";
+        WindowsVoice.clearSpeechQueue();
+        WindowsVoice.addToSpeechQueue(ToSay);
+        _player.upgradePoints -= (upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost);
         _player.AddUpgrade(upgrade);
-        PlayAudio("UpgradeBought");
+        //PlayAudio("UpgradeBought");
     }
     
     void OnEnable()
