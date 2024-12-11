@@ -20,7 +20,7 @@ public class GUManager : MonoBehaviour
     [SerializeField] private GameObject UpgradeShop;
     bool canInteract = false;
     private SelectData SelectedButton;
-
+    bool playTuturial = true; 
     
     
     public void OnSelect(string SoundBiteToPlay)
@@ -41,7 +41,7 @@ public class GUManager : MonoBehaviour
         switch (info)
         {
             case "Power":
-                WindowsVoice.addToSpeechQueue("The power upgrade helps you deplete the stamina of fish faster.");
+                WindowsVoice.addToSpeechQueue("The reeling power upgrade helps you deplete the stamina of fish faster.");
                
                 break;
             case "Reeling":
@@ -147,12 +147,29 @@ public class GUManager : MonoBehaviour
     
     void OnEnable()
     {
-        buyButton.Select();
-        Debug.Log("No"); 
-        OnSelect("BuyButtonSelected");
-        UpgradeShop.SetActive(false);
-        MainMenu.SetActive(true);
-        StartCoroutine(WaitForInput());
+  
+        if (!playTuturial)
+        {
+            buyButton.Select();
+            OnSelect("BuyButtonSelected");
+            UpgradeShop.SetActive(false);
+            MainMenu.SetActive(true);
+            StartCoroutine(WaitForInput());
+        }
+        else
+        {
+            WindowsVoice.clearSpeechQueue();
+            WindowsVoice.addToSpeechQueue("Welcome to the shop, here you can buy upgrades and sell your fish for upgrade points. You get one upgrade point per fish sold. Navigate by pressing the left joystick left or right. Press y, the upmost face button on the right side, over an upgrade to hear the upgrades details. Try moving the left joystick right now  ");
+           
+            UpgradeShop.SetActive(false);
+            MainMenu.SetActive(false);
+            StartCoroutine(WaitForTuturial());
+            playTuturial = false;
+        }
+
+        
+
+
     }
 
     
@@ -204,4 +221,21 @@ public class GUManager : MonoBehaviour
 
 
     }
+
+    IEnumerator WaitForTuturial()
+    {
+        canInteract = false;
+
+        yield return new WaitForSeconds(25);
+        canInteract = true;
+        UpgradeShop.SetActive(false);
+        MainMenu.SetActive(true);
+        buyButton.Select();
+        OnSelect("BuyButtonSelected");
+
+
+
+    }
+
 }
+
