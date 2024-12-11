@@ -849,9 +849,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1075944646479555263}
+        - m_Target: {fileID: 5253964305541674270}
           m_TargetAssemblyTypeName: GUManager, Assembly-CSharp
-          m_MethodName: OnSelect
+          m_MethodName: 
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

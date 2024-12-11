@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class GUManager : MonoBehaviour
 {
     public bool ShopActivated = false;
@@ -18,26 +19,36 @@ public class GUManager : MonoBehaviour
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject UpgradeShop;
     bool canInteract = false;
-    
+    private SelectData SelectedButton;
+
     
     
     public void OnSelect(string SoundBiteToPlay)
     {
         PlayAudio(SoundBiteToPlay);
+        SelectedButton = null;
+    }
+
+    public void OnSelect(SelectData Data)
+    {
+        PlayAudio(Data.AudioToPlay);
+        SelectedButton = Data; 
     }
 
     public void PlayInfoText(string info, UpgradeDataContainer upgrade = null)
     {
+        WindowsVoice.clearSpeechQueue(); 
         switch (info)
         {
             case "Power":
-                WindowsVoice.speak("The power upgrade helps you deplete the stamina of fish faster."); 
+                WindowsVoice.addToSpeechQueue("The power upgrade helps you deplete the stamina of fish faster.");
+               
                 break;
             case "Reeling":
-                WindowsVoice.speak("The reeling upgrade helps you reel in fish faster.");
+                WindowsVoice.addToSpeechQueue("The reeling upgrade helps you reel in fish faster.");
                 break;
             case "Rarity":
-                WindowsVoice.speak("The rarity upgrade helps you find rare fish more often.");
+                WindowsVoice.addToSpeechQueue("The rarity upgrade helps you find rare fish more often.");
                 break;
             case "Price":
                 break;
@@ -46,8 +57,9 @@ public class GUManager : MonoBehaviour
 
         if (upgrade != null)
         {
-            WindowsVoice.speak("The upgrade costs " + upgrade.CostOfUpgrade + ". You have " + _player.upgradePoints);
+            WindowsVoice.addToSpeechQueue("The upgrade costs " + upgrade.CostOfUpgrade + ". You have " + _player.upgradePoints);
         }
+       
        
 
     }
@@ -148,6 +160,29 @@ public class GUManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!canInteract)
+        {
+          
+            return; 
+        }
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+        {
+            Debug.Log("Y has been pressed");
+            if(SelectedButton == null)
+            {
+                Debug.Log("No selected button"); 
+                return; 
+            }
+
+            PlayInfoText(SelectedButton.NameOfTheButton, SelectedButton.UpgradeContainer);
+
+            StartCoroutine(WaitForInput());
+
+        }
+
+
         
     }
 

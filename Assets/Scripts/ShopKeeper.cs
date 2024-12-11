@@ -49,6 +49,11 @@ public class ShopKeeper : MonoBehaviour
     {
         if (Input.GetButtonDown("StartFishing") && canInteract)
         {
+            StartShop();
+            if (true)
+            {
+                return; 
+            }
             switch (dialogueStep)
             {
                 case 1:
