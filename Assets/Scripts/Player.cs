@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public StatsContainer stats = new();
+    public Fish caughtFish;
 
     private readonly List<Fish> _caughtFish = new();
     public int upgradePoints; 
@@ -27,6 +28,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                AddFish(caughtFish);
+            }
+        }
+         if (Input.GetButtonDown("Inventory"))
+        {
+            WindowsVoice.addToSpeechQueue("You have " + (upgradePoints + 2) + "upgrade points available");
+            WindowsVoice.addToSpeechQueue("You have " + Mathf.FloorToInt(GetReelInPower()) + "reeling modifier");
+            WindowsVoice.addToSpeechQueue("You have " + Mathf.FloorToInt(GetRareFishModifer()) + "rarity fish modifier");
+            WindowsVoice.addToSpeechQueue("You have " + Mathf.FloorToInt(GetStaminaModifer()) + "stamina modifier");
+        }
         
     }
 

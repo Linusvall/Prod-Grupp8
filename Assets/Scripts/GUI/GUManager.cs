@@ -41,11 +41,11 @@ public class GUManager : MonoBehaviour
         switch (info)
         {
             case "Power":
-                WindowsVoice.addToSpeechQueue("The reeling power upgrade helps you deplete the stamina of fish faster.");
+                WindowsVoice.addToSpeechQueue("The reeling upgrade helps you reel in fish faster.");
                
                 break;
             case "Reeling":
-                WindowsVoice.addToSpeechQueue("The reeling upgrade helps you reel in fish faster.");
+                WindowsVoice.addToSpeechQueue("The stamina power upgrade helps you deplete the stamina of fish faster.");
                 break;
             case "Rarity":
                 WindowsVoice.addToSpeechQueue("The rarity upgrade helps you find rare fish more often.");
@@ -91,6 +91,7 @@ public class GUManager : MonoBehaviour
         MainMenu.SetActive(true);
         
         PlayAudio("GoodBye");
+        WindowsVoice.addToSpeechQueue("You can always check your current upgrades and upgradepoints by pressing the B button, the rightmost face button on the right side");
 
     }
     
@@ -135,18 +136,19 @@ public class GUManager : MonoBehaviour
         }
         Debug.Log(_player.upgradePoints);
         if (_player.upgradePoints < upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost)
-        {
-            string cantAfford = "You can not afford a " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost + 
+        {//SettingsLoader.GetInstance().GetSettings().UpgradeCost + 
+            string cantAfford = "You can not afford a " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade +
                 ". You  have " + _player.upgradePoints + " upgrade points. You need " + upgrade.CostOfUpgrade + (SettingsLoader.GetInstance().GetSettings().UpgradeCost - _player.upgradePoints) + " more upgrade points.";
             WindowsVoice.clearSpeechQueue();
             WindowsVoice.addToSpeechQueue(cantAfford);
 
 
             return;
-        }
+        }//+ SettingsLoader.GetInstance().GetSettings().UpgradeCost
+        // +SettingsLoader.GetInstance().GetSettings().UpgradeCost
         Debug.Log(_player.upgradePoints);
-        _player.upgradePoints -= (upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost);
-        string ToSay = "You bought the " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost + ". You now have " + _player.upgradePoints + " left.";
+        _player.upgradePoints -= (upgrade.CostOfUpgrade);
+        string ToSay = "You bought the " + upgrade.UpgradeName + " for " + upgrade.CostOfUpgrade + ". You now have " + _player.upgradePoints + " left.";
         WindowsVoice.clearSpeechQueue();
         WindowsVoice.addToSpeechQueue(ToSay);
         _player.upgradePoints -= (upgrade.CostOfUpgrade + SettingsLoader.GetInstance().GetSettings().UpgradeCost);
@@ -168,7 +170,11 @@ public class GUManager : MonoBehaviour
         else
         {
             WindowsVoice.clearSpeechQueue();
-            WindowsVoice.addToSpeechQueue("Welcome to the shop, here you can buy upgrades and sell your fish for upgrade points. You get one upgrade point per fish sold. Navigate by pressing the left joystick left or right. Press y, the upmost face button on the right side, over an upgrade to hear the upgrades details. Try moving the left joystick right now  ");
+            WindowsVoice.addToSpeechQueue("Welcome to the shop, here you can buy upgrades and sell your fish for upgrade points. " +
+                "You get one upgrade point per fish sold. Navigate by pressing the left joystick left or right. " +
+                "Press the A button, the downmost face button on the right side to accept the currently selected option. " +
+                "Press the Y button, the upmost face button on the right side, over an upgrade to hear the upgrades details." +
+                " Try moving the left joystick right now");
            
             UpgradeShop.SetActive(false);
             MainMenu.SetActive(false);
@@ -235,7 +241,7 @@ public class GUManager : MonoBehaviour
     {
         canInteract = false;
 
-        yield return new WaitForSeconds(25);
+        yield return new WaitForSeconds(30);
         canInteract = true;
         UpgradeShop.SetActive(false);
         MainMenu.SetActive(true);

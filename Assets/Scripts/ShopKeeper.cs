@@ -108,6 +108,7 @@ public class ShopKeeper : MonoBehaviour
     {
         if(ShopGUI != null)
         {
+            audioSource.Stop();
             ShopGUI.SetActive(true);
             canInteract = false;
             PlayerController.GetInstance().DisableMovement(false);
