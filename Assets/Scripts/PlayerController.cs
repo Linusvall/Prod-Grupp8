@@ -99,9 +99,9 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && eyes != null)
         {
-            if (eyes.enabled)
+            if ( eyes.enabled )
             {
                 eyes.enabled = false;
             }

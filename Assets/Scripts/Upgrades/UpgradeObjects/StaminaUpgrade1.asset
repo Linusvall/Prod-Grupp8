@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afd4decacc670f4283e2bf211a6cd59, type: 3}
   m_Name: StaminaUpgrade1
   m_EditorClassIdentifier: 
-  UpgradeName: StaminaUpgrade 1
+  UpgradeName: StaminaUpgrade
   RealInPower: 0
   RareFishModifer: 0
   StaminaModifer: 1

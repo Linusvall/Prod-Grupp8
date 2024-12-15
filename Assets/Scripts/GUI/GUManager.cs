@@ -159,6 +159,12 @@ public class GUManager : MonoBehaviour
     void OnEnable()
     {
   
+        ShopKeeper Keeper = FindAnyObjectByType<ShopKeeper>();
+        if(Keeper != null)
+        {
+            AudioManager.instance.Stop(Keeper.gameObject); 
+        }
+
         if (!playTuturial)
         {
             buyButton.Select();
@@ -241,7 +247,7 @@ public class GUManager : MonoBehaviour
     {
         canInteract = false;
 
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(33);
         canInteract = true;
         UpgradeShop.SetActive(false);
         MainMenu.SetActive(true);

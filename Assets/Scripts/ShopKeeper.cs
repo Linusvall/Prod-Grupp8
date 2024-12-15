@@ -50,6 +50,7 @@ public class ShopKeeper : MonoBehaviour
         if (Input.GetButtonDown("StartFishing") && canInteract)
         {
             StartShop();
+            AudioManager.instance.Stop(gameObject); 
             if (true)
             {
                 return; 

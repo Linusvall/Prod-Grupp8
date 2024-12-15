@@ -17,6 +17,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Xml.Linq;
 
 public class AudioManager : MonoBehaviour
 {
@@ -37,6 +38,17 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this; 
         
+    }
+
+    public void Stop(GameObject gObject)
+    {
+        AudioSource audioSource = gObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            return; 
+        }
+
+        audioSource.Stop();
     }
 
     public void Play (string name, GameObject gObject)

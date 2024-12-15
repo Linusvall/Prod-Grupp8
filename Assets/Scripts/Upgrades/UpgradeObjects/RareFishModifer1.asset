@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afd4decacc670f4283e2bf211a6cd59, type: 3}
   m_Name: RareFishModifer1
   m_EditorClassIdentifier: 
-  UpgradeName: RareFishModifer 1
+  UpgradeName: RareFishModifer
   RealInPower: 0
   RareFishModifer: 1
   StaminaModifer: 0
